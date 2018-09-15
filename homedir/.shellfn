@@ -117,7 +117,7 @@ function tre(){
   tree -aC -I '.git|node_modules|bower_components|.DS_Store' --dirsfirst "$@"
 }
 
-## weather seattle
+## weather greece
 function weather() {
   curl wttr.in/$1
 }
