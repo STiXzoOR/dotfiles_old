@@ -9,7 +9,7 @@ module.exports = {
     'dos2unix',
     // Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
     'findutils',
-    // 'fortune',
+    'fortune',
     'readline', // ensure gawk gets good readline
     'gawk',
     // http://www.lcdf.org/gifsicle/ (because I'm a gif junky)
@@ -41,38 +41,62 @@ module.exports = {
     'vim --with-override-system-vi',
     'watch',
     // Install wget with IRI support
-    'wget --enable-iri'
+    'wget --enable-iri',
+    // colored ls
+    'exa',
+    'screenfetch'
   ],
   cask: [
+    'google-chrome'.
+    'atom',
+    'sublime-text',
+    'github',
+    'clover-configurator',
+    'android-studio',
+    'arduino',
+    'tunnelblick',
+    'coconutbattery',
+    'spotify',
+    'openemu',
+    'skype',
+    'telegram',
+    'ifunbox',
+    'karabiner-elements',
+    'intel-power-gadget',
+    'keka',
+    'discord',
+    'megasync',
+    'fritzing',
+    'vlc',
+    'transmission',
+    'dropbox',
+    'flux',
+    'iterm2',
+    'sketchup',
+    'jdownloader'
     //'adium',
     //'amazon-cloud-drive',
-    //'atom',
-    // 'box-sync',
+    //'box-sync',
     //'comicbooklover',
     //'diffmerge',
-    'docker', // docker for mac
-    //'dropbox',
+    //'docker', // docker for mac
     //'evernote',
-    'flux',
-    'gpg-suite',
+    //'gpg-suite',
     //'ireadfast',
-    'iterm2',
-    'little-snitch',
-    'macbreakz',
-    'micro-snitch',
-    'signal',
+    ///'little-snitch',
+    //'macbreakz',
+    //'micro-snitch',
+    //'signal',
     //'macvim',
-    'sizeup',
-    //'sketchup',
-    'slack',
-    'the-unarchiver',
+    //'sizeup',
+    //'slack',
+    //'the-unarchiver',
     //'torbrowser',
-    //'transmission',
-    'visual-studio-code',
-    //'vlc',
-    'xquartz'
+    //'visual-studio-code',
+    //'xquartz'
   ],
   gem: [
+  'colorls'
   ],
   npm: [
     'antic',
@@ -86,5 +110,11 @@ module.exports = {
     'trash',
     'vtop'
     // ,'yo'
+  ],
+  mas: [
+    // Xcode  
+    '497799835',
+    // Spark mail 
+    '1176895641'
   ]
 };

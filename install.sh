@@ -39,7 +39,7 @@ if [[ $response =~ (yes|y|Y) ]];then
     action "cp /etc/hosts /etc/hosts.backup"
     sudo cp /etc/hosts /etc/hosts.backup
     ok
-    action "cp ./configs/hosts /etc/hosts"
+    action "cp ./configs/system/hosts /etc/hosts"
     sudo cp ./configs/hosts /etc/hosts
     ok
     bot "Your /etc/hosts file has been updated. Last version is saved in /etc/hosts.backup"
@@ -201,9 +201,10 @@ if [[ "$CURRENTSHELL" != "/usr/local/bin/zsh" ]]; then
   ok
 fi
 
-if [[ ! -d "./oh-my-zsh/custom/themes/powerlevel9k" ]]; then
-  git clone https://github.com/bhilburn/powerlevel9k.git oh-my-zsh/custom/themes/powerlevel9k
-fi
+# install pretzo-zsh
+running "install pretzo-zsh"
+zsh ./lib_sh/install_prezto.zsh
+ok
 
 bot "creating symlinks for project dotfiles..."
 pushd homedir > /dev/null 2>&1
@@ -229,7 +230,6 @@ done
 
 popd > /dev/null 2>&1
 
-
 bot "Installing vim plugins"
 # cmake is required to compile vim bundle YouCompleteMe
 # require_brew cmake
@@ -241,6 +241,7 @@ brew tap caskroom/fonts
 require_cask font-fontawesome
 require_cask font-awesome-terminal-fonts
 require_cask font-hack
+require_cask font-hack-nerd-font
 require_cask font-inconsolata-dz-for-powerline
 require_cask font-inconsolata-g-for-powerline
 require_cask font-inconsolata-for-powerline
@@ -397,14 +398,14 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -boo
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 ###############################################################################
-# SSD-specific tweaks                                                         #
+Bot "SSD-specific tweaks"
 ###############################################################################
 
 running "Disable local Time Machine snapshots"
 sudo tmutil disablelocal;ok
 
-# running "Disable hibernation (speeds up entering sleep mode)"
-# sudo pmset -a hibernatemode 0;ok
+running "Disable hibernation (speeds up entering sleep mode)"
+sudo pmset -a hibernatemode 0;ok
 
 running "Remove the sleep image file to save disk space"
 sudo rm -rf /Private/var/vm/sleepimage;ok
@@ -430,8 +431,8 @@ sudo chflags uchg /Private/var/vm/sleepimage;ok
 # (Uncomment if you’re on an older Mac that messes up the animation)
 # defaults write NSGlobalDomain NSScrollAnimationEnabled -bool false;ok
 
-# running "Disable Resume system-wide"
-# defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false;ok
+running "Disable Resume system-wide"
+defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false;ok
 # TODO: might want to enable this again and set specific apps that this works great for
 # e.g. defaults write com.microsoft.word NSQuitAlwaysKeepsWindows -bool true
 
@@ -443,11 +444,11 @@ sudo chflags uchg /Private/var/vm/sleepimage;ok
 # running "Stop iTunes from responding to the keyboard media keys"
 # launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null;ok
 
-# running "Show icons for hard drives, servers, and removable media on the desktop"
-# defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+running "Show icons for hard drives, servers, and removable media on the desktop"
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 # defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
-# defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
-# defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true;ok
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true;ok
 
 # running "Enable the MacBook Air SuperDrive on any Mac"
 # sudo nvram boot-args="mbasd=1";ok
@@ -476,9 +477,6 @@ sudo chflags uchg /Private/var/vm/sleepimage;ok
 ################################################
 bot "Standard System Changes"
 ################################################
-running "always boot in verbose mode (not MacOS GUI mode)"
-sudo nvram boot-args="-v";ok
-
 running "allow 'locate' command"
 sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist > /dev/null 2>&1;ok
 
@@ -488,8 +486,8 @@ sudo pmset -a standbydelay 86400;ok
 running "Disable the sound effects on boot"
 sudo nvram SystemAudioVolume=" ";ok
 
-running "Menu bar: disable transparency"
-defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false;ok
+#running "Menu bar: disable transparency"
+#defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false;ok
 
 running "Menu bar: hide the Time Machine, Volume, User, and Bluetooth icons"
 for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
@@ -545,8 +543,8 @@ defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true;ok
 running "Disable automatic termination of inactive apps"
 defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true;ok
 
-running "Disable the crash reporter"
-defaults write com.apple.CrashReporter DialogType -string "none";ok
+#running "Disable the crash reporter"
+#defaults write com.apple.CrashReporter DialogType -string "none";ok
 
 running "Set Help Viewer windows to non-floating mode"
 defaults write com.apple.helpviewer DevMode -bool true;ok
@@ -557,14 +555,14 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo Hos
 running "Restart automatically if the computer freezes"
 sudo systemsetup -setrestartfreeze on;ok
 
-running "Never go into computer sleep mode"
-sudo systemsetup -setcomputersleep Off > /dev/null;ok
+#running "Never go into computer sleep mode"
+#sudo systemsetup -setcomputersleep Off > /dev/null;ok
 
 running "Check for software updates daily, not just once per week"
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1;ok
 
-# running "Disable Notification Center and remove the menu bar icon"
-# launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist > /dev/null 2>&1;ok
+running "Disable Notification Center and remove the menu bar icon"
+launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist > /dev/null 2>&1;ok
 
 running "Disable smart quotes as they’re annoying when typing code"
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false;ok
@@ -577,19 +575,19 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false;ok
 bot "Trackpad, mouse, keyboard, Bluetooth accessories, and input"
 ###############################################################################
 
-running "Trackpad: enable tap to click for this user and for the login screen"
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1;ok
+#running "Trackpad: enable tap to click for this user and for the login screen"
+#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+#defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+#defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1;ok
 
-running "Trackpad: map bottom right corner to right-click"
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true;ok
+#running "Trackpad: map bottom right corner to right-click"
+#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+#defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
+#defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true;ok
 
-running "Disable 'natural' (Lion-style) scrolling"
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false;ok
+#running "Disable 'natural' (Lion-style) scrolling"
+#defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false;ok
 
 running "Increase sound quality for Bluetooth headphones/headsets"
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40;ok
@@ -607,14 +605,20 @@ running "Disable press-and-hold for keys in favor of key repeat"
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false;ok
 
 running "Set a blazingly fast keyboard repeat rate"
-defaults write NSGlobalDomain KeyRepeat -int 2
-defaults write NSGlobalDomain InitialKeyRepeat -int 10;ok
+defaults write NSGlobalDomain KeyRepeat -int 3
+defaults write NSGlobalDomain InitialKeyRepeat -int 68;ok
 
-running "Set language and text formats (english/US)"
-defaults write NSGlobalDomain AppleLanguages -array "en"
-defaults write NSGlobalDomain AppleLocale -string "en_US@currency=USD"
+running "Set language and text formats (english/CY)"
+defaults write NSGlobalDomain AppleLanguages -array "(en-CY,el-CY)"
+defaults write NSGlobalDomain AppleLocale -string "en_CY@currency=EUR"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true;ok
+
+running "Show language menu in the top right corner of the boot screen"
+defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true;ok
+
+running "Set timezone to Europe/Athens;" #see `sudo systemsetup -listtimezones` for other values
+sudo systemsetup -settimezone "Europe/Athens" > /dev/null;ok
 
 running "Disable auto-correct"
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false;ok
@@ -718,7 +722,6 @@ defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true;ok
 running "Show the ~/Library folder"
 chflags nohidden ~/Library;ok
 
-
 running "Expand the following File Info panes: “General”, “Open with”, and “Sharing & Permissions”"
 defaults write com.apple.finder FXInfoPanesExpanded -dict \
   General -bool true \
@@ -747,8 +750,8 @@ defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 running "Show indicator lights for open applications in the Dock"
 defaults write com.apple.dock show-process-indicators -bool true;ok
 
-running "Don’t animate opening applications from the Dock"
-defaults write com.apple.dock launchanim -bool false;ok
+#running "Don’t animate opening applications from the Dock"
+#defaults write com.apple.dock launchanim -bool false;ok
 
 running "Speed up Mission Control animations"
 defaults write com.apple.dock expose-animation-duration -float 0.1;ok
@@ -771,8 +774,8 @@ defaults write com.apple.dock autohide-delay -float 0;ok
 running "Remove the animation when hiding/showing the Dock"
 defaults write com.apple.dock autohide-time-modifier -float 0;ok
 
-running "Automatically hide and show the Dock"
-defaults write com.apple.dock autohide -bool true;ok
+#running "Automatically hide and show the Dock"
+#defaults write com.apple.dock autohide -bool true;ok
 
 running "Make Dock icons of hidden applications translucent"
 defaults write com.apple.dock showhidden -bool true;ok
@@ -783,7 +786,7 @@ defaults write com.apple.dock hide-mirror -bool true;ok
 running "Reset Launchpad, but keep the desktop wallpaper intact"
 find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete;ok
 
-bot "Configuring Hot Corners"
+#bot "Configuring Hot Corners"
 # Possible values:
 #  0: no-op
 #  2: Mission Control
@@ -796,15 +799,15 @@ bot "Configuring Hot Corners"
 # 11: Launchpad
 # 12: Notification Center
 
-running "Top left screen corner → Mission Control"
-defaults write com.apple.dock wvous-tl-corner -int 2
-defaults write com.apple.dock wvous-tl-modifier -int 0;ok
-running "Top right screen corner → Desktop"
-defaults write com.apple.dock wvous-tr-corner -int 4
-defaults write com.apple.dock wvous-tr-modifier -int 0;ok
-running "Bottom right screen corner → Start screen saver"
-defaults write com.apple.dock wvous-br-corner -int 5
-defaults write com.apple.dock wvous-br-modifier -int 0;ok
+#running "Top left screen corner → Mission Control"
+#defaults write com.apple.dock wvous-tl-corner -int 2
+#defaults write com.apple.dock wvous-tl-modifier -int 0;ok
+#running "Top right screen corner → Desktop"
+#defaults write com.apple.dock wvous-tr-corner -int 4
+#defaults write com.apple.dock wvous-tr-modifier -int 0;ok
+#running "Bottom right screen corner → Start screen saver"
+#defaults write com.apple.dock wvous-br-corner -int 5
+#defaults write com.apple.dock wvous-br-modifier -int 0;ok
 
 ###############################################################################
 bot "Configuring Safari & WebKit"
@@ -845,10 +848,26 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 running "Add a context menu item for showing the Web Inspector in web views"
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true;ok
 
-###############################################################################
-bot "Configuring Mail"
-###############################################################################
+running "Warn about fraudulent websites"
+defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true;ok
 
+running "Block pop-up windows"
+defaults write com.apple.Safari WebKitJavaScriptCanOpenWindowsAutomatically -bool false
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically -bool false;ok
+
+running "Enable Do Not Track"
+defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true;ok
+
+running "Update extensions automatically"
+defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true;ok
+
+running "Don’t send search queries to Apple"
+defaults write com.apple.Safari UniversalSearchEnabled -bool false
+defaults write com.apple.Safari SuppressSearchSuggestions -bool true;ok
+
+###############################################################################
+bot "Mail"
+###############################################################################
 
 running "Disable send and reply animations in Mail.app"
 defaults write com.apple.mail DisableReplyAnimations -bool true
@@ -910,27 +929,27 @@ sudo mdutil -i on / > /dev/null;ok
 bot "Terminal & iTerm2"
 ###############################################################################
 
-# running "Only use UTF-8 in Terminal.app"
-# defaults write com.apple.terminal StringEncodings -array 4;ok
-#
-# running "Use a modified version of the Solarized Dark theme by default in Terminal.app"
-# TERM_PROFILE='Solarized Dark xterm-256color';
-# CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')";
-# if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
-# 	open "./configs/${TERM_PROFILE}.terminal";
-# 	sleep 1; # Wait a bit to make sure the theme is loaded
-# 	defaults write com.apple.terminal 'Default Window Settings' -string "${TERM_PROFILE}";
-# 	defaults write com.apple.terminal 'Startup Window Settings' -string "${TERM_PROFILE}";
-# fi;
+running "Only use UTF-8 in Terminal.app"
+defaults write com.apple.terminal StringEncodings -array 4;ok
 
-#running "Enable “focus follows mouse” for Terminal.app and all X11 apps"
+running "Use a modified version of the Solarized Dark theme by default in Terminal.app"
+TERM_PROFILE='Solarized Dark xterm-256color';
+CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')";
+if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
+  open "./configs/terminal/${TERM_PROFILE}.terminal";
+	sleep 1; # Wait a bit to make sure the theme is loaded
+	defaults write com.apple.terminal 'Default Window Settings' -string "${TERM_PROFILE}";
+	defaults write com.apple.terminal 'Startup Window Settings' -string "${TERM_PROFILE}";
+fi;
+
+running "Enable “focus follows mouse” for Terminal.app and all X11 apps"
 # i.e. hover over a window and start `typing in it without clicking first
-defaults write com.apple.terminal FocusFollowsMouse -bool true
+defaults write com.apple.terminal FocusFollowsMouse -bool true;ok
 #defaults write org.x.X11 wm_ffm -bool true;ok
 running "Installing the Solarized Light theme for iTerm (opening file)"
-open "./configs/Solarized Light.itermcolors";ok
+open "./configs/iterm2/Solarized Light.itermcolors";ok
 running "Installing the Patched Solarized Dark theme for iTerm (opening file)"
-open "./configs/Solarized Dark Patch.itermcolors";ok
+open "./configs/iterm2/Solarized Dark Patch.itermcolors";ok
 
 running "Don’t display the annoying prompt when quitting iTerm"
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false;ok
@@ -949,12 +968,22 @@ defaults write com.googlecode.iterm2 HotkeyModifiers -int 262401;
 running "Make iTerm2 load new tabs in the same directory"
 /usr/libexec/PlistBuddy -c "set \"New Bookmarks\":0:\"Custom Directory\" Recycle" ~/Library/Preferences/com.googlecode.iterm2.plist
 running "setting fonts"
-defaults write com.googlecode.iterm2 "Normal Font" -string "Hack-Regular 12";
-defaults write com.googlecode.iterm2 "Non Ascii Font" -string "RobotoMonoForPowerline-Regular 12";
+defaults write com.googlecode.iterm2 "Normal Font" -string "MesloLGMDZ-RegularForPowerline 14";
+defaults write com.googlecode.iterm2 "Use Non-ASCII Font" -bool true;
+defaults write com.googlecode.iterm2 "Non Ascii Font" -string "HackNerdFontComplete-Regular 14";
 ok
+running "setting cursor type"
+defaults write com.googlecode.iterm2 "Cursor Type" -int 1;ok
+running "setting cursor to blink"
+defaults write com.googlecode.iterm2 "Blinking Cursor" -bool true;ok
 running "reading iterm settings"
 defaults read -app iTerm > /dev/null 2>&1;
 ok
+
+#running "Specify the preferences directory"
+#defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/dotfiles/configs/iterm2";ok
+#running "Tell iTerm2 to use the custom preferences in the directory"
+#defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true;ok
 
 ###############################################################################
 bot "Time Machine"
@@ -1027,24 +1056,114 @@ running "Disable continuous spell checking"
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false;ok
 
 ###############################################################################
-bot "SizeUp.app"
+bot "Sublime Text"
 ###############################################################################
 
-running "Start SizeUp at login"
-defaults write com.irradiatedsoftware.SizeUp StartAtLogin -bool true;ok
+running "Install Sublime Text settings"
+cp "./configs/sublime/Preferences.sublime-settings" "${HOME}/Library/Application\ Support/Sublime\ Text*/Packages/User/Preferences.sublime-settings" 2> /dev/null;ok
 
-running "Don’t show the preferences window on next start"
-defaults write com.irradiatedsoftware.SizeUp ShowPrefsOnNextStart -bool false;ok
+###############################################################################
+bot "Transmission"
+###############################################################################
 
-killall cfprefsd
+running "Use ~/Documents/Torrents to store incomplete downloads"
+defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true;
+defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Documents/Torrents";ok
+
+running "Use ~/Downloads to store completed downloads"
+defaults write org.m0k.transmission DownloadLocationConstant -bool true;ok
+
+running "Don’t prompt for confirmation before downloading"
+defaults write org.m0k.transmission DownloadAsk -bool false;
+defaults write org.m0k.transmission MagnetOpenAsk -bool false;ok
+
+running "Don’t prompt for confirmation before removing non-downloading active transfers"
+defaults write org.m0k.transmission CheckRemoveDownloading -bool true;ok
+
+running "Trash original torrent files"
+defaults write org.m0k.transmission DeleteOriginalTorrent -bool true;ok
+
+running "Hide the donate message"
+defaults write org.m0k.transmission WarningDonate -bool false;ok
+
+running "Hide the legal disclaimer"
+defaults write org.m0k.transmission WarningLegal -bool false;ok
+
+running "Setting IP block list"
+# Source: https://giuliomac.wordpress.com/2014/02/19/best-blocklist-for-transmission/
+defaults write org.m0k.transmission BlocklistNew -bool true;
+defaults write org.m0k.transmission BlocklistURL -string "http://john.bitsurge.net/public/biglist.p2p.gz";
+defaults write org.m0k.transmission BlocklistAutoUpdate -bool true;ok
+
+running "Randomize port on launch"
+defaults write org.m0k.transmission RandomPort -bool true;ok
+
+###############################################################################
+bot "Xcode"
+###############################################################################
+
+running "Change theme to Dusk"
+mkdir -p ~/Library/Developer/Xcode/UserData/FontAndColorThemes/;
+XCODE_THEME='Duskv2';
+cp "./configs/xcode/${XCODE_THEME}.dvtcolortheme" "${HOME}/Library/Developer/Xcode/UserData/FontAndColorThemes/";
+defaults write com.apple.dt.Xcode XCFontAndColorCurrentTheme -string Dusk.xccolortheme;ok
+
+running "Trim trailing whitespace"
+defaults write com.apple.dt.Xcode DVTTextEditorTrimTrailingWhitespace -bool true;ok
+
+running "Trim whitespace only lines"
+defaults write com.apple.dt.Xcode DVTTextEditorTrimWhitespaceOnlyLines -bool true;ok
+
+# running "Show invisible characters"
+# defaults write com.apple.dt.Xcode DVTTextShowInvisibleCharacters -bool true;ok
+
+running "Show line numbers"
+defaults write com.apple.dt.Xcode DVTTextShowLineNumbers -bool true;ok
+
+running "Reduce the number of compile tasks and stop indexing"
+defaults write com.apple.dt.XCode IDEIndexDisable 1;ok
+
+# running "Enable internal debug menu"
+# defaults write com.apple.dt.Xcode ShowDVTDebugMenu -bool true;ok
+
+running "Show all devices and their information you have plugged in before"
+defaults read com.apple.dt.XCode DVTSavediPhoneDevices;ok
+
+running "Show ruler at 80 chars"
+defaults write com.apple.dt.Xcode DVTTextShowPageGuide -bool true;
+defaults write com.apple.dt.Xcode DVTTextPageGuideLocation -int 80;ok
+
+running "Map ⌃⌘L to show last change for the current line"
+defaults write com.apple.dt.Xcode NSUserKeyEquivalents -dict-add "Show Last Change For Line" "@^l";ok
+
+running "Show build time"
+defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool YES;ok
+
+running "Improve performance"
+defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileTasks 5;ok
+
+running "Improve performance by leveraging multi-core CPU"
+defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileTasks `sysctl -n hw.ncpu`;ok
+
+running "Delete these settings"
+defaults delete com.apple.dt.XCode IDEIndexDisable;ok
+
+###############################################################################
+bot "VLC"
+###############################################################################
+
+running "Install VLC settings"
+if [ ! -d "${HOME}/Library/Preferences/org.videolan.vlc" ]; then mkdir "${HOME}/Library/Preferences/org.videolan.vlc";
+cp "./configs/vlc/vlcrc" "${HOME}/Library/Preferences/org.videolan.vlc/" 2> /dev/null;
+cp "./configs/vlc/org.videolan.vlc.plist" "${HOME}/Library/Preferences/" 2> /dev/null;ok
 
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 bot "OK. Note that some of these changes require a logout/restart to take effect. Killing affected applications (so they can reboot)...."
 for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
-  "Dock" "Finder" "Mail" "Messages" "Safari" "SizeUp" "SystemUIServer" \
-  "iCal" "Terminal"; do
+  "Dock" "Finder" "Mail" "Messages" "Safari" "Transmission" "Xcode" "SystemUIServer" \
+  "VLC" "Terminal"; do
   killall "${app}" > /dev/null 2>&1
 done
 

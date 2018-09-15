@@ -62,6 +62,12 @@ alias network.internalip="ifconfig en0 | egrep -o '([0-9]+\.[0-9]+\.[0-9]+\.[0-9
 # -p Postpend slash to folders
 alias ls='ls -G -h -p '
 alias ll='ls -l -G -h -p '
+alias lc="colorls -lA --report"
+alias lx="exa -al --git"
+
+# Directory changing
+alias ..="cd .."
+alias ...="cd ../.."
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'

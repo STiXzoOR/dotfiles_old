@@ -35,6 +35,20 @@ function require_brew() {
     ok
 }
 
+function require_mas() {
+    running "mas $1 $2"
+    mas list $1 > /dev/null 2>&1 | true
+    if [[ ${PIPESTATUS[0]} != 0 ]]; then
+        action "mas install $1 $2"
+        mas install $1 $2
+        if [[ $? != 0 ]]; then
+            error "failed to install $1! aborting..."
+            # exit -1
+        fi
+    fi
+    ok
+}
+
 function require_node(){
     running "node -v"
     node -v

@@ -1,5 +1,3 @@
-[![Beerpay](https://beerpay.io/atomantic/dotfiles/badge.svg?style=flat-square)](https://beerpay.io/atomantic/dotfiles)
-
 # \\[._.]/ - Hi, I'm the MacOS bot
 
 I will update your MacOS machine with Better™ system defaults, preferences, software configuration and even auto-install some handy development tools and apps that my developer friends find helpful.
@@ -14,11 +12,8 @@ You don't need to install or configure anything upfront! This works with a brand
 - [Watch me run!](#watch-me-run)
 - [Installation](#installation)
   - [Restoring Dotfiles](#restoring-dotfiles)
-- [3.x.x+ Upgrade Instructions!](#3xx-upgrade-instructions)
 - [Additional](#additional)
   - [VIM as IDE](#vim-as-ide)
-  - [Crontab](#crontab)
-  - [Remap Caps-Lock](#remap-caps-lock)
 - [Settings](#settings)
   - [SSD-specific tweaks](#ssd-specific-tweaks)
   - [General System Changes](#general-system-changes)
@@ -27,17 +22,19 @@ You don't need to install or configure anything upfront! This works with a brand
   - [Configuring the Screen](#configuring-the-screen)
   - [Finder Configs](#finder-configs)
   - [Dock & Dashboard](#dock--dashboard)
-  - [Configuring Hot Corners](#configuring-hot-corners)
   - [Configuring Safari & WebKit](#configuring-safari--webkit)
   - [Configuring Mail](#configuring-mail)
   - [Spotlight](#spotlight)
-  - [iTerm2](#iterm2)
+  - [Terminal & iTerm2](#terminal--iterm2)
   - [Time Machine](#time-machine)
   - [Activity Monitor](#activity-monitor)
   - [Address Book, Dashboard, iCal, TextEdit, and Disk Utility](#address-book-dashboard-ical-textedit-and-disk-utility)
   - [Mac App Store](#mac-app-store)
   - [Messages](#messages)
-  - [SizeUp.app](#sizeupapp)
+  - [Sublime Text.app](#sublime-text)
+  - [Transmission.app](#transmission)
+  - [Xcode.app](#xcode)
+  - [VLC.app](#vlc)
 - [Software Installation](#software-installation)
   - [Utilities](#utilities)
   - [Apps](#apps)
@@ -58,7 +55,7 @@ Don't you hate getting a new laptop or joining a new team and then spending a wh
 
 When I finish with your machine, you will be able to look at your command-line in full-screen mode like this (running iTerm):
 
-![iTerm Screenshot](https://raw.githubusercontent.com/atomantic/dotfiles/master/img/term.png)
+![iTerm Screenshot](https://raw.githubusercontent.com/STiXzoOR/dotfiles/master/img/term.png)
 
 Check out how your shell prompt includes the full path, node.js version & the working git branch along with a lot of other info!
 We use powerlevel9k for command prompt, so customization of what you want is easily changable in `./.zshrc`
@@ -78,14 +75,14 @@ To launch fullscreen, hit `Command + Enter` in iTerm, then use `Command + d` and
 
 > Note: I recommend forking this repo in case you don't like anything I do and want to set your own preferences (and pull request them!)
 
-> REVIEW WHAT THIS SCRIPT DOES PRIOR TO RUNNING: https://github.com/atomantic/dotfiles/blob/master/install.sh#L275-L1038
+> REVIEW WHAT THIS SCRIPT DOES PRIOR TO RUNNING: https://github.com/STiXzoOR/dotfiles/blob/master/install.sh#L275-L1038
 > It's always a good idea to review arbitrary code from the internet before running it on your machine with sudo power!
 > You are responsible for everything this script does to your machine (see LICENSE)
 
 ```bash
-git clone --recurse-submodules https://github.com/atomantic/dotfiles ~/.dotfiles
+git clone --recurse-submodules https://github.com/STiXzoOR/dotfiles ~/.dotfiles
 cd ~/.dotfiles;
-# run this using terminal (not iTerm, lest iTerm settings get discarded on exit)
+# run this using terminal (not iTerm, last iTerm settings get discarded on exit)
 ./install.sh
 ```
 * When it finishes, open iTerm and press `Command + ,` to open preferences. Under Profiles > Colors, select "Load Presets" and choose the `Solarized Dark Patch` scheme. If it isn't there for some reason, import it from `~/.dotfiles/configs` -- you may also need to select the `Hack` font and check the box for non-ascii font and set to `Roboto Mono For Powerline` (I've had mixed results for automating these settings--love a pull request that improves this)
@@ -99,34 +96,10 @@ If you have existing dotfiles for configuring git, zsh, vim, etc, these will be 
 
 > The restore script does not currently restore system settings--only your original dotfiles. To restore system settings, you'll need to manually undo what you don't like (so don't forget to fork, review, tweak)
 
-
-# 3.x.x+ Upgrade Instructions!
-
-`3.0.0` brings huge changes. If you have made any modifications (and didn't make your own fork), you will want to backup your dotfiles prior to running `git-up` or `git pull` on `~/.dotfiles`.
-
-Do the following to upgrade your ~/.dotfiles safely:
-
-1. backup your dotfiles: `cp -R ~/.dotfiles ~/.dotfiles_old`
-2. `cd ~/.dotfiles`
-3. update dotfiles: `git-up` or `git pull`
-4. remove old submodule location: `rm -rf .vim` (now lives in `homedir/.vim`)
-5. inspect `install.sh` and `config.js` to make sure all the software you want is installed
-6. inspect `homedir/*` for any changes you want to port from `./dotfiles_old`
-7. run `install.sh` again
-
 # Additional
 
 ## VIM as IDE
 I am moving away from using `Atom` and instead using `vim` as my IDE. I use Vundle to manage vim plugins (instead of pathogen). Vundle is better in many ways and is compatible with pathogen plugins. Additionally, vundle will manage and install its own plugins so we don't have to use git submodules for all of them.
-
-## Crontab
-You can `cron ~/.crontab` if you want to add my nightly cron software updates.
-
-> \\[0_0]/ - Note that this may wake you in the morning to compatibility issues so use only if you like being on the edge
-
-## Remap Caps-Lock
-- I highly recommend remapping your Caps Lock key to Control per [Dr. Bunsen](http://www.drbunsen.org/remapping-caps-lock/):
-![Remap Caps Lock](https://raw.githubusercontent.com/atomantic/dotfiles/master/img/remap_capslock.png)
 
 # Settings
 This project changes a number of settings and configures software on MacOS.
@@ -134,7 +107,6 @@ Here is the current list:
 
 ## Prompt Driven Configuration
 The following will only happen if you agree on the prompt
-- install a gitshots script to take a photo using your camera on every git commit (these go in as a post-commit hook to your .git_template)
 - overwrite your /etc/hosts file with a copy from someonewhocares.org (see ./configs/hosts for the file that will be used)
 - replace the system wallpaper with `img/wallpaper.jpg`
 
@@ -144,8 +116,9 @@ The following will only happen if you agree on the prompt
 - Remove the sleep image file to save disk space
 
 ## General System Changes
-- always boot in verbose mode (not MacOS GUI mode)
+- Disable Resume system
 - Disable the sound effects on boot
+- Show icons for hard drives, servers, and removable media on the desktop
 - Menu bar: disable transparency
 - Menu bar: hide the Time Machine, Volume, User, and Bluetooth icons
 - Set highlight color to green
@@ -162,11 +135,10 @@ The following will only happen if you agree on the prompt
 - Remove duplicates in the “Open With” menu (also see 'lscleanup' alias)
 - Display ASCII control characters using caret notation in standard text views
 - Disable automatic termination of inactive apps
-- Disable the crash reporter
 - Set Help Viewer windows to non-floating mode
 - Reveal IP, hostname, OS, etc. when clicking clock in login window
 - Restart automatically if the computer freezes
-- Never go into computer sleep mode
+- Disable Notification Center and remove the menu bar icon
 - Check for software updates daily, not just once per week
 - Disable smart quotes as they’re annoying when typing code
 - Disable smart dashes as they’re annoying when typing code
@@ -180,16 +152,15 @@ The following will only happen if you agree on the prompt
 - Disable guest account login
 
 ## Trackpad, mouse, keyboard, Bluetooth accessories, and input
-- Trackpad: enable tap to click for this user and for the login screen
-- Trackpad: map bottom right corner to right-click
-- Disable “natural” (Lion-style) scrolling
 - Increase sound quality for Bluetooth headphones/headsets
 - Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
 - Use scroll gesture with the Ctrl (^) modifier key to zoom
 - Follow the keyboard focus while zoomed in
 - Disable press-and-hold for keys in favor of key repeat
 - Set a blazingly fast keyboard repeat rate:
-- Set language and text formats (english/US)
+- Set language and text formats (english/CY)
+- Set timezone
+- Show language menu in the top right corner of the boot screen
 - Disable auto-correct
 
 ## Configuring the Screen
@@ -232,7 +203,6 @@ The following will only happen if you agree on the prompt
 - Minimize windows into their application’s icon
 - Enable spring loading for all Dock items
 - Show indicator lights for open applications in the Dock
-- Don’t animate opening applications from the Dock
 - Speed up Mission Control animations
 - Don’t group windows by application in Mission Control
 - Disable Dashboard
@@ -240,15 +210,9 @@ The following will only happen if you agree on the prompt
 - Don’t automatically rearrange Spaces based on most recent use
 - Remove the auto-hiding Dock delay
 - Remove the animation when hiding/showing the Dock
-- Automatically hide and show the Dock
 - Make Dock icons of hidden applications translucent
 - Make Dock more transparent
 - Reset Launchpad, but keep the desktop wallpaper intact
-
-## Configuring Hot Corners
-- Top left screen corner → Mission Control
-- Top right screen corner → Desktop
-- Bottom right screen corner → Start screen saver
 
 ## Configuring Safari & WebKit
 - Set Safari’s home page to ‘about:blank’ for faster loading
@@ -261,7 +225,12 @@ The following will only happen if you agree on the prompt
 - Make Safari’s search banners default to Contains instead of Starts With
 - Remove useless icons from Safari’s bookmarks bar
 - Enable the Develop menu and the Web Inspector in Safari
-- Add a context menu item for showing the Web Inspector in web views
+- Add a context menu item for showing the Web Inspector in web 
+- Warn about fraudulent websites
+- Block pop-up windows
+- Enable Do Not Track
+- Update extensions automatically
+- Don’t send search queries to Apple
 
 ## Configuring Mail
 - Disable send and reply animations in Mail.app
@@ -277,13 +246,15 @@ The following will only happen if you agree on the prompt
 - Load new settings before rebuilding the index
 - Make sure indexing is enabled for the main volume
 
-## iTerm2
+## Terminal & iTerm2
+- Only use UTF-8 in Terminal
+- Use a modified version of the Solarized Dark theme by default in Terminal
 - Installing the Solarized Dark theme for iTerm
 - Don’t display the annoying prompt when quitting iTerm
 - Hide tab title bars
 - Set system-wide hotkey to show/hide iterm with ctrl+tick ( `^` + `)
-- Set normal font to Hack 12pt
-- Set non-ascii font to Roboto Mono for Powerline 12pt
+- Set normal font to Meslo LG MD Z For Powerline 14pt
+- Set non-ascii font to Hack Nerd 14pt
 
 ## Time Machine
 - Prevent Time Machine from prompting to use new hard drives as backup volume
@@ -311,9 +282,35 @@ The following will only happen if you agree on the prompt
 - Disable smart quotes as it’s annoying for messages that contain code
 - Disable continuous spell checking
 
-## SizeUp.app
-- Start SizeUp at login
-- Don’t show the preferences window on next start
+## Sublime Text.app
+- Pre configured settings 
+
+## Transmission.app
+- Use ~/Documents/Torrents to store incomplete downloads
+- Use ~/Downloads to store completed downloads
+- Don’t prompt for confirmation before downloading
+- Don’t prompt for confirmation before removing non-downloading active transfers
+- Trash original torrent files
+- Hide the donate message
+- Hide the legal disclaimer
+- Setting IP block list
+- Randomize port on launch
+
+## Xcode.app
+- Install Dusk theme
+- Trim trailing whitespace
+- Trim whitespace only lines
+- Show line numbers
+- Reduce the number of compile tasks and stop indexing
+- Show all devices and their information you have plugged in before
+- Show ruler at 80 chars
+- Map ⌃⌘L to show last change for the current line
+- Improve performance
+- Improve performance by leveraging multi-core CPU
+- Delete these settings
+
+## VLC.app
+- Pre configured settings
 
 # Software Installation
 
@@ -329,14 +326,13 @@ The following is the software that I have set as default:
 * dos2unix
 * findutils
 * fortune
+* readline
 * gawk
 * gifsicle
 * gnupg
 * gnu-sed
 * homebrew/dupes/grep
 * httpie
-* imagemagick (only if gitshots enabled)
-* imagesnap (only if gitshots enabled)
 * jq
 * mas
 * moreutils
@@ -345,27 +341,51 @@ The following is the software that I have set as default:
 * reattach-to-user-namespace
 * homebrew/dupes/screen
 * tmux
+* todo-txt
 * tree
 * ttyrec
 * vim --override-system-vi
 * watch
 * wget --enable-iri
+* exa
+* screenfetch
 
 ## Apps
-* box-sync
-* gpgtools
-* iterm2
-* sizeup
-* slack
-* the-unarchiver
-* xquartz
+* google-chrome
+* atom
+* sublime-text
+* github
+* clover-configurator
+* android-studio
+* arduino
+* tunnelblick
+* coconutbattery
+* spotify
+* openemu
+* skype
+* telegram
+* ifunbox
+* karabiner-elements
+* intel-power-gadget
+* keka
+* discord
+* megasync
+* fritzing
+* vlc
+* transmission
+* dropbox
+* flux
+* term2
+* sketchup
+* jdownloader
+* xcode (through mas)
+* spark mail (through mas)
 
 ## NPM Global Modules
 
 * antic
 * buzzphrase
 * eslint
-* gulp
 * instant-markdown-d
 * npm-check
 * prettyjson
@@ -373,7 +393,7 @@ The following is the software that I have set as default:
 * vtop
 
 ## Ruby Gems
-* git-up
+* colorls
 
 # License
 This project is licensed under ISC. Please fork, contribute and share.
@@ -381,7 +401,7 @@ This project is licensed under ISC. Please fork, contribute and share.
 # Contributions
 Contributions are always welcome in the form of pull requests with explanatory comments.
 
-Please refer to the [Contributor Covenant](https://github.com/atomantic/dotfiles/blob/master/CODE_OF_CONDUCT.md)
+Please refer to the [Contributor Covenant](https://github.com/STiXzoOR/dotfiles/blob/master/CODE_OF_CONDUCT.md)
 
 # Loathing, Mehs and Praise
 1. Loathing should be directed into pull requests that make it better. woot.
