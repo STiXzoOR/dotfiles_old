@@ -47,7 +47,7 @@ module.exports = {
     'screenfetch'
   ],
   cask: [
-    'google-chrome'.
+    'google-chrome',
     'atom',
     'sublime-text',
     'github',
@@ -113,7 +113,7 @@ module.exports = {
   ],
   mas: [
     // Xcode  
-    '497799835',
+    //'497799835',
     // Spark mail 
     '1176895641'
   ]
