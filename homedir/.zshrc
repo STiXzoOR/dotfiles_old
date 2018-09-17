@@ -71,7 +71,7 @@ POWERLEVEL9K_STATUS_ERROR_BACKGROUND="$DEFAULT_BACKGROUND"
 
 #POWERLEVEL9K_HISTORY_FOREGROUND="$DEFAULT_FOREGROUND"
 
-POWERLEVEL9K_TIME_FORMAT="%D{%T \uF64F}"
+POWERLEVEL9K_TIME_FORMAT="%D{%T}"
 #POWERLEVEL9K_TIME_FOREGROUND="$DEFAULT_FOREGROUND"
 #POWERLEVEL9K_TIME_BACKGROUND="$DEFAULT_BACKGROUND"
 
@@ -132,15 +132,15 @@ POWERLEVEL9K_BATTERY_DISCONNECTED_BACKGROUND="$DEFAULT_BACKGROUND"
 # Source Prezto
 #####################################################################################
 
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+if [[ -s "${ZDOTDIR:-$HOME}/.dotfiles/prezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.dotfiles/prezto/init.zsh"
 fi
 
 #####################################################################################
 # iTerm2 Shell Integration
 #####################################################################################
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+#test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 #####################################################################################
 # Source NVM
@@ -148,6 +148,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 source /usr/local/opt/nvm/nvm.sh
 
+autoload -U add-zsh-hook
 load-nvmrc() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
     nvm use &> /dev/null
@@ -169,7 +170,10 @@ export DEFAULT_USER=`whoami`
 # ColorLS settings
 #####################################################################################
 
-source $(dirname $(gem which colorls))/tab_complete.sh
+source "$(dirname $(gem which colorls))/tab_complete.sh"
+
+alias lc="colorls -lA --report"
+alias lx="exa -al --git"
 
 #####################################################################################
 # why would you type 'cd dir' if you could just type 'dir'?
