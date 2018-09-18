@@ -969,16 +969,17 @@ defaults write com.googlecode.iterm2 HotkeyCode -int 50;
 defaults write com.googlecode.iterm2 FocusFollowsMouse -int 1;
 defaults write com.googlecode.iterm2 HotkeyModifiers -int 262401;
 running "Make iTerm2 load new tabs in the same directory"
-/usr/libexec/PlistBuddy -c "set \"New Bookmarks\":0:\"Custom Directory\" Recycle" ~/Library/Preferences/com.googlecode.iterm2.plist
+/usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Custom Directory' Recycle" ~/Library/Preferences/com.googlecode.iterm2.plist
 running "setting fonts"
-defaults write com.googlecode.iterm2 "Normal Font" -string "MesloLGMDZ-RegularForPowerline 14";
-defaults write com.googlecode.iterm2 "Use Non-ASCII Font" -bool true;
-defaults write com.googlecode.iterm2 "Non Ascii Font" -string "HackNerdFontComplete-Regular 14";
+/usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Normal Font' 'MesloLGMDZ-RegularForPowerline 14'" ~/Library/Preferences/com.googlecode.iterm2.plist;
+/usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Use Non-ASCII Font' true" ~/Library/Preferences/com.googlecode.iterm2.plist;
+/usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Non Ascii Font' 'HackNerdFontComplete-Regular 14'" ~/Library/Preferences/com.googlecode.iterm2.plist;
+/usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Vertical Spacing' 0.85" ~/Library/Preferences/com.googlecode.iterm2.plist;
 ok
 running "setting cursor type"
-defaults write com.googlecode.iterm2 "Cursor Type" -int 1;ok
+/usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Cursor Type' 1" ~/Library/Preferences/com.googlecode.iterm2.plist;
 running "setting cursor to blink"
-defaults write com.googlecode.iterm2 "Blinking Cursor" -bool true;ok
+/usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Blinking Cursor' true" ~/Library/Preferences/com.googlecode.iterm2.plist;ok
 running "reading iterm settings"
 defaults read -app iTerm > /dev/null 2>&1;
 ok
