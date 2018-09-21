@@ -954,6 +954,9 @@ open "./configs/iterm2/Solarized Light.itermcolors";ok
 running "Installing the Patched Solarized Dark theme for iTerm (opening file)"
 open "./configs/iterm2/Solarized Dark Patch.itermcolors";ok
 
+running "Killing iTerm2"
+killall "iTerm2"
+
 running "Don’t display the annoying prompt when quitting iTerm"
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false;ok
 running "hide tab title bars"
@@ -969,17 +972,17 @@ defaults write com.googlecode.iterm2 HotkeyCode -int 50;
 defaults write com.googlecode.iterm2 FocusFollowsMouse -int 1;
 defaults write com.googlecode.iterm2 HotkeyModifiers -int 262401;
 running "Make iTerm2 load new tabs in the same directory"
-/usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Custom Directory' Recycle" ~/Library/Preferences/com.googlecode.iterm2.plist
+sudo /usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Custom Directory' Recycle" ~/Library/Preferences/com.googlecode.iterm2.plist
 running "setting fonts"
-/usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Normal Font' 'MesloLGMDZ-RegularForPowerline 14'" ~/Library/Preferences/com.googlecode.iterm2.plist;
-/usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Use Non-ASCII Font' true" ~/Library/Preferences/com.googlecode.iterm2.plist;
-/usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Non Ascii Font' 'HackNerdFontComplete-Regular 14'" ~/Library/Preferences/com.googlecode.iterm2.plist;
-/usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Vertical Spacing' 0.85" ~/Library/Preferences/com.googlecode.iterm2.plist;
+sudo /usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Normal Font' 'MesloLGMDZ-RegularForPowerline 14'" ~/Library/Preferences/com.googlecode.iterm2.plist;
+sudo /usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Use Non-ASCII Font' true" ~/Library/Preferences/com.googlecode.iterm2.plist;
+sudo /usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Non Ascii Font' 'HackNerdFontComplete-Regular 14'" ~/Library/Preferences/com.googlecode.iterm2.plist;
+/sudo usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Vertical Spacing' 0.85" ~/Library/Preferences/com.googlecode.iterm2.plist;
 ok
 running "setting cursor type"
-/usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Cursor Type' 1" ~/Library/Preferences/com.googlecode.iterm2.plist;
+sudo /usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Cursor Type' 1" ~/Library/Preferences/com.googlecode.iterm2.plist;
 running "setting cursor to blink"
-/usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Blinking Cursor' true" ~/Library/Preferences/com.googlecode.iterm2.plist;ok
+sudo /usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Blinking Cursor' true" ~/Library/Preferences/com.googlecode.iterm2.plist;ok
 running "reading iterm settings"
 defaults read -app iTerm > /dev/null 2>&1;
 ok
@@ -1086,6 +1089,12 @@ defaults write org.m0k.transmission CheckRemoveDownloading -bool true;ok
 
 running "Trash original torrent files"
 defaults write org.m0k.transmission DeleteOriginalTorrent -bool true;ok
+
+running "Enabling queue"
+defaults write org.m0k.transmission Queue -bool true;ok
+
+running "Setting queue maximum downloads"
+defaults write org.m0k.transmission QueueDownloadNumber -integer 1;ok
 
 running "Hide the donate message"
 defaults write org.m0k.transmission WarningDonate -bool false;ok

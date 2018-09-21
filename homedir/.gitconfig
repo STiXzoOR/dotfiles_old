@@ -1,9 +1,9 @@
 [user]
-  name = GITHUBFULLNAME
-  email = GITHUBEMAIL
+  name = Neoptolemos Kyriakou
+  email = neostixz@gmail.com
 [github]
   # https://github.com/blog/180-local-github-config
-  user = GITHUBUSER
+  user = STiXzoOR
 
 [color]
 # ui = true is a superset of all the more specific color options
