@@ -955,7 +955,7 @@ running "Installing the Patched Solarized Dark theme for iTerm (opening file)"
 open "./configs/iterm2/Solarized Dark Patch.itermcolors";ok
 
 running "Killing iTerm2"
-killall "iTerm2"
+killall "iTerm2";ok
 
 running "Don’t display the annoying prompt when quitting iTerm"
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false;ok
