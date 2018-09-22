@@ -45,6 +45,14 @@ if [[ $response =~ (yes|y|Y) ]];then
     bot "Your /etc/hosts file has been updated. Last version is saved in /etc/hosts.backup"
 fi
 
+GITCONFIG_INITIAL=./homedir/gitconfig_initial
+GITCONFIG=./homedir/.gitconfig
+if [ -e "$GITCONFIG" ]; then
+    rm -rf "$GITCONFIG";
+fi
+
+cp "$GITCONFIG_INITIAL" "$GITCONFIG";
+
 grep 'user = GITHUBUSER' ./homedir/.gitconfig > /dev/null 2>&1
 if [[ $? = 0 ]]; then
     read -r -p "What is your github.com username? " githubuser
