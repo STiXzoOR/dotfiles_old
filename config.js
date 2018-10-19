@@ -73,7 +73,11 @@ module.exports = {
     'flux',
     'iterm2',
     'sketchup',
-    'jdownloader'
+    'teamviewer',
+    'darwindumper',
+    'adobe-creative-cloud',
+    'ultimaker-cura'
+    //'jdownloader',
     //'adium',
     //'amazon-cloud-drive',
     //'box-sync',
@@ -110,11 +114,5 @@ module.exports = {
     'trash',
     'vtop'
     // ,'yo'
-  ],
-  mas: [
-    // Xcode  
-    '497799835',
-    // Spark mail 
-    '1176895641'
   ]
 };
