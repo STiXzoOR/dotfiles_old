@@ -6,6 +6,9 @@ export PATH=$PATH:.
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
 
+#Ruby
+export PATH=/usr/local/opt/ruby/bin:$PATH
+
 # GO
 #export PATH=$PATH:/usr/local/opt/go/libexec/bin
 
