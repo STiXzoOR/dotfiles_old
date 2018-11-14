@@ -258,9 +258,11 @@ require_cask font-roboto-mono-for-powerline
 require_cask font-source-code-pro
 ok
 
-if [[ -d "/Library/Ruby/Gems/2.0.0" ]]; then
+gem_ver=$(ls /Library/Ruby/Gems | cut -f1 -d'/')
+
+if [[ -d "/Library/Ruby/Gems/$gem_ver" ]]; then
   running "Fixing Ruby Gems Directory Permissions"
-  sudo chown -R $(whoami) /Library/Ruby/Gems/2.0.0
+  sudo chown -R $(whoami) /Library/Ruby/Gems/$gem_ver
   ok
 fi
 
