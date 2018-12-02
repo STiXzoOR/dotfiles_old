@@ -3,13 +3,18 @@ module.exports = {
     // http://conqueringthecommandline.com/book/ack_ag
     'ack',
     'ag',
+    // alternative to `cat`: https://github.com/sharkdp/bat
+    'bat', 
     // Install GNU core utilities (those that come with macOS are outdated)
     // Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
     'coreutils',
     'dos2unix',
+    // colored ls
+    'exa',
     // Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
     'findutils',
     'fortune',
+    'fzf',
     'readline', // ensure gawk gets good readline
     'gawk',
     // http://www.lcdf.org/gifsicle/ (because I'm a gif junky)
@@ -18,6 +23,8 @@ module.exports = {
     // Install GNU `sed`, overwriting the built-in `sed`
     // so we can do "sed -i 's/foo/bar/' file" instead of "sed -i '' 's/foo/bar/' file"
     'gnu-sed --with-default-names',
+    // upgrade grep so we can get things like inverted match (-v)
+    'grep --with-default-names',
     // better, more recent grep
     'homebrew/dupes/grep',
     // https://github.com/jkbrzt/httpie
@@ -33,6 +40,7 @@ module.exports = {
     'reattach-to-user-namespace',
     // better/more recent version of screen
     'homebrew/dupes/screen',
+    'screenfetch',
     'tmux',
     'todo-txt',
     'tree',
@@ -41,43 +49,42 @@ module.exports = {
     'vim --with-override-system-vi',
     'watch',
     // Install wget with IRI support
-    'wget --enable-iri',
-    // colored ls
-    'exa',
-    'screenfetch'
+    'wget --enable-iri'
   ],
   cask: [
-    'google-chrome',
-    //'atom',
-    'sublime-text',
-    'github',
-    'clover-configurator',
+    'adobe-creative-cloud',
     'android-studio',
     'arduino',
-    'tunnelblick',
+    'clover-configurator',
     'coconutbattery',
-    'spotify',
-    'openemu',
-    'skype',
-    'telegram',
-    'ifunbox',
-    'karabiner-elements',
-    'intel-power-gadget',
-    'keka',
+    'darwindumper',
     'discord',
-    'megasync',
-    'fritzing',
-    'vlc',
-    'transmission',
     'dropbox',
     'flux',
+    'fritzing',
+    'github',
+    'google-chrome',
+    'ifunbox',
+    'intel-power-gadget',
     'iterm2',
+    'java8',
+    'jdownloader',
+    'karabiner-elements',
+    'keka',
+    'megasync',
+    'openemu',
     'sketchup',
+    'skype',
+    'spotify',
+    'sublime-text',
     'teamviewer',
-    'darwindumper',
-    'adobe-creative-cloud',
+    'telegram',
+    'torbrowser',
+    'transmission',
+    'tunnelblick',
     'ultimaker-cura'
-    //'jdownloader',
+    'vlc',
+    //'atom',
     //'adium',
     //'amazon-cloud-drive',
     //'box-sync',
@@ -95,7 +102,6 @@ module.exports = {
     //'sizeup',
     //'slack',
     //'the-unarchiver',
-    //'torbrowser',
     //'visual-studio-code',
     //'xquartz'
   ],
