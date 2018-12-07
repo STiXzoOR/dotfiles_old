@@ -9,6 +9,7 @@ module.exports = {
     // Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
     'coreutils',
     'dos2unix',
+    'dpkg',
     // colored ls
     'exa',
     // Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
