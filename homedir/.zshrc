@@ -4,6 +4,7 @@
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
+# for code ({000..255}) print -P -- "$code: %F{$code} This is how your text would look like%f"
 
 #####################################################################################
 # POWERLEVEL9K SETTINGS
@@ -13,7 +14,7 @@ DEFAULT_FOREGROUND=blue DEFAULT_BACKGROUND=black
 DEFAULT_COLOR=$DEFAULT_FOREGROUND
 
 POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+#POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 
 POWERLEVEL9K_DIR_OMIT_FIRST_CHARACTER=false
 
@@ -172,8 +173,9 @@ export DEFAULT_USER=`whoami`
 
 source "$(dirname $(gem which colorls))/tab_complete.sh"
 
-alias lc="colorls -lA --report"
-alias lx="exa -al --git"
+alias lc="colorls -lA"
+alias lct="colorls --tree"
+alias lcr="colorls -lA --report"
 
 #####################################################################################
 # why would you type 'cd dir' if you could just type 'dir'?
@@ -197,4 +199,4 @@ setopt PUSHD_SILENT
 # Run fortune on new terminal :)
 #####################################################################################
 
-fortune
+#fortune
