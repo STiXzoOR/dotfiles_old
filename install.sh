@@ -1198,7 +1198,7 @@ bot "Visual Studio Code"
 
 running "Install Visual Studio Code settings"
 if [ ! -d "${HOME}/Library/Application Support/Code/User" ]; then 
-  mkdir =p "${HOME}/Library/Application Support/Code/User/";
+  mkdir -p "${HOME}/Library/Application Support/Code/User/";
 fi;
 ln -sf "${HOME}/.dotfiles/configs/vscode/settings.json" "${HOME}/Library/Application Support/Code/User/settings.json" 2> /dev/null;ok
 
