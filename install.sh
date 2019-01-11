@@ -425,7 +425,7 @@ sudo rm -rf /Private/var/vm/sleepimage;ok
 running "Create a zero-byte file instead"
 sudo touch /Private/var/vm/sleepimage;ok
 # running "…and make sure it can’t be rewritten"
-# sudo chflags uchg /Private/var/vm/sleepimage;ok
+sudo chflags uchg /Private/var/vm/sleepimage;ok
 
 #running "Disable the sudden motion sensor as it’s not useful for SSDs"
 # sudo pmset -a sms 0;ok
@@ -434,11 +434,11 @@ sudo touch /Private/var/vm/sleepimage;ok
 # Optional / Experimental                      #
 ################################################
 
-# running "Set computer name (as done via System Preferences → Sharing)"
-# sudo scutil --set ComputerName "antic"
-# sudo scutil --set HostName "antic"
-# sudo scutil --set LocalHostName "antic"
-# sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "antic"
+running "Set computer name (as done via System Preferences → Sharing)"
+sudo scutil --set ComputerName "STiX"
+sudo scutil --set HostName "STiX"
+sudo scutil --set LocalHostName "STiX"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "STiX"
 
 # running "Disable smooth scrolling"
 # (Uncomment if you’re on an older Mac that messes up the animation)
@@ -574,8 +574,8 @@ sudo systemsetup -setrestartfreeze on;ok
 running "Check for software updates daily, not just once per week"
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1;ok
 
-# running "Disable Notification Center and remove the menu bar icon"
-# launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist > /dev/null 2>&1;ok
+running "Disable Notification Center and remove the menu bar icon"
+launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist > /dev/null 2>&1;ok
 
 running "Disable smart quotes as they’re annoying when typing code"
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false;ok
@@ -982,25 +982,25 @@ defaults write com.googlecode.iterm2 HotkeyCode -int 50;
 defaults write com.googlecode.iterm2 FocusFollowsMouse -int 1;
 defaults write com.googlecode.iterm2 HotkeyModifiers -int 262401;
 running "Make iTerm2 load new tabs in the same directory"
-sudo /usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Custom Directory' Recycle" ~/Library/Preferences/com.googlecode.iterm2.plist
+sudo /usr/libexec/PlistBuddy -c "set :'New Bookmarks':0:'Custom Directory' Recycle" ~/Library/Preferences/com.googlecode.iterm2.plist
 running "setting fonts"
-sudo /usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Normal Font' 'MesloLGMDZ-RegularForPowerline 14'" ~/Library/Preferences/com.googlecode.iterm2.plist;
-sudo /usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Use Non-ASCII Font' true" ~/Library/Preferences/com.googlecode.iterm2.plist;
-sudo /usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Non Ascii Font' 'HackNerdFontComplete-Regular 14'" ~/Library/Preferences/com.googlecode.iterm2.plist;
-/sudo usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Vertical Spacing' 0.85" ~/Library/Preferences/com.googlecode.iterm2.plist;
+sudo /usr/libexec/PlistBuddy -c "set :'New Bookmarks':0:'Normal Font' 'MesloLGMDZ-RegularForPowerline 14'" ~/Library/Preferences/com.googlecode.iterm2.plist;
+sudo /usr/libexec/PlistBuddy -c "set :'New Bookmarks':0:'Use Non-ASCII Font' true" ~/Library/Preferences/com.googlecode.iterm2.plist;
+sudo /usr/libexec/PlistBuddy -c "set :'New Bookmarks':0:'Non Ascii Font' 'HackNerdFontComplete-Regular 14'" ~/Library/Preferences/com.googlecode.iterm2.plist;
+/sudo usr/libexec/PlistBuddy -c "set :'New Bookmarks':0:'Vertical Spacing' 0.85" ~/Library/Preferences/com.googlecode.iterm2.plist;
 ok
 running "setting cursor type"
-sudo /usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Cursor Type' 1" ~/Library/Preferences/com.googlecode.iterm2.plist;
+sudo /usr/libexec/PlistBuddy -c "set :'New Bookmarks':0:'Cursor Type' 1" ~/Library/Preferences/com.googlecode.iterm2.plist;
 running "setting cursor to blink"
-sudo /usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Blinking Cursor' true" ~/Library/Preferences/com.googlecode.iterm2.plist;ok
+sudo /usr/libexec/PlistBuddy -c "set :'New Bookmarks':0:'Blinking Cursor' true" ~/Library/Preferences/com.googlecode.iterm2.plist;ok
 running "reading iterm settings"
 defaults read -app iTerm > /dev/null 2>&1;
 ok
 
-#running "Specify the preferences directory"
-#defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/dotfiles/configs/iterm2";ok
 #running "Tell iTerm2 to use the custom preferences in the directory"
 #defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true;ok
+#running "Specify the preferences directory"
+#defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${HOME}/.dotfiles/configs/iterm2";ok
 
 ###############################################################################
 bot "Time Machine"
