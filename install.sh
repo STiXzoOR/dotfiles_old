@@ -1183,12 +1183,22 @@ cp "./configs/vlc/vlcrc" "${HOME}/Library/Preferences/org.videolan.vlc/" 2> /dev
 cp "./configs/vlc/org.videolan.vlc.plist" "${HOME}/Library/Preferences/" 2> /dev/null;ok
 
 ###############################################################################
+bot "Karabiner Elements"
+###############################################################################
+
+running "Install Karabiner Elements settings"
+if [ ! -d "${HOME}/.config/karabiner" ]; then 
+  mkdir "${HOME}/.config/karabiner"; 
+fi;
+cp "./configs/karabiner/karabiner.json" "${HOME}/.config/karabiner/" 2> /dev/null;ok
+
+###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 bot "OK. Note that some of these changes require a logout/restart to take effect. Killing affected applications (so they can reboot)...."
 for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
   "Dock" "Finder" "Mail" "Messages" "Safari" "Transmission" "Xcode" "SystemUIServer" \
-  "VLC" "Terminal"; do
+  "VLC" "Karabiner-Menu" "Terminal" "iTerm2"; do
   killall "${app}" > /dev/null 2>&1
 done
 
