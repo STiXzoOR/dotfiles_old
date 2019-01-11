@@ -256,10 +256,10 @@
 #sout-x264-stats=x264_2pass.log
 
 # Default preset setting used (string)
-#sout-x264-preset=
+sout-x264-preset=ultrafast
 
 # Default tune setting used (string)
-#sout-x264-tune=
+sout-x264-tune=film
 
 # x264 advanced options (string)
 #sout-x264-options=
@@ -286,7 +286,7 @@
 [macosx] # Mac OS X OpenGL video output
 
 # Open GL/GLES hardware converter (string)
-#glconv=
+glconv=any
 
 # Rendering intent for color conversion (integer)
 #rendering-intent=1
@@ -2511,16 +2511,16 @@ compressor-attack=1.500000
 compressor-release=300.000000
 
 # Threshold level (float)
-compressor-threshold=-20.000000
+compressor-threshold=-10.000000
 
 # Ratio (float)
-compressor-ratio=3.000000
+#compressor-ratio=4.000000
 
 # Knee radius (float)
 compressor-knee=1.000000
 
 # Makeup gain (float)
-compressor-makeup-gain=15.000000
+compressor-makeup-gain=20.000000
 
 [colorthres] # Color threshold filter
 
@@ -2682,7 +2682,7 @@ compressor-makeup-gain=15.000000
 #avcodec-fast=0
 
 # Skip the loop filter for H.264 decoding (integer)
-#avcodec-skiploopfilter=0
+avcodec-skiploopfilter=4
 
 # Debug mask (integer)
 #avcodec-debug=0
@@ -2801,7 +2801,7 @@ compressor-makeup-gain=15.000000
 [auhal] # HAL AudioUnit output
 
 # Audio volume (integer)
-auhal-volume=90
+auhal-volume=102
 
 # Last audio device (string)
 auhal-audio-device=0
@@ -3335,7 +3335,7 @@ audio-resampler=any
 #deinterlace-mode=auto
 
 # Video output module (string)
-#vout=
+vout=any
 
 # Video filter module (string)
 #video-filter=
@@ -3500,7 +3500,7 @@ audio-resampler=any
 #meta-url=
 
 # File caching (ms) (integer)
-#file-caching=300
+file-caching=1000
 
 # Live capture caching (ms) (integer)
 #live-caching=300
