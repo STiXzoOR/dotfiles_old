@@ -1177,10 +1177,10 @@ bot "VLC"
 
 running "Install VLC settings"
 if [ ! -d "${HOME}/Library/Preferences/org.videolan.vlc" ]; then 
-  mkdir "${HOME}/Library/Preferences/org.videolan.vlc"; 
+  mkdir -p "${HOME}/Library/Preferences/org.videolan.vlc"; 
 fi;
 cp "./configs/vlc/vlcrc" "${HOME}/Library/Preferences/org.videolan.vlc/" 2> /dev/null;
-cp "./configs/vlc/org.videolan.vlc.plist" "${HOME}/Library/Preferences/" 2> /dev/null;ok
+ln -sf "${HOME}/.dotfiles/configs/vlc/org.videolan.vlc.plist" "${HOME}/Library/Preferences/org.videolan.vlc.plist" 2> /dev/null;ok
 
 ###############################################################################
 bot "Karabiner Elements"
@@ -1188,9 +1188,19 @@ bot "Karabiner Elements"
 
 running "Install Karabiner Elements settings"
 if [ ! -d "${HOME}/.config/karabiner" ]; then 
-  mkdir "${HOME}/.config/karabiner"; 
+  mkdir -p "${HOME}/.config/karabiner"; 
 fi;
-cp "./configs/karabiner/karabiner.json" "${HOME}/.config/karabiner/" 2> /dev/null;ok
+ln -sf "${HOME}/.dotfiles/configs/karabiner/karabiner.json" "${HOME}/.config/karabiner/" 2> /dev/null;ok
+
+###############################################################################
+bot "Visual Studio Code"
+###############################################################################
+
+running "Install Visual Studio Code settings"
+if [ ! -d "${HOME}/Library/Application Support/Code/User" ]; then 
+  mkdir =p "${HOME}/Library/Application Support/Code/User/";
+fi;
+ln -sf "${HOME}/.dotfiles/configs/vscode/settings.json" "${HOME}/Library/Application Support/Code/User/settings.json" 2> /dev/null;ok
 
 ###############################################################################
 # Kill affected applications                                                  #

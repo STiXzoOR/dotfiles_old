@@ -87,7 +87,8 @@ module.exports = {
     'transmission',
     'tunnelblick',
     'ultimaker-cura',
-    'vlc'
+    'vlc',
+    'visual-studio-code'
     //'atom',
     //'adium',
     //'amazon-cloud-drive',
@@ -106,7 +107,6 @@ module.exports = {
     //'sizeup',
     //'slack',
     //'the-unarchiver',
-    //'visual-studio-code',
     //'xquartz'
   ],
   gem: [
