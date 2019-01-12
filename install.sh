@@ -411,7 +411,7 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -boo
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 ###############################################################################
-Bot "SSD-specific tweaks"
+bot "SSD-specific tweaks"
 ###############################################################################
 
 running "Disable local Time Machine snapshots"
@@ -663,7 +663,7 @@ sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutio
 bot "Finder Configs"
 ###############################################################################
 # running "Keep folders on top when sorting by name (Sierra only)"
-# defaults write com.apple.finder _FXSortFoldersFirst -bool true
+defaults write com.apple.finder _FXSortFoldersFirst -bool true
 
 running "Allow quitting via ⌘ + Q; doing so will also hide desktop icons"
 defaults write com.apple.finder QuitMenuItem -bool true;ok
@@ -719,9 +719,12 @@ defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
 defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
 defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true;ok
 
-running "Use list view in all Finder windows by default"
+running "Use column list view in all Finder windows by default"
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
-defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv";ok
+defaults write com.apple.finder FXPreferredViewStyle -string "clmv";ok
+
+running "Use sort by Application in all Finder windows by default"
+defaults write com.apple.finder FXPreferredGroupBy -string "Application";ok
 
 running "Disable the warning before emptying the Trash"
 defaults write com.apple.finder WarnOnEmptyTrash -bool false;ok
@@ -753,6 +756,9 @@ defaults write com.apple.dock tilesize -int 36;ok
 
 running "Change minimize/maximize window effect to scale"
 defaults write com.apple.dock mineffect -string "scale";ok
+
+running "Enable magnification"
+defaults write com.apple.dock magnification -bool true;ok
 
 running "Minimize windows into their application’s icon"
 defaults write com.apple.dock minimize-to-application -bool true;ok
@@ -939,70 +945,6 @@ sudo mdutil -i on / > /dev/null;ok
 #sudo mdutil -E / > /dev/null;ok
 
 ###############################################################################
-bot "Terminal & iTerm2"
-###############################################################################
-
-running "Only use UTF-8 in Terminal.app"
-defaults write com.apple.terminal StringEncodings -array 4;ok
-
-running "Use a modified version of the Solarized Dark theme by default in Terminal.app"
-TERM_PROFILE='Solarized Dark xterm-256color';
-CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')";
-if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
-  open "./configs/terminal/${TERM_PROFILE}.terminal";
-	sleep 1; # Wait a bit to make sure the theme is loaded
-	defaults write com.apple.terminal 'Default Window Settings' -string "${TERM_PROFILE}";
-	defaults write com.apple.terminal 'Startup Window Settings' -string "${TERM_PROFILE}";
-fi;
-
-running "Enable “focus follows mouse” for Terminal.app and all X11 apps"
-# i.e. hover over a window and start `typing in it without clicking first
-defaults write com.apple.terminal FocusFollowsMouse -bool true;ok
-#defaults write org.x.X11 wm_ffm -bool true;ok
-running "Installing the Solarized Light theme for iTerm (opening file)"
-open "./configs/iterm2/Solarized Light.itermcolors";ok
-running "Installing the Patched Solarized Dark theme for iTerm (opening file)"
-open "./configs/iterm2/Solarized Dark Patch.itermcolors";ok
-
-running "Killing iTerm2"
-killall "iTerm2";ok
-
-running "Don’t display the annoying prompt when quitting iTerm"
-defaults write com.googlecode.iterm2 PromptOnQuit -bool false;ok
-running "hide tab title bars"
-defaults write com.googlecode.iterm2 HideTab -bool true;ok
-running "set system-wide hotkey to show/hide iterm with ^\`"
-defaults write com.googlecode.iterm2 Hotkey -bool true;ok
-running "hide pane titles in split panes"
-defaults write com.googlecode.iterm2 ShowPaneTitles -bool false;ok
-running "animate split-terminal dimming"
-defaults write com.googlecode.iterm2 AnimateDimming -bool true;ok
-defaults write com.googlecode.iterm2 HotkeyChar -int 96;
-defaults write com.googlecode.iterm2 HotkeyCode -int 50;
-defaults write com.googlecode.iterm2 FocusFollowsMouse -int 1;
-defaults write com.googlecode.iterm2 HotkeyModifiers -int 262401;
-running "Make iTerm2 load new tabs in the same directory"
-sudo /usr/libexec/PlistBuddy -c "set :'New Bookmarks':0:'Custom Directory' Recycle" ~/Library/Preferences/com.googlecode.iterm2.plist
-running "setting fonts"
-sudo /usr/libexec/PlistBuddy -c "set :'New Bookmarks':0:'Normal Font' 'MesloLGMDZ-RegularForPowerline 14'" ~/Library/Preferences/com.googlecode.iterm2.plist;
-sudo /usr/libexec/PlistBuddy -c "set :'New Bookmarks':0:'Use Non-ASCII Font' true" ~/Library/Preferences/com.googlecode.iterm2.plist;
-sudo /usr/libexec/PlistBuddy -c "set :'New Bookmarks':0:'Non Ascii Font' 'HackNerdFontComplete-Regular 14'" ~/Library/Preferences/com.googlecode.iterm2.plist;
-/sudo usr/libexec/PlistBuddy -c "set :'New Bookmarks':0:'Vertical Spacing' 0.85" ~/Library/Preferences/com.googlecode.iterm2.plist;
-ok
-running "setting cursor type"
-sudo /usr/libexec/PlistBuddy -c "set :'New Bookmarks':0:'Cursor Type' 1" ~/Library/Preferences/com.googlecode.iterm2.plist;
-running "setting cursor to blink"
-sudo /usr/libexec/PlistBuddy -c "set :'New Bookmarks':0:'Blinking Cursor' true" ~/Library/Preferences/com.googlecode.iterm2.plist;ok
-running "reading iterm settings"
-defaults read -app iTerm > /dev/null 2>&1;
-ok
-
-#running "Tell iTerm2 to use the custom preferences in the directory"
-#defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true;ok
-#running "Specify the preferences directory"
-#defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${HOME}/.dotfiles/configs/iterm2";ok
-
-###############################################################################
 bot "Time Machine"
 ###############################################################################
 
@@ -1179,8 +1121,8 @@ running "Install VLC settings"
 if [ ! -d "${HOME}/Library/Preferences/org.videolan.vlc" ]; then 
   mkdir -p "${HOME}/Library/Preferences/org.videolan.vlc"; 
 fi;
-cp "./configs/vlc/vlcrc" "${HOME}/Library/Preferences/org.videolan.vlc/" 2> /dev/null;
-ln -sf "${HOME}/.dotfiles/configs/vlc/org.videolan.vlc.plist" "${HOME}/Library/Preferences/org.videolan.vlc.plist" 2> /dev/null;ok
+cp -f "./configs/vlc/vlcrc" "${HOME}/Library/Preferences/org.videolan.vlc/" 2> /dev/null;
+cp -f "${HOME}/.dotfiles/configs/vlc/org.videolan.vlc.plist" "${HOME}/Library/Preferences/org.videolan.vlc.plist" 2> /dev/null;ok
 
 ###############################################################################
 bot "Karabiner Elements"
@@ -1203,6 +1145,33 @@ fi;
 ln -sf "${HOME}/.dotfiles/configs/vscode/settings.json" "${HOME}/Library/Application Support/Code/User/settings.json" 2> /dev/null;ok
 
 ###############################################################################
+bot "Terminal & iTerm2"
+###############################################################################
+
+running "Only use UTF-8 in Terminal.app"
+defaults write com.apple.terminal StringEncodings -array 4;ok
+
+running "Use a modified version of the Solarized Dark theme by default in Terminal.app"
+TERM_PROFILE='Solarized Dark xterm-256color';
+CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')";
+if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
+  open "./configs/terminal/${TERM_PROFILE}.terminal";
+  sleep 1; # Wait a bit to make sure the theme is loaded
+  defaults write com.apple.terminal 'Default Window Settings' -string "${TERM_PROFILE}";
+  defaults write com.apple.terminal 'Startup Window Settings' -string "${TERM_PROFILE}";
+fi;
+
+running "Enable “focus follows mouse” for Terminal.app and all X11 apps"
+# i.e. hover over a window and start `typing in it without clicking first
+defaults write com.apple.terminal FocusFollowsMouse -bool true;ok
+#defaults write org.x.X11 wm_ffm -bool true;ok
+
+running "Tell iTerm2 to use the custom preferences in the directory"
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true;ok
+running "Specify the preferences directory"
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${HOME}/.dotfiles/configs/iterm2";ok
+
+###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 bot "OK. Note that some of these changes require a logout/restart to take effect. Killing affected applications (so they can reboot)...."
@@ -1211,6 +1180,5 @@ for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
   "VLC" "Karabiner-Menu" "Terminal" "iTerm2"; do
   killall "${app}" > /dev/null 2>&1
 done
-
 
 bot "Woot! All done. Kill this terminal and launch iTerm"
