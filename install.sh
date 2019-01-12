@@ -1122,7 +1122,7 @@ if [ ! -d "${HOME}/Library/Preferences/org.videolan.vlc" ]; then
   mkdir -p "${HOME}/Library/Preferences/org.videolan.vlc"; 
 fi;
 cp -f "./configs/vlc/vlcrc" "${HOME}/Library/Preferences/org.videolan.vlc/" 2> /dev/null;
-cp -f "${HOME}/.dotfiles/configs/vlc/org.videolan.vlc.plist" "${HOME}/Library/Preferences/org.videolan.vlc.plist" 2> /dev/null;ok
+ln -sf "${HOME}/.dotfiles/configs/vlc/org.videolan.vlc.plist" "${HOME}/Library/Preferences/org.videolan.vlc.plist" 2> /dev/null;ok
 
 ###############################################################################
 bot "Karabiner Elements"
