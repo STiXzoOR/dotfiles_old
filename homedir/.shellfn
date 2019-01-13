@@ -18,6 +18,10 @@ function manp() {
   man -t $1 | open -f -a /Applications/Preview.app
 }
 
+function check_sh() {
+	bash -n $1
+}
+
 # Show normally hidden system and dotfile types of files
 # in Mac OS Finder
 function showhiddenfiles() {

@@ -54,7 +54,7 @@ else
 fi
 
 if [[ $response =~ (yes|y|Y) ]];then
-	
+
 	rm -rf "$GITCONFIG" > /dev/null 2>&1
 	cp "$GITCONFIG_INITIAL" "$GITCONFIG";
 
@@ -1022,8 +1022,14 @@ defaults write com.apple.messageshelper.MessageController SOInputLineSettings -d
 bot "Sublime Text"
 ###############################################################################
 
+running "Install Sublime dracula theme"
+cp -R "./configs/sublime/dracula_theme" ~/Library/Application\ Support/Sublime\ Text*/Packages/Dracula\ Color\ Scheme 2> /dev/null;ok
+
 running "Install Sublime Text settings"
-cp "./configs/sublime/Preferences.sublime-settings" "${HOME}/Library/Application\ Support/Sublime\ Text*/Packages/User/Preferences.sublime-settings" 2> /dev/null;ok
+cp -f "./configs/sublime/Preferences.sublime-settings" ~Library/Application\ Support/Sublime\ Text*/Packages/User/Preferences.sublime-settings 2> /dev/null;ok
+
+running "Install Sublime addon(s) settings"
+cp -f "./configs/sublime/Rainbowth.sublime-settings" ~Library/Application\ Support/Sublime\ Text*/Packages/User/Rainbowth.sublime-settings 2> /dev/null;ok
 
 ###############################################################################
 bot "Transmission"
@@ -1071,11 +1077,11 @@ defaults write org.m0k.transmission RandomPort -bool true;ok
 bot "Xcode"
 ###############################################################################
 
-running "Change theme to Dusk"
-mkdir -p ~/Library/Developer/Xcode/UserData/FontAndColorThemes/;
-XCODE_THEME='Duskv2';
-cp "./configs/xcode/${XCODE_THEME}.dvtcolortheme" "${HOME}/Library/Developer/Xcode/UserData/FontAndColorThemes/";
-defaults write com.apple.dt.Xcode XCFontAndColorCurrentTheme -string Dusk.xccolortheme;ok
+running "Change theme to Dracula"
+CUSTOM_THEME_DIR=~/Library/Developer/Xcode/UserData/FontAndColorThemes
+mkdir -p $CUSTOM_THEME_DIR/;
+ln -s ~/.dotfiles/configs/xcode/dracula_theme/Dracula.xccolortheme $CUSTOM_THEME_DIR/Dracula.xccolortheme
+defaults write com.apple.dt.Xcode XCFontAndColorCurrentTheme -string Dracula.xccolortheme;ok
 
 running "Trim trailing whitespace"
 defaults write com.apple.dt.Xcode DVTTextEditorTrimTrailingWhitespace -bool true;ok
@@ -1122,8 +1128,8 @@ bot "VLC"
 ###############################################################################
 
 running "Install VLC settings"
-if [ ! -d "${HOME}/Library/Preferences/org.videolan.vlc" ]; then 
-  mkdir -p "${HOME}/Library/Preferences/org.videolan.vlc"; 
+if [ ! -d "${HOME}/Library/Preferences/org.videolan.vlc" ]; then
+  mkdir -p "${HOME}/Library/Preferences/org.videolan.vlc";
 fi;
 cp -f "./configs/vlc/vlcrc" "${HOME}/Library/Preferences/org.videolan.vlc/" 2> /dev/null;
 ln -sf "${HOME}/.dotfiles/configs/vlc/org.videolan.vlc.plist" "${HOME}/Library/Preferences/org.videolan.vlc.plist" 2> /dev/null;ok
@@ -1133,8 +1139,8 @@ bot "Karabiner Elements"
 ###############################################################################
 
 running "Install Karabiner Elements settings"
-if [ ! -d "${HOME}/.config/karabiner" ]; then 
-  mkdir -p "${HOME}/.config/karabiner"; 
+if [ ! -d "${HOME}/.config/karabiner" ]; then
+  mkdir -p "${HOME}/.config/karabiner";
 fi;
 ln -sf "${HOME}/.dotfiles/configs/karabiner/karabiner.json" "${HOME}/.config/karabiner/" 2> /dev/null;ok
 
@@ -1143,7 +1149,7 @@ bot "Visual Studio Code"
 ###############################################################################
 
 running "Install Visual Studio Code settings"
-if [ ! -d "${HOME}/Library/Application Support/Code/User" ]; then 
+if [ ! -d "${HOME}/Library/Application Support/Code/User" ]; then
   mkdir -p "${HOME}/Library/Application Support/Code/User";
 fi;
 ln -sf "${HOME}/.dotfiles/configs/vscode/settings.json" "${HOME}/Library/Application Support/Code/User/settings.json" 2> /dev/null;ok
@@ -1155,15 +1161,21 @@ bot "Terminal & iTerm2"
 running "Only use UTF-8 in Terminal.app"
 defaults write com.apple.terminal StringEncodings -array 4;ok
 
-running "Use a modified version of the Solarized Dark theme by default in Terminal.app"
-TERM_PROFILE='Solarized Dark xterm-256color';
+running "Use dracula theme by default in Terminal.app"
+TERM_PROFILE='Dracula';
 CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')";
 if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
-  open "./configs/terminal/${TERM_PROFILE}.terminal";
+  open "./configs/terminal/dracula_theme/${TERM_PROFILE}.terminal";
   sleep 1; # Wait a bit to make sure the theme is loaded
   defaults write com.apple.terminal 'Default Window Settings' -string "${TERM_PROFILE}";
   defaults write com.apple.terminal 'Startup Window Settings' -string "${TERM_PROFILE}";
 fi;
+ok
+
+running "Install custom solarized dark theme in Terminal.app"
+open "./configs/terminal/Solarized Dark xterm-256color.terminal";
+sleep 1; # Wait a bit to make sure the theme is loaded
+ok
 
 running "Enable “focus follows mouse” for Terminal.app and all X11 apps"
 # i.e. hover over a window and start `typing in it without clicking first
@@ -1174,6 +1186,16 @@ running "Tell iTerm2 to use the custom preferences in the directory"
 defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true;ok
 running "Specify the preferences directory"
 defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${HOME}/.dotfiles/configs/iterm2";ok
+
+running "Installing the Dracula theme for iTerm (opening file)"
+open "./configs/iterm2/dracula_theme/Dracula.itermcolors";
+sleep 1; # Wait a bit to make sure the theme is loaded
+ok
+
+running "Installing the Patched Solarized Dark theme for iTerm (opening file)"
+open "./configs/iterm2/Solarized_Dark_Patched.itermcolors";ok
+sleep 1; # Wait a bit to make sure the theme is loaded
+ok
 
 ###############################################################################
 # Kill affected applications                                                  #
