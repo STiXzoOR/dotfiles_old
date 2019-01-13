@@ -47,84 +47,89 @@ fi
 
 GITCONFIG_INITIAL=./homedir/gitconfig_initial
 GITCONFIG=./homedir/.gitconfig
-if [ -e "$GITCONFIG" ]; then
-    rm -rf "$GITCONFIG";
+if [ -e "$GITCONFIG" ];then
+    read -r -p "Looks like you have already configured Github, would you like to configure it again? [y|N] " response
+else
+	response='y'
 fi
 
-cp "$GITCONFIG_INITIAL" "$GITCONFIG";
+if [[ $response =~ (yes|y|Y) ]];then
+	
+	rm -rf "$GITCONFIG" > /dev/null 2>&1
+	cp "$GITCONFIG_INITIAL" "$GITCONFIG";
 
-grep 'user = GITHUBUSER' ./homedir/.gitconfig > /dev/null 2>&1
-if [[ $? = 0 ]]; then
-    read -r -p "What is your github.com username? " githubuser
+	grep 'user = GITHUBUSER' ./homedir/.gitconfig > /dev/null 2>&1
+	if [[ $? = 0 ]]; then
+   		read -r -p "What is your github.com username? " githubuser
 
-  fullname=`osascript -e "long user name of (system info)"`
+  		fullname=`osascript -e "long user name of (system info)"`
 
-  if [[ -n "$fullname" ]];then
-    lastname=$(echo $fullname | awk '{print $2}');
-    firstname=$(echo $fullname | awk '{print $1}');
-  fi
+  		if [[ -n "$fullname" ]];then
+    		lastname=$(echo $fullname | awk '{print $2}');
+    		firstname=$(echo $fullname | awk '{print $1}');
+  		fi
 
-  if [[ -z $lastname ]]; then
-    lastname=`dscl . -read /Users/$(whoami) | grep LastName | sed "s/LastName: //"`
-  fi
-  if [[ -z $firstname ]]; then
-    firstname=`dscl . -read /Users/$(whoami) | grep FirstName | sed "s/FirstName: //"`
-  fi
-  email=`dscl . -read /Users/$(whoami)  | grep EMailAddress | sed "s/EMailAddress: //"`
+  		if [[ -z $lastname ]]; then
+    		lastname=`dscl . -read /Users/$(whoami) | grep LastName | sed "s/LastName: //"`
+  		fi
+  		if [[ -z $firstname ]]; then
+    		firstname=`dscl . -read /Users/$(whoami) | grep FirstName | sed "s/FirstName: //"`
+  		fi
+  		email=`dscl . -read /Users/$(whoami)  | grep EMailAddress | sed "s/EMailAddress: //"`
 
-  if [[ ! "$firstname" ]];then
-    response='n'
-  else
-    echo -e "I see that your full name is $COL_YELLOW$firstname $lastname$COL_RESET"
-    read -r -p "Is this correct? [Y|n] " response
-  fi
+  		if [[ ! "$firstname" ]];then
+    		response='n'
+  		else
+    		echo -e "I see that your full name is $COL_YELLOW$firstname $lastname$COL_RESET"
+    		read -r -p "Is this correct? [Y|n] " response
+  		fi
 
-  if [[ $response =~ ^(no|n|N) ]];then
-    read -r -p "What is your first name? " firstname
-    read -r -p "What is your last name? " lastname
-  fi
-  fullname="$firstname $lastname"
+  		if [[ $response =~ ^(no|n|N) ]];then
+    		read -r -p "What is your first name? " firstname
+    		read -r -p "What is your last name? " lastname
+  		fi
+  		fullname="$firstname $lastname"
 
-  bot "Great $fullname, "
+  		bot "Great $fullname, "
 
-  if [[ ! $email ]];then
-    response='n'
-  else
-    echo -e "The best I can make out, your email address is $COL_YELLOW$email$COL_RESET"
-    read -r -p "Is this correct? [Y|n] " response
-  fi
+  		if [[ ! $email ]];then
+    		response='n'
+  		else
+    		echo -e "The best I can make out, your email address is $COL_YELLOW$email$COL_RESET"
+    		read -r -p "Is this correct? [Y|n] " response
+  		fi
 
-  if [[ $response =~ ^(no|n|N) ]];then
-    read -r -p "What is your email? " email
-    if [[ ! $email ]];then
-      error "you must provide an email to configure .gitconfig"
-      exit 1
-    fi
-  fi
+  		if [[ $response =~ ^(no|n|N) ]];then
+    		read -r -p "What is your email? " email
+    		if [[ ! $email ]];then
+      			error "you must provide an email to configure .gitconfig"
+      			exit 1
+    		fi
+  		fi
 
+  		running "replacing items in .gitconfig with your info ($COL_YELLOW$fullname, $email, $githubuser$COL_RESET)"
 
-  running "replacing items in .gitconfig with your info ($COL_YELLOW$fullname, $email, $githubuser$COL_RESET)"
+  		# test if gnu-sed or MacOS sed
 
-  # test if gnu-sed or MacOS sed
-
-  sed -i "s/GITHUBFULLNAME/$firstname $lastname/" ./homedir/.gitconfig > /dev/null 2>&1 | true
-  if [[ ${PIPESTATUS[0]} != 0 ]]; then
-    echo
-    running "looks like you are using MacOS sed rather than gnu-sed, accommodating"
-    sed -i '' "s/GITHUBFULLNAME/$firstname $lastname/" ./homedir/.gitconfig;
-    sed -i '' 's/GITHUBEMAIL/'$email'/' ./homedir/.gitconfig;
-    sed -i '' 's/GITHUBUSER/'$githubuser'/' ./homedir/.gitconfig;
-    ok
-  else
-    echo
-    bot "looks like you are already using gnu-sed. woot!"
-    sed -i 's/GITHUBEMAIL/'$email'/' ./homedir/.gitconfig;
-    sed -i 's/GITHUBUSER/'$githubuser'/' ./homedir/.gitconfig;
-  fi
+  		sed -i "s/GITHUBFULLNAME/$firstname $lastname/" ./homedir/.gitconfig > /dev/null 2>&1 | true
+  		if [[ ${PIPESTATUS[0]} != 0 ]]; then
+   			echo
+   		 	running "looks like you are using MacOS sed rather than gnu-sed, accommodating"
+   		 	sed -i '' "s/GITHUBFULLNAME/$firstname $lastname/" ./homedir/.gitconfig;
+    		sed -i '' 's/GITHUBEMAIL/'$email'/' ./homedir/.gitconfig;
+    		sed -i '' 's/GITHUBUSER/'$githubuser'/' ./homedir/.gitconfig;
+    		ok
+  		else
+    		echo
+    		bot "looks like you are already using gnu-sed. woot!"
+    		sed -i 's/GITHUBEMAIL/'$email'/' ./homedir/.gitconfig;
+    		sed -i 's/GITHUBUSER/'$githubuser'/' ./homedir/.gitconfig;
+  		fi
+	fi
 fi
 
-MD5_NEWWP=$(md5 img/wallpaper.jpg | awk '{print $4}')
-MD5_OLDWP=$(md5 /System/Library/CoreServices/DefaultDesktop.jpg | awk '{print $4}')
+MD5_NEWWP=$(md5 img/wallpaper.heic | awk '{print $4}')
+MD5_OLDWP=$(md5 /System/Library/CoreServices/DefaultDesktop.heic | awk '{print $4}')
 if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
   read -r -p "Do you want to use the project's custom desktop wallpaper? [Y|n] " response
   if [[ $response =~ ^(no|n|N) ]];then
@@ -132,17 +137,13 @@ if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
     ok
   else
     running "Set a custom wallpaper image"
-    # `DefaultDesktop.jpg` is already a symlink, and
+    # `DefaultDesktop.heic` is already a symlink, and
     # all wallpapers are in `/Library/Desktop Pictures/`. The default is `Wave.jpg`.
     rm -rf ~/Library/Application Support/Dock/desktoppicture.db
-    sudo rm -f /System/Library/CoreServices/DefaultDesktop.jpg > /dev/null 2>&1
-    sudo rm -f /Library/Desktop\ Pictures/El\ Capitan.jpg > /dev/null 2>&1
-    sudo rm -f /Library/Desktop\ Pictures/Sierra.jpg > /dev/null 2>&1
-    sudo rm -f /Library/Desktop\ Pictures/Sierra\ 2.jpg > /dev/null 2>&1
-    sudo cp ./img/wallpaper.jpg /System/Library/CoreServices/DefaultDesktop.jpg;
-    sudo cp ./img/wallpaper.jpg /Library/Desktop\ Pictures/Sierra.jpg;
-    sudo cp ./img/wallpaper.jpg /Library/Desktop\ Pictures/Sierra\ 2.jpg;
-    sudo cp ./img/wallpaper.jpg /Library/Desktop\ Pictures/El\ Capitan.jpg;ok
+    sudo rm -f /System/Library/CoreServices/DefaultDesktop.heic > /dev/null 2>&1
+    sudo rm -f /Library/Desktop\ Pictures/Ink\ Cloud.jpg > /dev/null 2>&1
+    sudo cp ./img/wallpaper.heic /System/Library/CoreServices/DefaultDesktop.heic;
+    sudo cp ./img/wallpaper.heic /Library/Desktop\ Pictures/Ink\ Cloud.heic;ok
   fi
 fi
 
@@ -210,9 +211,12 @@ if [[ "$CURRENTSHELL" != "/usr/local/bin/zsh" ]]; then
 fi
 
 # install pretzo-zsh
-running "install pretzo-zsh"
+running "installing pretzo-zsh"
 zsh ./lib_sh/install_prezto.zsh
 ok
+
+running "linking airport binary"
+sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/sbin/airport > /dev/null 2>&1;ok
 
 bot "creating symlinks for project dotfiles..."
 pushd homedir > /dev/null 2>&1
@@ -238,7 +242,7 @@ done
 
 popd > /dev/null 2>&1
 
-bot "Installing vim plugins"
+bot "installing vim plugins"
 # cmake is required to compile vim bundle YouCompleteMe
 # require_brew cmake
 vim +PluginInstall +qall > /dev/null 2>&1
@@ -574,8 +578,8 @@ sudo systemsetup -setrestartfreeze on;ok
 running "Check for software updates daily, not just once per week"
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1;ok
 
-running "Disable Notification Center and remove the menu bar icon"
-launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist > /dev/null 2>&1;ok
+#running "Disable Notification Center and remove the menu bar icon"
+#launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist > /dev/null 2>&1;ok
 
 running "Disable smart quotes as they’re annoying when typing code"
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false;ok

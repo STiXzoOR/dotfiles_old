@@ -7,3 +7,15 @@
 [submodule "prezto"]
 	path = prezto
 	url = https://github.com/sorin-ionescu/prezto.git
+[submodule "configs/iterm2/dracula_theme"]
+	path = configs/iterm2/dracula_theme
+	url = https://github.com/dracula/iterm.git
+[submodule "configs/sublime/dracula_theme"]
+	path = configs/sublime/dracula_theme
+	url = https://github.com/dracula/sublime.git
+[submodule "configs/xcode/dracula_theme"]
+	path = configs/xcode/dracula_theme
+	url = https://github.com/dracula/xcode.git
+[submodule "configs/terminal/dracula_theme"]
+	path = configs/terminal/dracula_theme
+	url = https://github.com/dracula/terminal-app.git
