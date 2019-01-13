@@ -1023,13 +1023,13 @@ bot "Sublime Text"
 ###############################################################################
 
 running "Install Sublime dracula theme"
-cp -R "./configs/sublime/dracula_theme" ~/Library/Application\ Support/Sublime\ Text*/Packages/Dracula\ Color\ Scheme 2> /dev/null;ok
+ln -sf ~/.dotfiles/configs/sublime/dracula_theme ~/Library/Application\ Support/Sublime\ Text*/Packages/Dracula\ Color\ Scheme 2> /dev/null;ok
 
 running "Install Sublime Text settings"
-cp -f "./configs/sublime/Preferences.sublime-settings" ~Library/Application\ Support/Sublime\ Text*/Packages/User/Preferences.sublime-settings 2> /dev/null;ok
+ln -sf ~/.dotfiles/configs/sublime/Preferences.sublime-settings ~Library/Application\ Support/Sublime\ Text*/Packages/User/Preferences.sublime-settings 2> /dev/null;ok
 
 running "Install Sublime addon(s) settings"
-cp -f "./configs/sublime/Rainbowth.sublime-settings" ~Library/Application\ Support/Sublime\ Text*/Packages/User/Rainbowth.sublime-settings 2> /dev/null;ok
+ln -sf ~/.dotfiles/configs/sublime/Rainbowth.sublime-settings ~Library/Application\ Support/Sublime\ Text*/Packages/User/Rainbowth.sublime-settings 2> /dev/null;ok
 
 ###############################################################################
 bot "Transmission"
@@ -1128,31 +1128,31 @@ bot "VLC"
 ###############################################################################
 
 running "Install VLC settings"
-if [ ! -d "${HOME}/Library/Preferences/org.videolan.vlc" ]; then
-  mkdir -p "${HOME}/Library/Preferences/org.videolan.vlc";
+if [ ! -d ~/Library/Preferences/org.videolan.vlc ]; then
+  mkdir -p ~/Library/Preferences/org.videolan.vlc;
 fi;
-cp -f "./configs/vlc/vlcrc" "${HOME}/Library/Preferences/org.videolan.vlc/" 2> /dev/null;
-ln -sf "${HOME}/.dotfiles/configs/vlc/org.videolan.vlc.plist" "${HOME}/Library/Preferences/org.videolan.vlc.plist" 2> /dev/null;ok
+cp -f ./configs/vlc/vlcrc ~/Library/Preferences/org.videolan.vlc/ 2> /dev/null;
+ln -sf ~/.dotfiles/configs/vlc/org.videolan.vlc.plist ~/Library/Preferences/org.videolan.vlc.plist 2> /dev/null;ok
 
 ###############################################################################
 bot "Karabiner Elements"
 ###############################################################################
 
 running "Install Karabiner Elements settings"
-if [ ! -d "${HOME}/.config/karabiner" ]; then
-  mkdir -p "${HOME}/.config/karabiner";
+if [ ! -d ~/.config/karabiner ]; then
+  mkdir -p ~/.config/karabiner;
 fi;
-ln -sf "${HOME}/.dotfiles/configs/karabiner/karabiner.json" "${HOME}/.config/karabiner/" 2> /dev/null;ok
+ln -sf ~.dotfiles/configs/karabiner/karabiner.json ~/.config/karabiner/ 2> /dev/null;ok
 
 ###############################################################################
 bot "Visual Studio Code"
 ###############################################################################
 
 running "Install Visual Studio Code settings"
-if [ ! -d "${HOME}/Library/Application Support/Code/User" ]; then
-  mkdir -p "${HOME}/Library/Application Support/Code/User";
+if [ ! -d ~/Library/Application Support/Code/User ]; then
+  mkdir -p ~/Library/Application Support/Code/User;
 fi;
-ln -sf "${HOME}/.dotfiles/configs/vscode/settings.json" "${HOME}/Library/Application Support/Code/User/settings.json" 2> /dev/null;ok
+ln -sf ~/.dotfiles/configs/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json 2> /dev/null;ok
 
 ###############################################################################
 bot "Terminal & iTerm2"
