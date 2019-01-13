@@ -17,7 +17,7 @@
         "vue-html": "html"
     },
     "editor.showFoldingControls": "always",
-    "workbench.colorTheme": "Cobalt2",
+    "workbench.colorTheme": "Dracula",
     "git.postCommitCommand": "push",
     "terminal.integrated.fontFamily": "Hack Nerd Font",
     "terminal.integrated.fontSize": 14,

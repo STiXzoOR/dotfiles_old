@@ -9,6 +9,9 @@ export PATH=/usr/local/bin:$PATH
 #Ruby
 export PATH=/usr/local/opt/ruby/bin:$PATH
 
+# VSCode
+export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
+
 # GO
 #export PATH=$PATH:/usr/local/opt/go/libexec/bin
 

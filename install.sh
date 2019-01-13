@@ -1148,6 +1148,9 @@ ln -sf ~.dotfiles/configs/karabiner/karabiner.json ~/.config/karabiner/ 2> /dev/
 bot "Visual Studio Code"
 ###############################################################################
 
+running "Install Visual Studio Code Extensions"
+./configs/vscode/install_extensions.sh;ok
+
 running "Install Visual Studio Code settings"
 if [ ! -d ~/Library/Application Support/Code/User ]; then
   mkdir -p ~/Library/Application Support/Code/User;
