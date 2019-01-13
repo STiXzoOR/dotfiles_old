@@ -242,6 +242,9 @@ done
 
 popd > /dev/null 2>&1
 
+bot "installing vim theme"
+ln -sf ~/.dotfiles/configs/vim/dracula_theme/colors/dracula.vim ~/.vim/colors/dracula.vim
+
 bot "installing vim plugins"
 # cmake is required to compile vim bundle YouCompleteMe
 # require_brew cmake
