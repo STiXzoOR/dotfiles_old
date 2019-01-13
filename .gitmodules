@@ -19,3 +19,6 @@
 [submodule "configs/terminal/dracula_theme"]
 	path = configs/terminal/dracula_theme
 	url = https://github.com/dracula/terminal-app.git
+[submodule "configs/vim/dracula_theme"]
+	path = configs/vim/dracula_theme
+	url = https://github.com/dracula/vim.git
