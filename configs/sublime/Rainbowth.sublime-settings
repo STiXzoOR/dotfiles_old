@@ -1,0 +1,23 @@
+{
+  "languages": ["lisp", "scheme", "clojure", "clojurescript", "hylang", "js", "sass", "scss"],
+  "palettes":
+  {
+    "default": ["red", "orange", "yellow", "green", "blue", "indigo", "violet"],
+    "Dracula": ["#FF5555", "#FFB86C", "#F1FA8C", "#50FA7B", "#8BE9FD", "#BD93F9", "#FF79C6"],
+    "Solarized (dark)": ["#dc322f", "#cb4b16", "#b58900", "#859900", "#268bd2", "#2aa198", "#6c71c"],
+    "Monokai": ["#AE81FF", "#66D9EF", "#A6E22E", "#FD971F", "#F92672"],
+    "Monokai++": ["#AE81FF", "#66D9EF", "#A6E22E", "#FD971F", "#F92672"]
+  },
+  //  Toggle whether languages from list are excluded or included. Default: false
+  "exclude_languages": false,
+  //  Toggle whether strings should be ignored. Default: false
+  "disable_inside_string": false,
+  // Enables custom pre- and suffixes. Currently only single character 'fixes.
+  "custom_signs": 
+  {
+    "enabled": false,
+    // Note: Characters cannot appear in both the prefix and the suffix (Which only makes sense, doesn't it?)
+    "prefix": "({[",
+    "suffix": ")}]"
+  }    
+}
