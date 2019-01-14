@@ -2,7 +2,6 @@
 " Must Have
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Dracula {{{
 if ! exists('g:colors_name')
   let g:dracula_italic = get(g:, 'dracula_italic', 0)
   let g:dracula_colorterm = get(g:, 'dracula_colorterm', 0)
@@ -20,21 +19,11 @@ hi StatusLine term=bold cterm=bold ctermfg=61 ctermbg=236
 hi StatusLineNC ctermfg=61 ctermbg=236
 
 " Dracula colors
-" Green
-hi User1 cterm=bold ctermfg=84 ctermbg=236
-" Purple
-hi User2 cterm=bold ctermfg=141 ctermbg=236
-" Cyan
-hi User3 cterm=bold ctermfg=117 ctermbg=236
-" Red
-hi User4 cterm=bold ctermfg=203 ctermbg=236
-" Orange
-hi User5 cterm=bold ctermfg=215 ctermbg=236
-
-" End Dracula }}}
-
-" syntax on
-"color dracula
+hi User1 cterm=bold ctermfg=84 ctermbg=236 " Green
+hi User2 cterm=bold ctermfg=141 ctermbg=236 " Purple
+hi User3 cterm=bold ctermfg=117 ctermbg=236 " Cyan
+hi User4 cterm=bold ctermfg=203 ctermbg=236 " Red
+hi User5 cterm=bold ctermfg=215 ctermbg=236 " Orange
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle
