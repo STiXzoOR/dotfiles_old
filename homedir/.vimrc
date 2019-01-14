@@ -2,8 +2,39 @@
 " Must Have
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-syntax on
-color dracula
+" Dracula {{{
+if ! exists('g:colors_name')
+  let g:dracula_italic = get(g:, 'dracula_italic', 0)
+  let g:dracula_colorterm = get(g:, 'dracula_colorterm', 0)
+  try
+    colorscheme dracula
+  catch /^Vim\%((\a\+)\)\=:E185/
+    set background=dark
+  endtry
+endif
+
+" Override statusline
+hi clear StatusLine
+hi clear StatusLineNc
+hi StatusLine term=bold cterm=bold ctermfg=61 ctermbg=236
+hi StatusLineNC ctermfg=61 ctermbg=236
+
+" Dracula colors
+" Green
+hi User1 cterm=bold ctermfg=84 ctermbg=236
+" Purple
+hi User2 cterm=bold ctermfg=141 ctermbg=236
+" Cyan
+hi User3 cterm=bold ctermfg=117 ctermbg=236
+" Red
+hi User4 cterm=bold ctermfg=203 ctermbg=236
+" Orange
+hi User5 cterm=bold ctermfg=215 ctermbg=236
+
+" End Dracula }}}
+
+" syntax on
+"color dracula
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle
@@ -134,6 +165,9 @@ set nohlsearch " do not highlight searched for phrases
 set incsearch " BUT do highlight as you type you search phrase
 set so=5 " Keep 5 lines (top/bottom) for scope
 set novisualbell " don't blink
+set noruler " Show the cursor position all the time
+set showcmd " Display incomplete commands
+set showmode " Show what mode we're in
 " statusline example: ~\myfile[+] [FORMAT=format] [TYPE=type] [ASCII=000] [HEX=00] [POS=0000,0000][00%] [LEN=000]
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 set laststatus=2 " always show the status line
@@ -299,3 +333,4 @@ let g:syntastic_pug_checkers = ['jade','pug']
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:sneak#streak = 1
 let g:airline_theme='bubblegum'
+let g:airline_powerline_fonts=1
