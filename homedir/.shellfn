@@ -18,6 +18,14 @@ function manp() {
   man -t $1 | open -f -a /Applications/Preview.app
 }
 
+function screenshot_shadow(){
+	if [[ $1 =~ (on|On|enable|Enable) ]];then
+		defaults write com.apple.screencapture disable-shadow -bool false
+	elif [[ $1 =~ (off|Off|disable|Disable) ]];then
+		defaults write com.apple.screencapture disable-shadow -bool true
+	fi
+}
+
 function check_sh() {
 	bash -n $1
 }
