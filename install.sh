@@ -1186,7 +1186,6 @@ ok
 running "Enable “focus follows mouse” for Terminal.app and all X11 apps"
 # i.e. hover over a window and start `typing in it without clicking first
 defaults write com.apple.terminal FocusFollowsMouse -bool true;ok
-#defaults write org.x.X11 wm_ffm -bool true;ok
 
 running "Tell iTerm2 to use the custom preferences in the directory"
 defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true;ok
@@ -1204,12 +1203,20 @@ sleep 1; # Wait a bit to make sure the theme is loaded
 ok
 
 ###############################################################################
+bot "Arduino IDE"
+###############################################################################
+
+running "Change theme to dracula"
+mv /Applications/Arduino.app/Contents/Java/lib/theme /Applications/Arduino.app/Contents/Java/lib/theme_backup;
+cp -R ./configs/arduino/dracula_theme/theme /Applications/Arduino.app/Contents/Java/lib/theme;ok
+
+###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 bot "OK. Note that some of these changes require a logout/restart to take effect. Killing affected applications (so they can reboot)...."
 for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
   "Dock" "Finder" "Mail" "Messages" "Safari" "Transmission" "Xcode" "SystemUIServer" \
-  "VLC" "Karabiner-Menu" "Terminal" "iTerm2"; do
+  "VLC" "Karabiner-Menu" "Terminal" "iTerm2" "Arduino"; do
   killall "${app}" > /dev/null 2>&1
 done
 

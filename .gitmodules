@@ -22,3 +22,6 @@
 [submodule "configs/vim/dracula_theme"]
 	path = configs/vim/dracula_theme
 	url = https://github.com/dracula/vim.git
+[submodule "configs/arduino/dracula_theme"]
+	path = configs/arduino/dracula_theme
+	url = https://github.com/STiXzoOR/Dracula-for-Arduino.git
