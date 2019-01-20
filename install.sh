@@ -1155,10 +1155,18 @@ running "Install Visual Studio Code Extensions"
 ./configs/vscode/install_extensions.sh;ok
 
 running "Install Visual Studio Code settings"
-if [ ! -d ~/Library/Application Support/Code/User ]; then
-  mkdir -p ~/Library/Application Support/Code/User;
+if [ ! -d ~/Library/Application\ Support/Code/User ]; then
+  mkdir -p ~/Library/Application\ Support/Code/User;
 fi;
 ln -sf ~/.dotfiles/configs/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json 2> /dev/null;ok
+
+###############################################################################
+bot "Arduino IDE"
+###############################################################################
+
+running "Change theme to dracula"
+mv /Applications/Arduino.app/Contents/Java/lib/theme /Applications/Arduino.app/Contents/Java/lib/theme_backup;
+cp -R ./configs/arduino/dracula_theme/theme /Applications/Arduino.app/Contents/Java/lib/theme;ok
 
 ###############################################################################
 bot "Terminal & iTerm2"
@@ -1201,14 +1209,6 @@ running "Installing the Patched Solarized Dark theme for iTerm (opening file)"
 open "./configs/iterm2/Solarized_Dark_Patched.itermcolors";ok
 sleep 1; # Wait a bit to make sure the theme is loaded
 ok
-
-###############################################################################
-bot "Arduino IDE"
-###############################################################################
-
-running "Change theme to dracula"
-mv /Applications/Arduino.app/Contents/Java/lib/theme /Applications/Arduino.app/Contents/Java/lib/theme_backup;
-cp -R ./configs/arduino/dracula_theme/theme /Applications/Arduino.app/Contents/Java/lib/theme;ok
 
 ###############################################################################
 # Kill affected applications                                                  #
