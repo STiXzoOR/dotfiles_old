@@ -4,7 +4,7 @@ module.exports = {
     'ack',
     'ag',
     // alternative to `cat`: https://github.com/sharkdp/bat
-    'bat', 
+    'bat',
     // Install GNU core utilities (those that come with macOS are outdated)
     // Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
     'coreutils',
@@ -36,12 +36,12 @@ module.exports = {
     'mas',
     // Install some other useful utilities like `sponge`
     'moreutils',
+    'neofetch',
     'nmap',
     'openconnect',
     'reattach-to-user-namespace',
     // better/more recent version of screen
     'homebrew/dupes/screen',
-    'screenfetch',
     'tmux',
     'todo-txt',
     'tree',
