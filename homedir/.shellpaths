@@ -9,8 +9,12 @@ export PATH=/usr/local/bin:$PATH
 #Ruby
 export PATH=/usr/local/opt/ruby/bin:$PATH
 
+#GNU Coreutils
+export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
+export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
+
 # VSCode
-export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
+export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$PATH
 
 # GO
 #export PATH=$PATH:/usr/local/opt/go/libexec/bin

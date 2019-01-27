@@ -265,9 +265,9 @@ require_cask font-roboto-mono-for-powerline
 require_cask font-source-code-pro
 ok
 
-gem_ver=$(ls /Library/Ruby/Gems | cut -f1 -d'/')
+gem_ver=$(ls /Library/Ruby/Gems | cut -f1 -d '/')
 
-if [[ -d "/Library/Ruby/Gems/$gem_ver" ]]; then
+if [[ -n "$gem_ver" ]]; then
   running "Fixing Ruby Gems Directory Permissions"
   sudo chown -R $(whoami) /Library/Ruby/Gems/$gem_ver
   ok
@@ -1135,7 +1135,7 @@ if [ ! -d ~/Library/Preferences/org.videolan.vlc ]; then
   mkdir -p ~/Library/Preferences/org.videolan.vlc;
 fi;
 cp -f ./configs/vlc/vlcrc ~/Library/Preferences/org.videolan.vlc/ 2> /dev/null;
-ln -sf ~/.dotfiles/configs/vlc/org.videolan.vlc.plist ~/Library/Preferences/org.videolan.vlc.plist 2> /dev/null;ok
+cp -f ./configs/vlc/org.videolan.vlc.plist ~/Library/Preferences/org.videolan.vlc.plist 2> /dev/null;ok
 
 ###############################################################################
 bot "Karabiner Elements"
