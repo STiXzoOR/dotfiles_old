@@ -1166,7 +1166,21 @@ bot "Arduino IDE"
 
 running "Change theme to dracula"
 mv /Applications/Arduino.app/Contents/Java/lib/theme /Applications/Arduino.app/Contents/Java/lib/theme_backup;
-cp -R ./configs/arduino/dracula_theme/theme /Applications/Arduino.app/Contents/Java/lib/theme;ok
+ln -sf ~/.dotfiles/configs/arduino/dracula_theme/theme /Applications/Arduino.app/Contents/Java/lib/theme 2> /dev/null;ok
+
+###############################################################################
+bot "Jetbrains Apps"
+###############################################################################
+
+running "Install Dracula theme"
+./configs/jetbrains/configure.sh --install-theme;ok
+
+running "Install Jetbrains Plugins"
+./configs/jetbrains/configure.sh --download-plugins;
+./configs/jetbrains/configure.sh --install-plugins;ok
+
+running "Install Jetbrains settings"
+./configs/jetbrains/configure.sh --install-settings;ok
 
 ###############################################################################
 bot "Terminal & iTerm2"

@@ -25,3 +25,6 @@
 [submodule "configs/arduino/dracula_theme"]
 	path = configs/arduino/dracula_theme
 	url = https://github.com/STiXzoOR/Dracula-for-Arduino.git
+[submodule "configs/jetbrains/dracula_theme"]
+	path = configs/jetbrains/dracula_theme
+	url = https://github.com/dracula/jetbrains.git
