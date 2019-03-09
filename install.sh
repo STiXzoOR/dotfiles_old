@@ -252,7 +252,7 @@ vim +PluginInstall +qall > /dev/null 2>&1
 
 bot "installing fonts"
 ./fonts/install.sh
-brew tap caskroom/fonts
+brew tap homebrew/cask-fonts
 require_cask font-fontawesome
 require_cask font-awesome-terminal-fonts
 require_cask font-hack

@@ -7,7 +7,6 @@
         <option value="bash.function.name" />
         <option value="markdown.header" />
         <option value="properties.index" />
-        <option value="R.function.shortName" />
         <option value="Py.class.attributes" />
         <option value="Python.Decorator" />
         <option value="Py.variable.shortName" />

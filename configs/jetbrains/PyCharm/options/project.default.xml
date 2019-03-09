@@ -3,7 +3,7 @@
     <defaultProject>
       <component name="Encoding" addBOMForNewFiles="with NO BOM" />
       <component name="PropertiesComponent">
-        <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+        <property name="settings.editor.selected.configurable" value="MTConfigurable" />
       </component>
     </defaultProject>
   </component>
