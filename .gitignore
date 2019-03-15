@@ -1,12 +1,15 @@
-.DS_Store
 .AppleDouble
+.DS_Store
 .LSOverride
-# Thumbnails
 ._*
+.git_template/hooks/disabled-pc
 id_rsa
+# desktop image backups
+img/*.backup.*
 node_modules
 homedir/.gitconfig
 homedir/.vim/backup/*
+homedir/.vim/colors/dracula.vim
 !homedir/.vim/backup/.gitignore
 homedir/.vim/temp/*
 !homedir/.vim/temp/.gitignore

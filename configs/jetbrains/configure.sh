@@ -67,7 +67,12 @@ function installSettingsPerApp(){
 # $1: App name
 		output_dir=$(find ~/Library/Preferences -name "*$1*" -type d -maxdepth 1)
 		mv "$output_dir/options" "$output_dir/options_bak" > /dev/null 2>&1
-		ln -s ~/.dotfiles/configs/jetbrains/$1/options "$output_dir/options"
+		mkdir "$output_dir/options" > /dev/null 2>&1
+		for file in ~/.dotfiles/configs/jetbrains/$1/*; do
+        if [[ $? -eq 0 ]]; then
+            ln -s $file "$output_dir/options/"
+        fi
+    done
 }
 
 case "$1" in

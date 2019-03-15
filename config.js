@@ -47,7 +47,7 @@ module.exports = {
     'tree',
     'ttyrec',
     // better, more recent vim
-    'vim --with-override-system-vi',
+    'vim --with-client-server --with-override-system-vi',
     'watch',
     // Install wget with IRI support
     'wget --enable-iri'
@@ -112,7 +112,7 @@ module.exports = {
     //'xquartz'
   ],
   gem: [
-  'colorls'
+    'colorls'
   ],
   npm: [
     'antic',
