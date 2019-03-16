@@ -12,24 +12,24 @@ source ./lib_sh/requirers.sh
 bot "Hi! I'm going to install tooling and tweak your system settings. Here I go..."
 
 # Do we need to ask for sudo password or is it already passwordless?
-if ! sudo grep -q "%wheel		ALL=(ALL) NOPASSWD: ALL #atomantic/dotfiles" "/etc/sudoers"; then
-
-  # Ask for the administrator password upfront
-  bot "I need you to enter your sudo password so I can install some things:"
+grep -q 'NOPASSWD:     ALL' /etc/sudoers.d/$LOGNAME > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+  echo "no suder file"
   sudo -v
 
   # Keep-alive: update existing sudo time stamp until the script has finished
   while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-  bot "Do you want me to setup this machine to allow you to run sudo without a password?\nPlease read here to see what I am doing:\nhttp://wiki.summercode.com/sudo_without_a_password_in_mac_os_x \n"
+  echo "Do you want me to setup this machine to allow you to run sudo without a password?\nPlease read here to see what I am doing:\nhttp://wiki.summercode.com/sudo_without_a_password_in_mac_os_x \n"
 
   read -r -p "Make sudo passwordless? [y|N] " response
 
-  if [[ $response =~ (yes|y|Y) ]];then
-      sudo cp /etc/sudoers /etc/sudoers.back
-      echo '%wheel		ALL=(ALL) NOPASSWD: ALL #atomantic/dotfiles' | sudo tee -a /etc/sudoers > /dev/null
-      sudo dscl . append /Groups/wheel GroupMembership $(whoami)
-      bot "You can now run sudo commands without password!"
+  if [[ $response =~ (yes|y|Y) ]]; then
+      if ! grep -q "#includedir /private/etc/sudoers.d" /etc/sudoers; then
+        echo '#includedir /private/etc/sudoers.d' | sudo tee -a /etc/sudoers > /dev/null
+      fi
+      echo -e "Defaults:$LOGNAME    !requiretty\n$LOGNAME ALL=(ALL) NOPASSWD:     ALL" | sudo tee /etc/sudoers.d/$LOGNAME
+      echo "You can now run sudo commands without password!"
   fi
 fi
 
@@ -37,7 +37,7 @@ fi
 # /etc/hosts -- spyware/ad blocking
 # ###########################################################
 read -r -p "Overwrite /etc/hosts with the ad-blocking hosts file from someonewhocares.org? (from ./configs/hosts file) [y|N] " response
-if [[ $response =~ (yes|y|Y) ]];then
+if [[ $response =~ (yes|y|Y) ]]; then
     action "cp /etc/hosts /etc/hosts.backup"
     sudo cp /etc/hosts /etc/hosts.backup
     ok
@@ -55,11 +55,11 @@ fi
 GITCONFIG_INITIAL=./homedir/gitconfig_initial
 GITCONFIG=./homedir/.gitconfig
 response='y'
-if [ -e "$GITCONFIG" ];then
+if [ -e "$GITCONFIG" ]; then
     read -r -p "Looks like you have already configured Github, would you like to configure it again? [y|N] " response
 fi
 
-if [[ $response =~ (yes|y|Y) ]];then
+if [[ $response =~ (yes|y|Y) ]]; then
 	bot "OK, now I am going to update the .gitconfig for your user info:"
 	rm -rf "$GITCONFIG" > /dev/null 2>&1
 	cp "$GITCONFIG_INITIAL" "$GITCONFIG";
@@ -70,7 +70,7 @@ if [[ $response =~ (yes|y|Y) ]];then
 
   		fullname=`osascript -e "long user name of (system info)"`
 
-  		if [[ -n "$fullname" ]];then
+  		if [[ -n "$fullname" ]]; then
     		lastname=$(echo $fullname | awk '{print $2}');
     		firstname=$(echo $fullname | awk '{print $1}');
   		fi
@@ -107,7 +107,7 @@ if [[ $response =~ (yes|y|Y) ]];then
 
   		if [[ $response =~ ^(no|n|N) ]]; then
     		read -r -p "What is your email? " email
-    		if [[ ! $email ]];then
+    		if [[ ! $email ]]; then
       			error "you must provide an email to configure .gitconfig"
       			exit 1
     		fi
@@ -276,10 +276,10 @@ fi
 
 bot "VIM Setup"
 read -r -p "Do you want to install vim plugins now? [y|N] " response
-if [[ $response =~ (y|yes|Y) ]];then
+if [[ $response =~ (y|yes|Y) ]]; then
 
 	read -r -p "Do you want to install vim dracula theme now? [y|N] " response
-	if [[ $response =~ (y|yes|Y) ]];then
+	if [[ $response =~ (y|yes|Y) ]]; then
 		bot "installing vim theme"
 		ln -s ~/.dotfiles/configs/vim/dracula_theme/colors/dracula.vim ~/.vim/colors/dracula.vim
 	fi
@@ -295,7 +295,7 @@ fi
 
 
 read -r -p "Install fonts? [y|N] " response
-if [[ $response =~ (y|yes|Y) ]];then
+if [[ $response =~ (y|yes|Y) ]]; then
   bot "installing fonts"
   # need fontconfig to install/build fonts
   require_brew fontconfig
