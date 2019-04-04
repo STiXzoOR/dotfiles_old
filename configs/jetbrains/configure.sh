@@ -49,7 +49,7 @@ function pluginDownload() {
 
 function installPluginsPerApp(){
 # $1: App name
-		output_dir=$(find ~/Library/Application\ Support -name "*$1*" -type d -maxdepth 1)
+		output_dir=$(find ~/Library/Application\ Support -name "*$1*2019*" -type d -maxdepth 1)
 		for folder in "$(find "$downloads_dir" -type d -mindepth 1 -maxdepth 1)"
 		do
 			cp -R "$folder" "$output_dir"
@@ -58,20 +58,23 @@ function installPluginsPerApp(){
 
 function installThemePerApp(){
 # $1: App name
-		output_dir=$(find ~/Library/Preferences -name "*$1*" -type d -maxdepth 1)
+		output_dir=$(find ~/Library/Preferences -name "*$1*2019*" -type d -maxdepth 1)
 		mv "$output_dir/colors/Dracula.icls" "$output_dir/colors/Dracula_Default.icls" > /dev/null 2>&1
+		unlink "$output_dir/colors/Dracula.icls" > /dev/null 2>&1
 		ln -s ~/.dotfiles/configs/jetbrains/dracula_theme/Dracula.icls "$output_dir/colors/Dracula.icls"
 }
 
 function installSettingsPerApp(){
 # $1: App name
-		output_dir=$(find ~/Library/Preferences -name "*$1*" -type d -maxdepth 1)
-		mv "$output_dir/options" "$output_dir/options_bak" > /dev/null 2>&1
-		mkdir "$output_dir/options" > /dev/null 2>&1
+		output_dir=$(find ~/Library/Preferences -name "*$1*2019*" -type d -maxdepth 1)
 		for file in ~/.dotfiles/configs/jetbrains/$1/*; do
-        if [[ $? -eq 0 ]]; then
-            ln -s $file "$output_dir/options/"
-        fi
+			filename=$(basename $file)
+			if [[ -e "$output_dir/options/$filename" ]]; then
+				mkdir -p "$output_dir/options_bak"
+        mv "$output_dir/options/$filename" "$output_dir/options_bak/$filename"
+    	fi
+	    unlink "$output_dir/options/$filename" > /dev/null 2>&1
+	    ln -s $file "$output_dir/options/$filename"
     done
 }
 
