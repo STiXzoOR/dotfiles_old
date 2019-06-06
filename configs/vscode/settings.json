@@ -23,6 +23,10 @@
     "terminal.integrated.fontSize": 14,
     "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.shell.osx": "/bin/zsh",
-    "workbench.sideBar.location": "right",
-    "window.zoomLevel": 0
+    "workbench.sideBar.location": "left",
+    "window.zoomLevel": 0,
+    "workbench.startupEditor": "newUntitledFile",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "python.jediEnabled": false
 }
