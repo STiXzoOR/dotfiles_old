@@ -1,5 +1,5 @@
 #
-# POWERLEVEL9K
+# POWERLEVEL
 #
 # for code ({000..255}) print -P -- "$code: %F{$code} This is how your text would look like%f"
 
@@ -8,14 +8,14 @@
 #####################################################################################
 
 p9k_color_codes(){
-	
+
 	local code
 	for code ({000..255}) print -P -- "$code: %F{$code} This is how your text would look like%f"
 
 }
 
 zsh_wifi_signal(){
-	
+
 	local signal=$(airport -I | grep agrCtlRSSI | awk '{print $2}' | sed 's/-//g')
   	local noise=$(airport -I | grep agrCtlNoise | awk '{print $2}' | sed 's/-//g')
   	local SNR=$(bc <<<"scale=2; $signal / $noise")
@@ -29,21 +29,21 @@ zsh_wifi_signal(){
 	fi
 
 	# Good Signal (3-4 bars)
-	if [[ ! -z "${signal// }" ]] && [[ ! $SNR -gt .40 ]] && [[ $SNR -gt .25 ]];then 
+	if [[ ! -z "${signal// }" ]] && [[ ! $SNR -gt .40 ]] && [[ $SNR -gt .25 ]];then
 	    symbol="\uf6ab"
 	fi
 
 	# Very Low Signal (1 bar)
-	if [[ ! -z "${signal// }" ]] && [[ ! $SNR -gt .15 ]] && [[ $SNR -gt .10 ]];then 
+	if [[ ! -z "${signal// }" ]] && [[ ! $SNR -gt .15 ]] && [[ $SNR -gt .10 ]];then
 	    symbol="\uf6aa"
 	fi
 
 	# No Signal - No Internet
-	if [[ ! -z "${signal// }" ]] && [[ ! $SNR -gt .10 ]];then 
+	if [[ ! -z "${signal// }" ]] && [[ ! $SNR -gt .10 ]];then
 		symbol="\uf6ac"
 	fi
 
-	if [[ -z "${signal// }" ]] && [[ "$net" -ne 200 ]];then 
+	if [[ -z "${signal// }" ]] && [[ "$net" -ne 200 ]];then
 	    symbol="\uf204"
 	fi
 
@@ -57,13 +57,13 @@ zsh_wifi_signal(){
 }
 
 prompt_chistory() {
-	
+
 	HISTORY_ICON=$'\uF7D9'
   	"$1_prompt_segment" "$0" "$2" "grey50" "$DEFAULT_COLOR" "%h $HISTORY_ICON"
 }
 
 set_preset() {
-	
+
 	if [ "$1" = "Dracula" ]; then
 		echo -e "\033]1337;SetColors=preset=Dracula\a"
  	elif [ "$1" = "Solarized" ]; then
