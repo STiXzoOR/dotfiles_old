@@ -1,1 +1,0 @@
-/Users/stix/.dotfiles/configs/vim/dracula_theme/colors/dracula.vim

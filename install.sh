@@ -277,13 +277,6 @@ fi
 bot "VIM Setup"
 read -r -p "Do you want to install vim plugins now? [y|N] " response
 if [[ $response =~ (y|yes|Y) ]]; then
-
-	read -r -p "Do you want to install vim dracula theme now? [y|N] " response
-	if [[ $response =~ (y|yes|Y) ]]; then
-		bot "installing vim theme"
-		ln -s ~/.dotfiles/configs/vim/dracula_theme/colors/dracula.vim ~/.vim/colors/dracula.vim
-	fi
-
   bot "Installing vim plugins"
   # cmake is required to compile vim bundle YouCompleteMe
   # require_brew cmake
@@ -292,7 +285,6 @@ if [[ $response =~ (y|yes|Y) ]]; then
 else
   ok "skipped. Install by running :PluginInstall within vim"
 fi
-
 
 read -r -p "Install fonts? [y|N] " response
 if [[ $response =~ (y|yes|Y) ]]; then
@@ -341,14 +333,17 @@ bot "installing npm tools needed to run this project..."
 npm install
 ok
 
-bot "installing packages from config.js..."
-node index.js
-ok
+read -r -p "Install packages/tools/apps? [y|N] " response
+if [[ $response =~ (y|yes|Y) ]]; then
+	bot "installing packages from config.js..."
+	node index.js
+	ok
 
-running "cleanup homebrew"
-brew cleanup --force > /dev/null 2>&1
-rm -f -r /Library/Caches/Homebrew/* > /dev/null 2>&1
-ok
+	running "cleanup homebrew"
+	brew cleanup --force > /dev/null 2>&1
+	rm -f -r /Library/Caches/Homebrew/* > /dev/null 2>&1
+	ok
+fi
 
 bot "OS Configuration"
 read -r -p "Do you want to update the system configurations? [y|N] " response

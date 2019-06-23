@@ -1,12 +1,13 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Must Have
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+syntax on
 
 if ! exists('g:colors_name')
   let g:dracula_italic = get(g:, 'dracula_italic', 0)
   let g:dracula_colorterm = get(g:, 'dracula_colorterm', 0)
   try
-    colorscheme dracula
+    " packadd! dracula
   catch /^Vim\%((\a\+)\)\=:E185/
     set background=dark
   endtry
@@ -42,6 +43,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Navigation (IDE frame)
 " Plugin 'scrooloose/nerdtree'
 " Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'dracula/vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
