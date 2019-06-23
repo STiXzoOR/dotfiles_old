@@ -22,3 +22,6 @@
 [submodule "prezto"]
 	path = prezto
 	url = https://github.com/sorin-ionescu/prezto.git
+[submodule "zsh-z"]
+	path = zsh-z
+	url = https://github.com/agkozak/zsh-z.git
