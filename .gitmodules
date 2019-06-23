@@ -22,3 +22,6 @@
 [submodule "configs/jetbrains/dracula_theme"]
 	path = configs/jetbrains/dracula_theme
 	url = https://github.com/STiXzoOR/jetbrains.git
+[submodule "prezto"]
+	path = prezto
+	url = https://github.com/sorin-ionescu/prezto.git
