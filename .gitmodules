@@ -4,9 +4,6 @@
 [submodule "homedir/.vim/bundle/Vundle.vim"]
 	path = homedir/.vim/bundle/Vundle.vim
 	url = git://github.com/VundleVim/Vundle.vim.git
-[submodule "prezto"]
-	path = prezto
-	url = https://github.com/sorin-ionescu/prezto.git
 [submodule "configs/iterm2/dracula_theme"]
 	path = configs/iterm2/dracula_theme
 	url = https://github.com/dracula/iterm.git
