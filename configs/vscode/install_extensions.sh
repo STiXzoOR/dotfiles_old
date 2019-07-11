@@ -35,6 +35,7 @@ Extensions=(
 "peterjausovec.vscode-docker"
 "pflannery.vscode-versionlens"
 "pkosta2005.heroku-command"
+"platformio.platformio-ide"
 "pnp.polacode"
 "prisma.vscode-graphql"
 "rebornix.ruby"
