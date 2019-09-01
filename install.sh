@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+#TODO: update after macOS Catalina, default mac shell: bash is changing to zsh
+
 ###########################
 # This script installs the dotfiles and runs all other system configuration scripts
 # @author Adam Eivy
@@ -174,9 +176,22 @@ fi
 # Install non-brew various tools (PRE-BREW Installs)
 # ###########################################################
 bot "ensuring build/install tools are available"
-xcode-select --install 2>&1 > /dev/null
-sudo xcode-select -s /Applications/Xcode.app/Contents/Developer 2>&1 > /dev/null
-sudo xcodebuild -license accept 2>&1 > /dev/null
+if !xcode-select --print-path &> /dev/null; then
+    # prompt user to install the XCode Command Line Tools
+    xcode-select --install &> /dev/null
+
+    # wait until the XCode Command Line Tools are installed
+    until xcode-select --print-path &> /dev/null; do
+        sleep 5
+    done
+
+    ok 'XCode Command Line Tools Installed'
+
+    # prompt user to agree to the terms of the Xcode license
+    # https://github.com/alrra/dotfiles/issues/10
+    sudo xcodebuild -license
+    ok 'Agree with the XCode Command Line Tools licence'
+fi
 
 # ###########################################################
 # install homebrew (CLI Packages)
@@ -218,6 +233,10 @@ fi
 brew tap caskroom/versions > /dev/null 2>&1
 ok
 
+# just to avoid a potential bug
+mkdir -p ~/Library/Caches/Homebrew/Formula
+brew doctor
+
 # skip those GUI clients, git command-line all the way
 require_brew git
 # update zsh to latest
@@ -241,6 +260,7 @@ running "installing pretzo-zsh"
 zsh ./lib_sh/install_prezto.zsh
 ok
 
+# access airport binary systemwide for easy configuration
 if [[ ! -e /usr/sbin/airport ]]
 	running "linking airport binary"
 	sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/sbin/airport > /dev/null 2>&1;ok
@@ -293,17 +313,41 @@ if [[ $response =~ (y|yes|Y) ]]; then
   require_brew fontconfig
 	./fonts/install.sh
 	brew tap homebrew/cask-fonts
-	require_cask font-fontawesome
-	require_cask font-awesome-terminal-fonts
-	require_cask font-hack
-	require_cask font-hack-nerd-font
-	require_cask font-inconsolata-dz-for-powerline
-	require_cask font-inconsolata-g-for-powerline
-	require_cask font-inconsolata-for-powerline
-	require_cask font-roboto-mono
-	require_cask font-roboto-mono-for-powerline
-	require_cask font-source-code-pro
-	ok
+	require_cask font-fontawesome \
+	                  font-awesome-terminal-fonts \
+	                  font-hack \
+	                  font-hack-nerd-font \
+	                  font-inconsolata-dz-for-powerline \
+	                  font-inconsolata-g-for-powerline \
+	                  font-inconsolata-for-powerline \
+	                  font-anonymice-powerline \
+                    font-consolas-for-powerline \
+                    font-dejavu-sans-mono-for-powerline \
+                    font-droid-sans-mono-for-powerline \
+                    font-fira-code \
+                    font-fira-mono \
+                    font-fira-mono-for-powerline \
+                    font-firacode-nerd-font \
+                    font-firacode-nerd-font-mono \
+                    font-hasklig \
+                    font-hasklig-nerd-font \
+                    font-hasklig-nerd-font-mono \
+                    font-iosevka \
+                    font-liberation-mono-for-powerline \
+                    font-menlo-for-powerline \
+                    font-meslo-for-powerline \
+                    font-monofur-for-powerline \
+                    font-monoid \
+                    font-noto-mono-for-powerline \
+                    font-roboto \
+                    font-roboto-mono \
+                    font-roboto-mono-for-powerline \
+                    font-source-code-pro \
+                    font-source-code-pro-for-powerline \
+                    font-ubuntu-mono-derivative-powerline \
+                    font-ubuntumono-nerd-font \
+                    font-ubuntumono-nerd-font-mono
+  ok
 fi
 
 # gem_ver=$(ls /Library/Ruby/Gems | cut -f1 -d '/')
@@ -377,36 +421,36 @@ bot "Security"
 
 # running "Enable firewall stealth mode (no response to ICMP / ping requests)""
 # Source: https://support.apple.com/kb/PH18642
-#sudo defaults write /Library/Preferences/com.apple.alf stealthenabled -int 1
+# sudo defaults write /Library/Preferences/com.apple.alf stealthenabled -int 1
 # sudo defaults write /Library/Preferences/com.apple.alf stealthenabled -int 1
 
 # running "Enable firewall logging"
-#sudo defaults write /Library/Preferences/com.apple.alf loggingenabled -int 1
+# sudo defaults write /Library/Preferences/com.apple.alf loggingenabled -int 1
 
 # running "Do not automatically allow signed software to receive incoming connections"
-#sudo defaults write /Library/Preferences/com.apple.alf allowsignedenabled -bool false
+# sudo defaults write /Library/Preferences/com.apple.alf allowsignedenabled -bool false
 
 # running "Log firewall events for 90 days"
-#sudo perl -p -i -e 's/rotate=seq compress file_max=5M all_max=50M/rotate=utc compress file_max=5M ttl=90/g' "/etc/asl.conf"
-#sudo perl -p -i -e 's/appfirewall.log file_max=5M all_max=50M/appfirewall.log rotate=utc compress file_max=5M ttl=90/g' "/etc/asl.conf"
+# sudo perl -p -i -e 's/rotate=seq compress file_max=5M all_max=50M/rotate=utc compress file_max=5M ttl=90/g' "/etc/asl.conf"
+# sudo perl -p -i -e 's/appfirewall.log file_max=5M all_max=50M/appfirewall.log rotate=utc compress file_max=5M ttl=90/g' "/etc/asl.conf"
 
 # running "Reload the firewall"
 # (uncomment if above is not commented out)
 #launchctl unload /System/Library/LaunchAgents/com.apple.alf.useragent.plist
-#sudo launchctl unload /System/Library/LaunchDaemons/com.apple.alf.agent.plist
-#sudo launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist
+# sudo launchctl unload /System/Library/LaunchDaemons/com.apple.alf.agent.plist
+# sudo launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist
 #launchctl load /System/Library/LaunchAgents/com.apple.alf.useragent.plist
 
 # running "Disable IR remote control"
-#sudo defaults write /Library/Preferences/com.apple.driver.AppleIRController DeviceEnabled -bool false
+# sudo defaults write /Library/Preferences/com.apple.driver.AppleIRController DeviceEnabled -bool false
 
 # running "Turn Bluetooth off completely"
-#sudo defaults write /Library/Preferences/com.apple.Bluetooth ControllerPowerState -int 0
-#sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist
-#sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist
+# sudo defaults write /Library/Preferences/com.apple.Bluetooth ControllerPowerState -int 0
+# sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist
+# sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist
 
 # running "Disable wifi captive portal"
-#sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control Active -bool false
+# sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control Active -bool false
 
 running "Enable install from Anywhere"
 sudo spctl --master-disable
@@ -428,10 +472,10 @@ sudo systemsetup -setwakeonnetworkaccess off
 # sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.smbd.plist
 
 # running "Display login window as name and password"
-#sudo defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -bool true
+# sudo defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -bool true
 
 # running "Do not show password hints"
-#sudo defaults write /Library/Preferences/com.apple.loginwindow RetriesUntilHint -int 0
+# sudo defaults write /Library/Preferences/com.apple.loginwindow RetriesUntilHint -int 0
 
 running "Disable guest account login"
 sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
@@ -441,37 +485,38 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -boo
 
 # running "Destroy FileVault key when going into standby mode, forcing a re-auth"
 # Source: https://web.archive.org/web/20160114141929/http://training.apple.com/pdf/WP_FileVault2.pdf
-#sudo pmset destroyfvkeyonstandby 1
+# sudo pmset destroyfvkeyonstandby 1
 
 # running "Disable Bonjour multicast advertisement"
-#sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool true
+# sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool true
 
 # running "Disable diagnostic report"
-#sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.SubmitDiagInfo.plist
+# sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.SubmitDiagInfo.plist
 
 # running "Log authentication events for 90 day"
-#sudo perl -p -i -e 's/rotate=seq file_max=5M all_max=20M/rotate=utc file_max=5M ttl=90/g' "/etc/asl/com.apple.authd"
+# sudo perl -p -i -e 's/rotate=seq file_max=5M all_max=20M/rotate=utc file_max=5M ttl=90/g' "/etc/asl/com.apple.authd"
 
 # running "Log installation events for a yea"
-#sudo perl -p -i -e 's/format=bsd/format=bsd mode=0640 rotate=utc compress file_max=5M ttl=365/g' "/etc/asl/com.apple.install"
+# sudo perl -p -i -e 's/format=bsd/format=bsd mode=0640 rotate=utc compress file_max=5M ttl=365/g' "/etc/asl/com.apple.install"
 
 # running "Increase the retention time for system.log and secure.lo"
-#sudo perl -p -i -e 's/\/var\/log\/wtmp.*$/\/var\/log\/wtmp   \t\t\t640\ \ 31\    *\t\@hh24\ \J/g' "/etc/newsyslog.conf"
+# sudo perl -p -i -e 's/\/var\/log\/wtmp.*$/\/var\/log\/wtmp   \t\t\t640\ \ 31\    *\t\@hh24\ \J/g' "/etc/newsyslog.conf"
 
 # running "Keep a log of kernel events for 30 day"
-#sudo perl -p -i -e 's|flags:lo,aa|flags:lo,aa,ad,fd,fm,-all,^-fa,^-fc,^-cl|g' /private/etc/security/audit_control
-#sudo perl -p -i -e 's|filesz:2M|filesz:10M|g' /private/etc/security/audit_control
-#sudo perl -p -i -e 's|expire-after:10M|expire-after: 30d |g' /private/etc/security/audit_control
+# sudo perl -p -i -e 's|flags:lo,aa|flags:lo,aa,ad,fd,fm,-all,^-fa,^-fc,^-cl|g' /private/etc/security/audit_control
+# sudo perl -p -i -e 's|filesz:2M|filesz:10M|g' /private/etc/security/audit_control
+# sudo perl -p -i -e 's|expire-after:10M|expire-after: 30d |g' /private/etc/security/audit_control
 
-running "Disable the “Are you sure you want to open this application?” dialog"
-defaults write com.apple.LaunchServices LSQuarantine -bool false
+# running "Disable the “Are you sure you want to open this application?” dialog"
+# defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 ###############################################################################
 bot "SSD-specific tweaks"
 ###############################################################################
 
-running "Disable local Time Machine snapshots"
-sudo tmutil disablelocal;ok
+# disablelocal is no longer used, check man tmutil for more info
+# running "Disable local Time Machine snapshots"
+# sudo tmutil disablelocal;ok
 
 running "Disable hibernation (speeds up entering sleep mode)"
 sudo pmset -a hibernatemode 0;ok
@@ -483,7 +528,7 @@ sudo touch /Private/var/vm/sleepimage;ok
 running "…and make sure it can’t be rewritten"
 sudo chflags uchg /Private/var/vm/sleepimage;ok
 
-#running "Disable the sudden motion sensor as it’s not useful for SSDs"
+# running "Disable the sudden motion sensor as it’s not useful for SSDs"
 # sudo pmset -a sms 0;ok
 
 ###############################################################################
@@ -491,10 +536,10 @@ bot "Optional / Experimental"
 ###############################################################################
 
 running "Set computer name (as done via System Preferences → Sharing)"
-sudo scutil --set ComputerName "STiX"
-sudo scutil --set HostName "STiX"
-sudo scutil --set LocalHostName "STiX"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "STiX"
+sudo scutil --set ComputerName "STiX's MacBook Pro"
+sudo scutil --set HostName "stix-macbook-pro"
+sudo scutil --set LocalHostName "stix-macbook-pro"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "stix-macbook-pro"
 
 # running "Disable smooth scrolling"
 # (Uncomment if you’re on an older Mac that messes up the animation)
@@ -531,41 +576,41 @@ defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true;ok
 # # the Dock to launch apps.
 # defaults write com.apple.dock persistent-apps -array "";ok
 
-#running "Enable the 2D Dock"
-#defaults write com.apple.dock no-glass -bool true;ok
+# running "Enable the 2D Dock"
+# defaults write com.apple.dock no-glass -bool true;ok
 
-#running "Disable the Launchpad gesture (pinch with thumb and three fingers)"
-#defaults write com.apple.dock showLaunchpadGestureEnabled -int 0;ok
+# running "Disable the Launchpad gesture (pinch with thumb and three fingers)"
+# defaults write com.apple.dock showLaunchpadGestureEnabled -int 0;ok
 
-#running "Add a spacer to the left side of the Dock (where the applications are)"
-#defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}';ok
-#running "Add a spacer to the right side of the Dock (where the Trash is)"
-#defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}';ok
+# running "Add a spacer to the left side of the Dock (where the applications are)"
+# defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}';ok
+# running "Add a spacer to the right side of the Dock (where the Trash is)"
+# defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}';ok
 
 
 ################################################
 bot "Standard System Changes"
 ################################################
-#running "allow 'locate' command"
-#sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist > /dev/null 2>&1;ok
+# running "allow 'locate' command"
+# sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist > /dev/null 2>&1;ok
 
 running "Set standby delay to 24 hours (default is 1 hour)"
 sudo pmset -a standbydelay 86400;ok
 
-#running "Disable the sound effects on boot"
-#sudo nvram SystemAudioVolume=" ";ok
+# running "Disable the sound effects on boot"
+# sudo nvram SystemAudioVolume=" ";ok
 
-#running "Menu bar: disable transparency"
-#defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false;ok
+# running "Menu bar: disable transparency"
+# defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false;ok
 
-#running "Menu bar: hide the Time Machine, Volume, User, and Bluetooth icons"
+# running "Menu bar: hide the Time Machine, Volume, User, and Bluetooth icons"
 #for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
 #  defaults write "${domain}" dontAutoLoad -array \
 #    "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
 #    "/System/Library/CoreServices/Menu Extras/Volume.menu" \
 #    "/System/Library/CoreServices/Menu Extras/User.menu"
 #done;
-#defaults write com.apple.systemuiserver menuExtras -array \
+# defaults write com.apple.systemuiserver menuExtras -array \
 #  "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
 #  "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
 #  "/System/Library/CoreServices/Menu Extras/Battery.menu" \
@@ -602,18 +647,18 @@ defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true;ok
 running "Disable the “Are you sure you want to open this application?” dialog"
 defaults write com.apple.LaunchServices LSQuarantine -bool false;ok
 
-#running "Remove duplicates in the “Open With” menu (also see 'lscleanup' alias)"
+# running "Remove duplicates in the “Open With” menu (also see 'lscleanup' alias)"
 #/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user;ok
 
-#running "Display ASCII control characters using caret notation in standard text views"
+# running "Display ASCII control characters using caret notation in standard text views"
 # Try e.g. `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
-#defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true;ok
+# defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true;ok
 
 running "Disable automatic termination of inactive apps"
 defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true;ok
 
-#running "Disable the crash reporter"
-#defaults write com.apple.CrashReporter DialogType -string "none";ok
+# running "Disable the crash reporter"
+# defaults write com.apple.CrashReporter DialogType -string "none";ok
 
 running "Set Help Viewer windows to non-floating mode"
 defaults write com.apple.helpviewer DevMode -bool true;ok
@@ -624,13 +669,13 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo Hos
 running "Restart automatically if the computer freezes"
 sudo systemsetup -setrestartfreeze on;ok
 
-#running "Never go into computer sleep mode"
-#sudo systemsetup -setcomputersleep Off > /dev/null;ok
+# running "Never go into computer sleep mode"
+# sudo systemsetup -setcomputersleep Off > /dev/null;ok
 
 running "Check for software updates daily, not just once per week"
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1;ok
 
-#running "Disable Notification Center and remove the menu bar icon"
+# running "Disable Notification Center and remove the menu bar icon"
 #launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist > /dev/null 2>&1;ok
 
 running "Disable smart quotes as they’re annoying when typing code"
@@ -644,22 +689,22 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false;ok
 bot "Trackpad, mouse, keyboard, Bluetooth accessories, and input"
 ###############################################################################
 
-#running "Trackpad: enable tap to click for this user and for the login screen"
-#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-#defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-#defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1;ok
+# running "Trackpad: enable tap to click for this user and for the login screen"
+# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+# defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+# defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1;ok
 
-#running "Trackpad: map bottom right corner to right-click"
-#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
-#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
-#defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
-#defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true;ok
+# running "Trackpad: map bottom right corner to right-click"
+# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+# defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
+# defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true;ok
 
-#running "Disable 'natural' (Lion-style) scrolling"
-#defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false;ok
+# running "Disable 'natural' (Lion-style) scrolling"
+# defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false;ok
 
-#running "Increase sound quality for Bluetooth headphones/headsets"
-#defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40;ok
+# running "Increase sound quality for Bluetooth headphones/headsets"
+# defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40;ok
 
 running "Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3;ok
@@ -718,7 +763,7 @@ sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutio
 ###############################################################################
 bot "Finder Configs"
 ###############################################################################
-# running "Keep folders on top when sorting by name (Sierra only)"
+running "Keep folders on top when sorting by name (version 10.12 and later)"
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
 
 running "Allow quitting via ⌘ + Q; doing so will also hide desktop icons"
@@ -747,8 +792,8 @@ defaults write com.apple.finder ShowPathbar -bool true;ok
 running "Allow text selection in Quick Look"
 defaults write com.apple.finder QLEnableTextSelection -bool true;ok
 
-#running "Display full POSIX path as Finder window title"
-#defaults write com.apple.finder _FXShowPosixPathInTitle -bool true;ok
+# running "Display full POSIX path as Finder window title"
+# defaults write com.apple.finder _FXShowPosixPathInTitle -bool true;ok
 
 running "When performing a search, search the current folder by default"
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf";ok
@@ -788,10 +833,11 @@ defaults write com.apple.finder WarnOnEmptyTrash -bool false;ok
 running "Empty Trash securely by default"
 defaults write com.apple.finder EmptyTrashSecurely -bool true;ok
 
-#running "Enable AirDrop over Ethernet and on unsupported Macs running Lion"
-#defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true;ok
+# running "Enable AirDrop over Ethernet and on unsupported Macs running Lion"
+# defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true;ok
 
 running "Show the ~/Library folder"
+xattr -d com.apple.FinderInfo ~/Library 2>/dev/null
 chflags nohidden ~/Library;ok
 
 running "Expand the following File Info panes: “General”, “Open with”, and “Sharing & Permissions”"
@@ -825,8 +871,8 @@ defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 running "Show indicator lights for open applications in the Dock"
 defaults write com.apple.dock show-process-indicators -bool true;ok
 
-#running "Don’t animate opening applications from the Dock"
-#defaults write com.apple.dock launchanim -bool false;ok
+# running "Don’t animate opening applications from the Dock"
+# defaults write com.apple.dock launchanim -bool false;ok
 
 running "Speed up Mission Control animations"
 defaults write com.apple.dock expose-animation-duration -float 0.1;ok
@@ -835,11 +881,14 @@ defaults write com.apple.dock expose-animation-duration -float 0.1;ok
 # (i.e. use the old Exposé behavior instead)
 # defaults write com.apple.dock expose-group-by-app -bool false;ok
 
-running "Disable Dashboard"
-defaults write com.apple.dashboard mcx-disabled -bool true;ok
+# Dashboard is disabled by default on macOS Mojave,
+# Moreover as of macOS 10.15 Catalina, Dashboard is removed macOS.
 
-running "Don’t show Dashboard as a Space"
-defaults write com.apple.dock dashboard-in-overlay -bool true;ok
+# running "Disable Dashboard"
+# defaults write com.apple.dashboard mcx-disabled -bool true;ok
+
+# running "Don’t show Dashboard as a Space"
+# defaults write com.apple.dock dashboard-in-overlay -bool true;ok
 
 # running "Don’t automatically rearrange Spaces based on most recent use"
 # defaults write com.apple.dock mru-spaces -bool false;ok
@@ -849,8 +898,8 @@ defaults write com.apple.dock autohide-delay -float 0;ok
 # running "Remove the animation when hiding/showing the Dock"
 # defaults write com.apple.dock autohide-time-modifier -float 0;ok
 
-#running "Automatically hide and show the Dock"
-#defaults write com.apple.dock autohide -bool true;ok
+# running "Automatically hide and show the Dock"
+# defaults write com.apple.dock autohide -bool true;ok
 
 running "Make Dock icons of hidden applications translucent"
 defaults write com.apple.dock showhidden -bool true;ok
@@ -858,10 +907,25 @@ defaults write com.apple.dock showhidden -bool true;ok
 # running "Make Dock more transparent"
 # defaults write com.apple.dock hide-mirror -bool true;ok
 
-#running "Reset Launchpad, but keep the desktop wallpaper intact"
-#find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete;ok
+running "Reset Launchpad, but keep the desktop wallpaper intact"
+defaults write com.apple.dock ResetLaunchPad -bool TRUE
+find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete;ok
 
-#bot "Configuring Hot Corners"
+# You can change the layout of your Launchpad
+# Use the following command in Terminal to change the layout of Launchpad.
+# Change ‘X’ into the number of icons to be showed in a single row (e.g 9).
+# running "Change Launchpad layout columns"
+# defaults write com.apple.dock springboard-columns -int 9
+
+# Change ‘X’ to the number of rows (e.g 3).
+# running "Change Launchpad layout rows"
+# defaults write com.apple.dock springboard-rows -int 3
+
+# Force a restart of Launchpad with the following command to apply the changes:
+# running "Restart Launchpad"
+# defaults write com.apple.dock ResetLaunchPad -bool TRUE;killall Dock
+
+# bot "Configuring Hot Corners"
 # Possible values:
 #  0: no-op
 #  2: Mission Control
@@ -874,15 +938,15 @@ defaults write com.apple.dock showhidden -bool true;ok
 # 11: Launchpad
 # 12: Notification Center
 
-#running "Top left screen corner → Mission Control"
-#defaults write com.apple.dock wvous-tl-corner -int 2
-#defaults write com.apple.dock wvous-tl-modifier -int 0;ok
-#running "Top right screen corner → Desktop"
-#defaults write com.apple.dock wvous-tr-corner -int 4
-#defaults write com.apple.dock wvous-tr-modifier -int 0;ok
-#running "Bottom right screen corner → Start screen saver"
-#defaults write com.apple.dock wvous-br-corner -int 5
-#defaults write com.apple.dock wvous-br-modifier -int 0;ok
+# running "Top left screen corner → Mission Control"
+# defaults write com.apple.dock wvous-tl-corner -int 2
+# defaults write com.apple.dock wvous-tl-modifier -int 0;ok
+# running "Top right screen corner → Desktop"
+# defaults write com.apple.dock wvous-tr-corner -int 4
+# defaults write com.apple.dock wvous-tr-modifier -int 0;ok
+# running "Bottom right screen corner → Start screen saver"
+# defaults write com.apple.dock wvous-br-corner -int 5
+# defaults write com.apple.dock wvous-br-modifier -int 0;ok
 
 ###############################################################################
 bot "Safari & WebKit"
@@ -894,8 +958,11 @@ defaults write com.apple.Safari HomePage -string "about:blank";ok
 running "Prevent Safari from opening ‘safe’ files automatically after downloading"
 defaults write com.apple.Safari AutoOpenSafeDownloads -bool false;ok
 
+# For Mojave and up enable the keyboard shortcut but it requires to disable system integrity
+# For High Sierra and below enable the default one
 running "Allow hitting the Backspace key to go to the previous page in history"
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true;ok
+# defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true;ok
+defaults write com.apple.Safari NSUserKeyEquivalents -dict-add Back "\U232b"
 
 running "Hide Safari’s bookmarks bar by default"
 defaults write com.apple.Safari ShowFavoritesBar -bool false;ok
@@ -972,9 +1039,12 @@ bot "Spotlight"
 # running "Hide Spotlight tray-icon (and subsequent helper)"
 # sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search;ok
 
-running "Disable Spotlight indexing for any volume that gets mounted and has not yet been indexed"
+# Issue on macOS Mojave:
+# Rich Trouton covers the move of /Volumes to no longer being world writable as of Sierra (10.12)
+# https://derflounder.wordpress.com/2016/09/21/macos-sierras-volumes-folder-is-no-longer-world-writable
+# running "Disable Spotlight indexing for any volume that gets mounted and has not yet been indexed"
 # Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
-sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes";ok
+# sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes";ok
 running "Change indexing order and disable some file types from being indexed"
 defaults write com.apple.spotlight orderedItems -array \
   '{"enabled" = 1;"name" = "APPLICATIONS";}' \
@@ -997,8 +1067,8 @@ running "Load new settings before rebuilding the index"
 killall mds > /dev/null 2>&1;ok
 running "Make sure indexing is enabled for the main volume"
 sudo mdutil -i on / > /dev/null;ok
-#running "Rebuild the index from scratch"
-#sudo mdutil -E / > /dev/null;ok
+# running "Rebuild the index from scratch"
+# sudo mdutil -E / > /dev/null;ok
 
 ###############################################################################
 bot "Time Machine"
@@ -1007,8 +1077,8 @@ bot "Time Machine"
 running "Prevent Time Machine from prompting to use new hard drives as backup volume"
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true;ok
 
-running "Disable local Time Machine backups"
-hash tmutil &> /dev/null && sudo tmutil disablelocal;ok
+# running "Disable local Time Machine backups"
+# hash tmutil &> /dev/null && sudo tmutil disablelocal;ok
 
 ###############################################################################
 bot "Activity Monitor"
@@ -1020,12 +1090,58 @@ defaults write com.apple.ActivityMonitor OpenMainWindow -bool true;ok
 running "Visualize CPU usage in the Activity Monitor Dock icon"
 defaults write com.apple.ActivityMonitor IconType -int 5;ok
 
+# Show processes in Activity Monitor
+# 100: All Processes
+# 101: All Processes, Hierarchally
+# 102: My Processes
+# 103: System Processes
+# 104: Other User Processes
+# 105: Active Processes
+# 106: Inactive Processes
+# 106: Inactive Processes
+# 107: Windowed Processes
 running "Show all processes in Activity Monitor"
-defaults write com.apple.ActivityMonitor ShowCategory -int 0;ok
+defaults write com.apple.ActivityMonitor ShowCategory -int 100;ok
 
 running "Sort Activity Monitor results by CPU usage"
 defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
 defaults write com.apple.ActivityMonitor SortDirection -int 0;ok
+
+running "Set columns for each tab"
+defaults write com.apple.ActivityMonitor "UserColumnsPerTab v5.0" -dict \
+    '0' '( Command, CPUUsage, CPUTime, Threads, PID, UID, Ports )' \
+    '1' '( Command, ResidentSize, Threads, Ports, PID, UID,  )' \
+    '2' '( Command, PowerScore, 12HRPower, AppSleep, UID, powerAssertion )' \
+    '3' '( Command, bytesWritten, bytesRead, Architecture, PID, UID, CPUUsage )' \
+    '4' '( Command, txBytes, rxBytes, PID, UID, txPackets, rxPackets, CPUUsage )';ok
+
+running "Sort columns in each tab"
+defaults write com.apple.ActivityMonitor UserColumnSortPerTab -dict \
+    '0' '{ direction = 0; sort = CPUUsage; }' \
+    '1' '{ direction = 0; sort = ResidentSize; }' \
+    '2' '{ direction = 0; sort = 12HRPower; }' \
+    '3' '{ direction = 0; sort = bytesWritten; }' \
+    '4' '{ direction = 0; sort = txBytes; }';ok
+
+running "Update refresh frequency (in seconds)"
+# 1: Very often (1 sec)
+# 2: Often (2 sec)
+# 5: Normally (5 sec)
+defaults write com.apple.ActivityMonitor UpdatePeriod -int 2;ok
+
+running "Show Data in the Disk graph (instead of IO)"
+defaults write com.apple.ActivityMonitor DiskGraphType -int 1;ok
+
+running "Show Data in the Network graph (instead of packets)"
+defaults write com.apple.ActivityMonitor NetworkGraphType -int 1;ok
+
+running "Change Dock Icon"
+# 0: Application Icon
+# 2: Network Usage
+# 3: Disk Activity
+# 5: CPU Usage
+# 6: CPU History
+defaults write com.apple.ActivityMonitor IconType -int 3;ok
 
 ###############################################################################
 bot "Address Book, Dashboard, iCal, TextEdit, and Disk Utility"
@@ -1039,6 +1155,7 @@ defaults write com.apple.dashboard devmode -bool true;ok
 
 running "Use plain text mode for new TextEdit documents"
 defaults write com.apple.TextEdit RichText -int 0;ok
+
 running "Open and save files as UTF-8 in TextEdit"
 defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4;ok
@@ -1282,5 +1399,8 @@ for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
   "VLC" "Karabiner-Menu" "Terminal" "iTerm2" "Arduino"; do
   killall "${app}" > /dev/null 2>&1
 done
+
+running "Do a last minute check and cleanup routine"
+brew update && brew upgrade && brew cleanup && brew cask cleanup
 
 bot "Woot! All done"

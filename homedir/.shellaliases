@@ -34,7 +34,7 @@ alias files.usage.user='sudo fs_usage -e -f filesystem|grep -v CACHE_HIT|grep -v
 
 alias game.seek='txt="";for i in {1..20};do txt=$txt"$i. ";done;txt=$txt" Ready or not, here I come";say $txt'
 
-# Xcode
+# Open in Xcode
 alias xcode="open -a Xcode"
 
 # Git Tools
@@ -101,7 +101,7 @@ alias spotoff="sudo mdutil -a -i off"
 alias spoton="sudo mdutil -a -i on"
 
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; mas upgrade; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cask upgrade; brew cleanup; mas upgrade; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
 
 alias vtop="vtop --theme wizard"
 
