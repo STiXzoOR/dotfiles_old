@@ -30,5 +30,8 @@
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "python.jediEnabled": false,
     "vsicons.dontShowNewVersionMessage": true,
-    "git.autofetch": true
+    "git.autofetch": true,
+    "terminal.integrated.rendererType": "dom",
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.cursorBlinking": true
 }
