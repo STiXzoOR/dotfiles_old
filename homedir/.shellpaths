@@ -1,10 +1,11 @@
 #My Scripts
 export PATH=$PATH:.
-#export PATH=$PATH:~/.dotfiles/scripts
+export PATH=$PATH:~/.dotfiles/zsh-git-sync
+export PATH=$PATH:~/.dotfiles/zsh-git-add-remote
 
 #Brew
 export PATH=/usr/local/sbin:$PATH
-export PATH=/usr/local/bin:$PATH
+#export PATH=/usr/local/bin:$PATH
 
 #Ruby
 export PATH=/usr/local/opt/ruby/bin:$PATH

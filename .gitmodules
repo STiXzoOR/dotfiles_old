@@ -25,3 +25,9 @@
 [submodule "zsh-z"]
 	path = zsh-z
 	url = https://github.com/agkozak/zsh-z.git
+[submodule "zsh-git-sync"]
+	path = zsh-git-sync
+	url = https://github.com/caarlos0/zsh-git-sync.git
+[submodule "zsh-git-add-remote"]
+	path = zsh-git-add-remote
+	url = https://github.com/caarlos0/git-add-remote.git

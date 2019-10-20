@@ -35,20 +35,16 @@ zstyle ':prezto:load' pmodule \
   'directory' \
   'spectrum' \
   'utility' \
-  'ssh' \
   'completion' \
   'homebrew' \
+  'git' \
   'osx' \
   'ruby' \
-  'rails' \
-  'git' \
-  'node' \
   'python' \
   'syntax-highlighting' \
   'history-substring-search' \
   'autosuggestions' \
   'prompt'
-
 
 #
 # Autosuggestions

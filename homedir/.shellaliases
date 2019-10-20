@@ -70,8 +70,9 @@ alias ll='ls -l -G -h -p '
 alias ..="cd .."
 alias ...="cd ../.."
 
-# Print each PATH entry on a separate line
+# Print each PATH and MANPATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+alias mpath='echo -e ${MANPATH//:/\\n}'
 
 # Copy and paste and prune the usless newline
 alias pbcopynn='tr -d "\n" | pbcopy'
@@ -99,6 +100,9 @@ alias notion="launchctl load -w /System/Library/LaunchAgents/com.apple.notificat
 alias spotoff="sudo mdutil -a -i off"
 # Enable Spotlight
 alias spoton="sudo mdutil -a -i on"
+
+# Restart audio service
+alias resetaudio="sudo pkill coreaudiod"
 
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cask upgrade; brew cleanup; mas upgrade; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'

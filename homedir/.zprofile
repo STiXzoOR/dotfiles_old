@@ -17,4 +17,4 @@ setopt    incappendhistory  #Immediately append to the history file, not just wh
 ##############################################################################
 # zsh-z setup
 ##############################################################################
-. ~/.dotfiles/zsh-z/zsh-z.plugin.zsh
+source ~/.dotfiles/zsh-z/zsh-z.plugin.zsh

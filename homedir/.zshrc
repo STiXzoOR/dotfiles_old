@@ -1,9 +1,16 @@
+# zmodload zsh/zprof # Enable for debugging
 #
 # Executes commands at the start of an interactive session.
 #
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
+
+#####################################################################################
+# Hide Username from Prompt
+#####################################################################################
+
+export DEFAULT_USER=`whoami`
 
 #####################################################################################
 # Source Powerlevel Settings
@@ -43,12 +50,6 @@ add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
 #####################################################################################
-# Hide Username from Prompt
-#####################################################################################
-
-export DEFAULT_USER=`whoami`
-
-#####################################################################################
 # ColorLS settings
 #####################################################################################
 
@@ -63,6 +64,12 @@ alias lcr="colorls -lA --report"
 #####################################################################################
 
 zstyle ':completion:*' menu select
+
+# Source fzf completion if installed
+if test -d /usr/local/opt/fzf/shell; then
+  export FZF_COMPLETION_TRIGGER='**'
+  source /usr/local/opt/fzf/shell/completion.zsh
+fi
 
 #####################################################################################
 # why would you type 'cd dir' if you could just type 'dir'?
@@ -87,3 +94,5 @@ setopt PUSHD_SILENT
 #####################################################################################
 
 #fortune
+
+# zprof # Enable for debugging

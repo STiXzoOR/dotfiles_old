@@ -61,7 +61,6 @@
   pl = pull
   spull = !git-svn fetch && git-svn rebase
   spush = !git-svn dcommit
-  sync = !git pull && git push
   es = !git pull --rebase && git push
   ignorechanges = update-index --assume-unchanged
   noticechanges = update-index --no-assume-unchanged
@@ -80,6 +79,10 @@
   listunstaged = diff --name-status
   liststaged = diff --name-status --staged
   listhistory = log --name-status
+  sync = !zsh -ic git-sync
+	delete-local-merged = !zsh -ic git-delete-local-merged
+	add-upstream = '!zsh -ic \"add-upstream $*\"'
+	add-remote = '!zsh -ic \"add-remote $*\"'
   
 [apply]
   whitespace = nowarn
