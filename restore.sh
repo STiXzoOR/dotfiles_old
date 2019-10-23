@@ -44,7 +44,7 @@ for file in .*; do
       mv ./$file ./
       echo -en "$1 backup restored";ok
   fi
-  echo -en '\done';ok
+  echo -en '\tdone';ok
 done
 
 popd
