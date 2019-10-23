@@ -1,7 +1,8 @@
 #My Scripts
-export PATH=$PATH:.
 export PATH=$PATH:~/.dotfiles/zsh-git-sync
 export PATH=$PATH:~/.dotfiles/zsh-git-add-remote
+export PATH=$PATH:~/bin
+export PATH=$PATH:.
 
 #Brew
 export PATH=/usr/local/sbin:$PATH
