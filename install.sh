@@ -137,42 +137,6 @@ if [[ $response =~ (yes|y|Y) ]]; then
 fi
 
 # ###########################################################
-# Wallpaper
-# ###########################################################
-wallpapers = (
-	"El Capitan"
-	"El Capitan 2"
-	"Sierra"
-	"Sierra 2"
-	"High Sierra"
-	)
-
-MD5_NEWWP=$(md5 img/wallpaper.heic | awk '{print $4}')
-MD5_OLDWP=$(md5 /System/Library/CoreServices/DefaultDesktop.heic | awk '{print $4}')
-if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
-  read -r -p "Do you want to use the project's custom desktop wallpaper? [y|N] " response
-  if [[ $response =~ (yes|y|Y) ]]; then
-  	running "Set a custom wallpaper image"
-    # `DefaultDesktop.heic` is already a symlink, and
-    # all wallpapers are in `/Library/Desktop Pictures/`. The default is `Wave.jpg`.
-    # rm -rf ~/Library/Application Support/Dock/desktoppicture.db
-    bot "I will backup system wallpapers in ~/.dotfiles/img/"
-    sudo cp /System/Library/CoreServices/DefaultDesktop.heic img/DefaultDesktop.backup.heic > /dev/null 2>&1
-    sudo rm -f /System/Library/CoreServices/DefaultDesktop.heic > /dev/null 2>&1
-    sudo cp ./img/wallpaper.heic /System/Library/CoreServices/DefaultDesktop.heic;
-    for wallpaper in "${wallpapers[@]}"
-		do
-			sudo cp "/Library/Desktop Pictures/$wallpaper.jpg" "img/$wallpaper.backup.jpg" > /dev/null 2>&1
-			sudo rm -f "/Library/Desktop Pictures/$wallpaper.jpg" > /dev/null 2>&1
-			sudo cp "./img/wallpaper.heic" "/Library/Desktop Pictures/$wallpaper.heic"
-		done
-		ok
-	else
-    ok "skipped"
-  fi
-fi
-
-# ###########################################################
 # Install non-brew various tools (PRE-BREW Installs)
 # ###########################################################
 bot "ensuring build/install tools are available"
@@ -224,14 +188,14 @@ fi
 # ###########################################################
 # install brew cask (UI Packages)
 # ###########################################################
-running "checking brew-cask install"
-output=$(brew tap | grep cask)
-if [[ $? != 0 ]]; then
-  action "installing brew-cask"
-  require_brew caskroom/cask/brew-cask
-fi
-brew tap caskroom/versions > /dev/null 2>&1
-ok
+# running "checking brew-cask install"
+# output=$(brew tap | grep cask)
+# if [[ $? != 0 ]]; then
+#   action "installing brew-cask"
+#   require_brew homebrew/cask-cask
+# fi
+# brew tap caskroom/versions > /dev/null 2>&1
+# ok
 
 # just to avoid a potential bug
 mkdir -p ~/Library/Caches/Homebrew/Formula
@@ -261,7 +225,7 @@ zsh ./lib_sh/install_prezto.zsh
 ok
 
 # access airport binary systemwide for easy configuration
-if [[ ! -e /usr/sbin/airport ]]
+if [[ ! -e /usr/sbin/airport ]]; then
 	running "linking airport binary"
 	sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/sbin/airport > /dev/null 2>&1;ok
 fi
@@ -313,40 +277,40 @@ if [[ $response =~ (y|yes|Y) ]]; then
   require_brew fontconfig
 	./fonts/install.sh
 	brew tap homebrew/cask-fonts
-	require_cask font-fontawesome \
-	                  font-awesome-terminal-fonts \
-	                  font-hack \
-	                  font-hack-nerd-font \
-	                  font-inconsolata-dz-for-powerline \
-	                  font-inconsolata-g-for-powerline \
-	                  font-inconsolata-for-powerline \
-	                  font-anonymice-powerline \
-                    font-consolas-for-powerline \
-                    font-dejavu-sans-mono-for-powerline \
-                    font-droid-sans-mono-for-powerline \
-                    font-fira-code \
-                    font-fira-mono \
-                    font-fira-mono-for-powerline \
-                    font-firacode-nerd-font \
-                    font-firacode-nerd-font-mono \
-                    font-hasklig \
-                    font-hasklig-nerd-font \
-                    font-hasklig-nerd-font-mono \
-                    font-iosevka \
-                    font-liberation-mono-for-powerline \
-                    font-menlo-for-powerline \
-                    font-meslo-for-powerline \
-                    font-monofur-for-powerline \
-                    font-monoid \
-                    font-noto-mono-for-powerline \
-                    font-roboto \
-                    font-roboto-mono \
-                    font-roboto-mono-for-powerline \
-                    font-source-code-pro \
-                    font-source-code-pro-for-powerline \
-                    font-ubuntu-mono-derivative-powerline \
-                    font-ubuntumono-nerd-font \
-                    font-ubuntumono-nerd-font-mono
+	require_cask font-fontawesome
+	require_cask font-awesome-terminal-fonts
+	require_cask font-hack
+	require_cask font-hack-nerd-font
+	require_cask font-inconsolata-dz-for-powerline
+	require_cask font-inconsolata-g-for-powerline
+	require_cask font-inconsolata-for-powerline
+	require_cask font-anonymice-powerline
+  require_cask font-consolas-for-powerline
+  require_cask font-dejavu-sans-mono-for-powerline
+  require_cask font-droid-sans-mono-for-powerline
+  require_cask font-fira-code
+  require_cask font-fira-mono
+  require_cask font-fira-mono-for-powerline
+  require_cask font-firacode-nerd-font
+  require_cask font-firacode-nerd-font-mono
+  require_cask font-hasklig
+  require_cask font-hasklig-nerd-font
+  require_cask font-hasklig-nerd-font-mono
+  require_cask font-iosevka
+  require_cask font-liberation-mono-for-powerline
+  require_cask font-menlo-for-powerline
+  require_cask font-meslo-for-powerline
+  require_cask font-monofur-for-powerline
+  require_cask font-monoid
+  require_cask font-noto-mono-for-powerline
+  require_cask font-roboto
+  require_cask font-roboto-mono
+  require_cask font-roboto-mono-for-powerline
+  require_cask font-source-code-pro
+  require_cask font-source-code-pro-for-powerline
+  require_cask font-ubuntu-mono-derivative-powerline
+  require_cask font-ubuntumono-nerd-font
+  require_cask font-ubuntumono-nerd-font-mono
   ok
 fi
 
@@ -1318,7 +1282,10 @@ bot "Visual Studio Code"
 ###############################################################################
 
 running "Install extensions"
-./configs/vscode/install_extensions.sh;ok
+while read -r module; do
+  code --install-extension "$module" || true
+done <"${HOME}/.dotfiles/configs/vscode/extensions.txt"
+ok
 
 running "Install settings"
 if [ ! -d ~/Library/Application\ Support/Code/User ]; then
@@ -1334,19 +1301,19 @@ running "Change theme to dracula"
 mv /Applications/Arduino.app/Contents/Java/lib/theme /Applications/Arduino.app/Contents/Java/lib/theme_backup;
 ln -sf ~/.dotfiles/configs/arduino/dracula_theme/theme /Applications/Arduino.app/Contents/Java/lib/theme 2> /dev/null;ok
 
-###############################################################################
-bot "Jetbrains Apps"
-###############################################################################
+# ###############################################################################
+# bot "Jetbrains Apps"
+# ###############################################################################
 
-running "Install dracula theme"
-./configs/jetbrains/configure.sh --install-theme;ok
+# running "Install dracula theme"
+# ./configs/jetbrains/configure.sh --install-theme;ok
 
-running "Install plugins"
-./configs/jetbrains/configure.sh --download-plugins;
-./configs/jetbrains/configure.sh --install-plugins;ok
+# running "Install plugins"
+# ./configs/jetbrains/configure.sh --download-plugins;
+# ./configs/jetbrains/configure.sh --install-plugins;ok
 
-running "Install settings"
-./configs/jetbrains/configure.sh --install-settings;ok
+# running "Install settings"
+# ./configs/jetbrains/configure.sh --install-settings;ok
 
 ###############################################################################
 bot "Terminal & iTerm2"
@@ -1396,11 +1363,12 @@ ok
 bot "OK. Note that some of these changes require a logout/restart to take effect. Killing affected applications (so they can reboot)...."
 for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
   "Dock" "Finder" "Mail" "Messages" "Safari" "Transmission" "Xcode" "SystemUIServer" \
-  "VLC" "Karabiner-Menu" "Terminal" "iTerm2" "Arduino"; do
+  "VLC" "Karabiner-Menu" "iTerm2" "Arduino"; do
   killall "${app}" > /dev/null 2>&1
 done
 
 running "Do a last minute check and cleanup routine"
-brew update && brew upgrade && brew cleanup && brew cask cleanup
+brew update && brew upgrade && brew cleanup
 
 bot "Woot! All done"
+killall "Terminal" > /dev/null 2>&1

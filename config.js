@@ -61,15 +61,18 @@ module.exports = {
     'android-file-transfer',
     'android-studio',
     'arduino',
+    'brave-browser',
     'clover-configurator',
     'coconutbattery',
     'darwindumper',
     'discord',
+    'dropbox',
     'eclipse-java',
     'firefox',
     'flux',
     'fritzing',
     'github',
+    'google-backup-and-sync',
     'google-chrome',
     'intel-power-gadget',
     'iterm2',
@@ -79,6 +82,7 @@ module.exports = {
     'karabiner-elements',
     'keka',
     'macupdater',
+    'mamp',
     'monitorcontrol',
     'mono-mdk',
     'open-in-code',
@@ -92,31 +96,12 @@ module.exports = {
     'tunnelblick',
     'ukelele',
     'ultimaker-cura',
+    'virtualbox',
+    'virtualbox-extension-pack',
     'visual-studio-code',
     'vlc'
-    //'atom',
-    //'adium',
-    //'amazon-cloud-drive',
-    //'box-sync',
-    //'comicbooklover',
-    //'diffmerge',
-    //'docker', // docker for mac
-    //'evernote',
-    //'gpg-suite',
-    //'ireadfast',
-    //'little-snitch',
-    //'macbreakz',
-    //'micro-snitch',
-    //'signal',
-    //'macvim',
-    //'sizeup',
-    //'slack',
-    //'the-unarchiver',
-    //'xquartz'
   ],
-  gem: [
-    'colorls'
-  ],
+  gem: ['colorls'],
   npm: [
     'antic',
     'buzzphrase',
@@ -130,4 +115,4 @@ module.exports = {
     'vtop'
     // ,'yo'
   ]
-};
+}
