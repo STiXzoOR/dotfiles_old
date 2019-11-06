@@ -1287,7 +1287,7 @@ bot "Visual Studio Code"
 running "Install extensions"
 while read -r module; do
   code --install-extension "$module" || true
-done <"${HOME}/.dotfiles/configs/vscode/extensions.txt"
+done <"~/.dotfiles/configs/vscode/extensions.txt"
 ok
 
 running "Install settings"
@@ -1295,6 +1295,16 @@ if [ ! -d ~/Library/Application\ Support/Code/User ]; then
   mkdir -p ~/Library/Application\ Support/Code/User;
 fi;
 ln -sf ~/.dotfiles/configs/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json 2> /dev/null;ok
+
+###############################################################################
+bot "Python"
+###############################################################################
+
+running "Install modules"
+while read -r module; do
+  python3 -m pip install --user "$module" || true
+done <"~/.dotfiles/configs/python/requirements.txt"
+ok
 
 ###############################################################################
 bot "Arduino IDE"
