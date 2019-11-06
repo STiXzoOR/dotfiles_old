@@ -1278,7 +1278,7 @@ running "Install settings"
 if [ ! -d ~/.config/karabiner ]; then
   mkdir -p ~/.config/karabiner;
 fi;
-ln -sf ~.dotfiles/configs/karabiner/karabiner.json ~/.config/karabiner/karabiner.json 2> /dev/null;ok
+ln -sf ~/.dotfiles/configs/karabiner/karabiner.json ~/.config/karabiner/karabiner.json 2> /dev/null;ok
 
 ###############################################################################
 bot "Visual Studio Code"
