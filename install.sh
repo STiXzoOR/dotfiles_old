@@ -220,9 +220,12 @@ if [[ "$CURRENTSHELL" != "/usr/local/bin/zsh" ]]; then
 fi
 
 # install pretzo-zsh
-running "installing pretzo-zsh"
-zsh ./lib_sh/install_prezto.zsh
-ok
+read -r -p "Install prezto zsh? [y|N] " response
+if [[ $response =~ (y|yes|Y) ]]; then
+  running "installing pretzo-zsh"
+  zsh ./lib_sh/install_prezto.zsh
+  ok
+fi
 
 # access airport binary systemwide for easy configuration
 if [[ ! -e /usr/sbin/airport ]]; then
