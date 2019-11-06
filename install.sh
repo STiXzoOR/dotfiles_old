@@ -1301,10 +1301,7 @@ bot "Python"
 ###############################################################################
 
 running "Install modules"
-while read -r module; do
-  python3 -m pip install --user "$module" || true
-done <"~/.dotfiles/configs/python/requirements.txt"
-ok
+python3 -m pip install --user -r ~/.dotfiles/configs/vscode/requirements.txt;ok
 
 ###############################################################################
 bot "Arduino IDE"
