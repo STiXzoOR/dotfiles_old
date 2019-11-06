@@ -76,6 +76,7 @@ module.exports = {
     "github",
     "google-backup-and-sync",
     "google-chrome",
+    "iina",
     "intel-power-gadget",
     "iterm2",
     "java",
