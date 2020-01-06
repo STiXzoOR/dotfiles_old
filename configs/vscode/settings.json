@@ -1,7 +1,5 @@
 {
-    "bracket-pair-colorizer-2.colorMode": "Consecutive",
     "editor.acceptSuggestionOnCommitCharacter": false,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.fontFamily": "'DejaVu Sans Mono',Menlo, Monaco, 'Courier New', monospace",
     "editor.fontSize": 15,
     "editor.formatOnSave": true,
@@ -18,8 +16,18 @@
     "git.postCommitCommand": "push",
     "javascript.updateImportsOnFileMove.enabled": "always",
     "javascript.validate.enable": false,
-    "python.jediEnabled": false,
-    "python.pythonPath": "/usr/local/bin/python3",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "prettier.disableLanguages": [
+        "python"
+    ],
+    "python.formatting.provider": "black",
+    "python.jediEnabled": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintPath": "pylint",
+    "python.pythonPath": "python3",
+    "python.venvPath": "${workspaceFolder}",
     "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.cursorStyle": "line",
