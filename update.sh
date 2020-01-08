@@ -23,6 +23,6 @@ git commit -m "$message" > /dev/null 2>&1
 git push origin master --quiet > /dev/null 2>&1;ok
 
 running "Saving date of update"
-git config --global dotfiles.lastupdate "$(date +%Y%m%d%H%M)" > /dev/null 2>&1;ok
+git config --global dotfiles.lastupdate "$(date "+%F %T")" > /dev/null 2>&1;ok
 
 bot "Woot! All done."
