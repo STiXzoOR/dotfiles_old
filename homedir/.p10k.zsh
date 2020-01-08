@@ -532,7 +532,7 @@
 
   #######################[ background_jobs: presence of background jobs ]#######################
   # Background jobs color.
-  # typeset -g POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND=6
+  typeset -g POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND=0
   # Don't show the number of background jobs.
   typeset -g POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE=false
@@ -541,14 +541,14 @@
 
   #######################[ direnv: direnv status (https://direnv.net/) ]########################
   # Direnv color.
-  # typeset -g POWERLEVEL9K_DIRENV_FOREGROUND=3
+  typeset -g POWERLEVEL9K_DIRENV_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_DIRENV_BACKGROUND=0
   # Icon to show when direnv is active.
   typeset -g POWERLEVEL9K_DIRENV_VISUAL_IDENTIFIER_EXPANSION='${P9K_VISUAL_IDENTIFIER}'
 
   ##########[ nordvpn: nordvpn connection status, linux only (https://nordvpn.com/) ]###########
   # NordVPN connection indicator color.
-  # typeset -g POWERLEVEL9K_NORDVPN_FOREGROUND=7
+  typeset -g POWERLEVEL9K_NORDVPN_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_NORDVPN_BACKGROUND=4
   # Hide NordVPN connection indicator when not connected.
   typeset -g POWERLEVEL9K_NORDVPN_{DISCONNECTED,CONNECTING,DISCONNECTING}_CONTENT_EXPANSION=
@@ -558,28 +558,28 @@
 
   #################[ ranger: ranger shell (https://github.com/ranger/ranger) ]##################
   # Ranger shell color.
-  # typeset -g POWERLEVEL9K_RANGER_FOREGROUND=3
+  typeset -g POWERLEVEL9K_RANGER_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_RANGER_BACKGROUND=0
   # Custom icon.
   # typeset -g POWERLEVEL9K_RANGER_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   ######################[ nnn: nnn shell (https://github.com/jarun/nnn) ]#######################
   # Nnn shell color.
-  # typeset -g POWERLEVEL9K_NNN_FOREGROUND=0
+  typeset -g POWERLEVEL9K_NNN_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_NNN_BACKGROUND=6
   # Custom icon.
   # typeset -g POWERLEVEL9K_NNN_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   ###########################[ vim_shell: vim shell indicator (:sh) ]###########################
   # Vim shell indicator color.
-  # typeset -g POWERLEVEL9K_VIM_SHELL_FOREGROUND=0
+  typeset -g POWERLEVEL9K_VIM_SHELL_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_VIM_SHELL_BACKGROUND=2
   # Icon to show when in a vim shell.
   typeset -g POWERLEVEL9K_VIM_SHELL_VISUAL_IDENTIFIER_EXPANSION='${P9K_VISUAL_IDENTIFIER}'
 
   ######[ midnight_commander: midnight commander shell (https://midnight-commander.org/) ]######
   # Midnight Commander shell color.
-  # typeset -g POWERLEVEL9K_MIDNIGHT_COMMANDER_FOREGROUND=3
+  typeset -g POWERLEVEL9K_MIDNIGHT_COMMANDER_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_MIDNIGHT_COMMANDER_BACKGROUND=0
   # Icon to show when in a midnight commander shell.
   typeset -g POWERLEVEL9K_MIDNIGHT_COMMANDER_VISUAL_IDENTIFIER_EXPANSION='${P9K_VISUAL_IDENTIFIER}'
@@ -602,7 +602,7 @@
 
   ######################################[ ram: free RAM ]#######################################
   # RAM color.
-  # typeset -g POWERLEVEL9K_RAM_FOREGROUND=0
+  typeset -g POWERLEVEL9K_RAM_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_RAM_BACKGROUND=3
   # Custom icon.
   # typeset -g POWERLEVEL9K_RAM_VISUAL_IDENTIFIER_EXPANSION='⭐'
@@ -611,20 +611,20 @@
   # Show average CPU load over this many last minutes. Valid values are 1, 5 and 15.
   typeset -g POWERLEVEL9K_LOAD_WHICH=5
   # Load color when load is under 50%.
-  # typeset -g POWERLEVEL9K_LOAD_NORMAL_FOREGROUND=0
+  typeset -g POWERLEVEL9K_LOAD_NORMAL_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_LOAD_NORMAL_BACKGROUND=2
   # Load color when load is between 50% and 70%.
-  # typeset -g POWERLEVEL9K_LOAD_WARNING_FOREGROUND=0
+  typeset -g POWERLEVEL9K_LOAD_WARNING_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_LOAD_WARNING_BACKGROUND=3
   # Load color when load is over 70%.
-  # typeset -g POWERLEVEL9K_LOAD_CRITICAL_FOREGROUND=0
+  typeset -g POWERLEVEL9K_LOAD_CRITICAL_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_LOAD_CRITICAL_BACKGROUND=1
   # Custom icon.
   # typeset -g POWERLEVEL9K_LOAD_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   ################[ todo: todo items (https://github.com/todotxt/todo.txt-cli) ]################
   # Todo color.
-  # typeset -g POWERLEVEL9K_TODO_FOREGROUND=0
+  typeset -g POWERLEVEL9K_TODO_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_TODO_BACKGROUND=8
   # Hide todo when the total number of tasks is zero.
   typeset -g POWERLEVEL9K_TODO_HIDE_ZERO_TOTAL=true
@@ -649,8 +649,8 @@
 
   ##################################[ context: user@hostname ]##################################
   # Context color when running with privileges.
-  typeset -g POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND=1
-  typeset -g POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND=0
+  typeset -g POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND=1
   # Context color in SSH without privileges.
   typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_FOREGROUND=3
   typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_BACKGROUND=0
@@ -710,7 +710,7 @@
 
   ################[ goenv: go environment (https://github.com/syndbg/goenv) ]################
   # Goenv color.
-  # typeset -g POWERLEVEL9K_GOENV_FOREGROUND=0
+  typeset -g POWERLEVEL9K_GOENV_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_GOENV_BACKGROUND=4
   # Don't show the current Go version if it's the same as global.
   typeset -g POWERLEVEL9K_GOENV_PROMPT_ALWAYS_SHOW=false
@@ -719,7 +719,7 @@
 
   ##########[ nodenv: node.js version from nodenv (https://github.com/nodenv/nodenv) ]##########
   # Nodenv color.
-  # typeset -g POWERLEVEL9K_NODENV_FOREGROUND=2
+  typeset -g POWERLEVEL9K_NODENV_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_NODENV_BACKGROUND=0
   # Don't show node version if it's the same as global: $(nodenv version-name) == $(nodenv global).
   typeset -g POWERLEVEL9K_NODENV_PROMPT_ALWAYS_SHOW=false
@@ -728,13 +728,13 @@
 
   ##############[ nvm: node.js version from nvm (https://github.com/nvm-sh/nvm) ]###############
   # Nvm color.
-  # typeset -g POWERLEVEL9K_NVM_FOREGROUND=70
+  typeset -g POWERLEVEL9K_NVM_FOREGROUND=$DEFAULT_BACKGROUND
   # Custom icon.
   # typeset -g POWERLEVEL9K_NVM_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   ############[ nodeenv: node.js environment (https://github.com/ekalinin/nodeenv) ]############
   # Nodeenv color.
-  # typeset -g POWERLEVEL9K_NODEENV_FOREGROUND=2
+  typeset -g POWERLEVEL9K_NODEENV_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_NODEENV_BACKGROUND=0
   # Don't show Node version next to the environment name.
   typeset -g POWERLEVEL9K_NODEENV_SHOW_NODE_VERSION=false
@@ -745,7 +745,7 @@
 
   ##############################[ node_version: node.js version ]###############################
   # Node version color.
-  # typeset -g POWERLEVEL9K_NODE_VERSION_FOREGROUND=7
+  typeset -g POWERLEVEL9K_NODE_VERSION_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_NODE_VERSION_BACKGROUND=2
   # Show node version only when in a directory tree containing package.json.
   typeset -g POWERLEVEL9K_NODE_VERSION_PROJECT_ONLY=true
@@ -763,7 +763,7 @@
 
   #################[ rust_version: rustc version (https://www.rust-lang.org) ]##################
   # Rust version color.
-  # typeset -g POWERLEVEL9K_RUST_VERSION_FOREGROUND=0
+  typeset -g POWERLEVEL9K_RUST_VERSION_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_RUST_VERSION_BACKGROUND=208
   # Show rust version only when in a rust project subdirectory.
   typeset -g POWERLEVEL9K_RUST_VERSION_PROJECT_ONLY=true
@@ -772,7 +772,7 @@
 
   ###############[ dotnet_version: .NET version (https://dotnet.microsoft.com) ]################
   # .NET version color.
-  # typeset -g POWERLEVEL9K_DOTNET_VERSION_FOREGROUND=7
+  typeset -g POWERLEVEL9K_DOTNET_VERSION_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_DOTNET_VERSION_BACKGROUND=5
   # Show .NET version only when in a .NET project subdirectory.
   typeset -g POWERLEVEL9K_DOTNET_VERSION_PROJECT_ONLY=true
@@ -781,7 +781,7 @@
 
   #############[ rbenv: ruby version from rbenv (https://github.com/rbenv/rbenv) ]##############
   # Rbenv color.
-  # typeset -g POWERLEVEL9K_RBENV_FOREGROUND=0
+  typeset -g POWERLEVEL9K_RBENV_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_RBENV_BACKGROUND=1
   # Hide ruby version if it doesn't come from one of these sources.
   typeset -g POWERLEVEL9K_RBENV_SOURCES=(shell local global)
@@ -793,7 +793,7 @@
 
   #######################[ rvm: ruby version from rvm (https://rvm.io) ]########################
   # Rvm color.
-  # typeset -g POWERLEVEL9K_RVM_FOREGROUND=0
+  typeset -g POWERLEVEL9K_RVM_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_RVM_BACKGROUND=240
   # Don't show @gemset at the end.
   typeset -g POWERLEVEL9K_RVM_SHOW_GEMSET=false
@@ -804,14 +804,14 @@
 
   ###########[ fvm: flutter version management (https://github.com/leoafarias/fvm) ]############
   # Fvm color.
-  # typeset -g POWERLEVEL9K_FVM_FOREGROUND=0
+  typeset -g POWERLEVEL9K_FVM_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_FVM_BACKGROUND=4
   # Custom icon.
   # typeset -g POWERLEVEL9K_FVM_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   ##########[ luaenv: lua version from luaenv (https://github.com/cehoffman/luaenv) ]###########
   # Lua color.
-  # typeset -g POWERLEVEL9K_LUAENV_FOREGROUND=0
+  typeset -g POWERLEVEL9K_LUAENV_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_LUAENV_BACKGROUND=4
   # Hide lua version if it doesn't come from one of these sources.
   typeset -g POWERLEVEL9K_LUAENV_SOURCES=(shell local global)
@@ -823,7 +823,7 @@
 
   ###############[ jenv: java version from jenv (https://github.com/jenv/jenv) ]################
   # Java color.
-  # typeset -g POWERLEVEL9K_JENV_FOREGROUND=1
+  typeset -g POWERLEVEL9K_JENV_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_JENV_BACKGROUND=7
   # Hide java version if it doesn't come from one of these sources.
   typeset -g POWERLEVEL9K_JENV_SOURCES=(shell local global)
@@ -835,7 +835,7 @@
 
   ###########[ plenv: perl version from plenv (https://github.com/tokuhirom/plenv) ]############
   # Perl color.
-  # typeset -g POWERLEVEL9K_PLENV_FOREGROUND=0
+  typeset -g POWERLEVEL9K_PLENV_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_PLENV_BACKGROUND=4
   # Hide perl version if it doesn't come from one of these sources.
   typeset -g POWERLEVEL9K_PLENV_SOURCES=(shell local global)
@@ -847,14 +847,14 @@
 
   ################[ terraform: terraform workspace (https://www.terraform.io) ]#################
   # Terraform color.
-  # typeset -g POWERLEVEL9K_TERRAFORM_FOREGROUND=4
+  typeset -g POWERLEVEL9K_TERRAFORM_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_TERRAFORM_BACKGROUND=0
   # Custom icon.
   # typeset -g POWERLEVEL9K_TERRAFORM_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   #[ aws: aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html) ]#
   # AWS profile color.
-  # typeset -g POWERLEVEL9K_AWS_DEFAULT_FOREGROUND=7
+  typeset -g POWERLEVEL9K_AWS_DEFAULT_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_AWS_DEFAULT_BACKGROUND=1
   # POWERLEVEL9K_AWS_CLASSES is an array with even number of elements. The first element
   # in each pair defines a pattern against which the current AWS profile gets matched.
@@ -999,7 +999,7 @@
       # '*prod*'  PROD    # These values are examples that are unlikely
       # '*test*'  TEST    # to match your needs. Customize them as needed.
       '*'       DEFAULT)
-  typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_FOREGROUND=7
+  typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_FOREGROUND=$DEFAULT_BACKGROUND
   typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_BACKGROUND=5
   # typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
@@ -1052,14 +1052,14 @@
 
   ###############################[ public_ip: public IP address ]###############################
   # Public IP color.
-  # typeset -g POWERLEVEL9K_PUBLIC_IP_FOREGROUND=7
+  typeset -g POWERLEVEL9K_PUBLIC_IP_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_PUBLIC_IP_BACKGROUND=0
   # Custom icon.
   # typeset -g POWERLEVEL9K_PUBLIC_IP_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   ########################[ vpn_ip: virtual private network indicator ]#########################
   # VPN IP color.
-  # typeset -g POWERLEVEL9K_VPN_IP_FOREGROUND=0
+  typeset -g POWERLEVEL9K_VPN_IP_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_VPN_IP_BACKGROUND=6
   # When on VPN, show just an icon without the IP address.
   typeset -g POWERLEVEL9K_VPN_IP_CONTENT_EXPANSION=
@@ -1071,7 +1071,7 @@
 
   #########################[ proxy: system-wide http/https/ftp proxy ]##########################
   # Proxy color.
-  # typeset -g POWERLEVEL9K_PROXY_FOREGROUND=4
+  typeset -g POWERLEVEL9K_PROXY_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_PROXY_BACKGROUND=0
   # Custom icon.
   # typeset -g POWERLEVEL9K_PROXY_VISUAL_IDENTIFIER_EXPANSION='⭐'
@@ -1079,7 +1079,7 @@
   ################################[ battery: internal battery ]#################################
   # Show battery in red when it's below this level and not connected to power supply.
   typeset -g POWERLEVEL9K_BATTERY_LOW_THRESHOLD=20
-  typeset -g POWERLEVEL9K_BATTERY_LOW_FOREGROUND=1
+  typeset -g POWERLEVEL9K_BATTERY_LOW_FOREGROUND=$DEFAULT_BACKGROUND
   # Show battery in green when it's charging or fully charged.
   typeset -g POWERLEVEL9K_BATTERY_{CHARGING,CHARGED}_FOREGROUND=2
   # Show battery in yellow when it's discharging.
@@ -1092,7 +1092,7 @@
 
   ####################################[ time: current time ]####################################
   # Current time color.
-  # typeset -g POWERLEVEL9K_TIME_FOREGROUND=0
+  typeset -g POWERLEVEL9K_TIME_FOREGROUND=$DEFAULT_BACKGROUND
   # typeset -g POWERLEVEL9K_TIME_BACKGROUND=7
   # Format for the current time: 09:51:02. See `man 3 strftime`.
   typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'
@@ -1104,6 +1104,13 @@
   # typeset -g POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION='⭐'
   # Custom prefix.
   # typeset -g POWERLEVEL9K_TIME_PREFIX='at '
+
+  #################################[ history: command history ]#################################
+  # History color.
+  typeset -g POWERLEVEL9K_HISTORY_FOREGROUND=$DEFAULT_BACKGROUND
+  # typeset -g POWERLEVEL9K_HISTORY_BACKGROUND=7
+  # Custom icon.
+  # typeset -g POWERLEVEL9K_HISTORY_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   # Example of a user-defined prompt segment. Function prompt_example will be called on every
   # prompt if `example` prompt segment is added to POWERLEVEL9K_LEFT_PROMPT_ELEMENTS or
