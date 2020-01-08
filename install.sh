@@ -303,6 +303,7 @@ if [[ $response =~ (y|yes|Y) ]]; then
   require_cask font-liberation-mono-for-powerline
   require_cask font-menlo-for-powerline
   require_cask font-meslo-for-powerline
+  require_cask font-meslo-nerd-font
   require_cask font-monofur-for-powerline
   require_cask font-monoid
   require_cask font-noto-mono-for-powerline
@@ -1267,6 +1268,7 @@ running "Install settings"
 if [ ! -d ~/Library/Preferences/org.videolan.vlc ]; then
   mkdir -p ~/Library/Preferences/org.videolan.vlc;
 fi;
+
 cp -f ./configs/vlc/vlcrc ~/Library/Preferences/org.videolan.vlc/ 2> /dev/null;
 cp -f ./configs/vlc/org.videolan.vlc.plist ~/Library/Preferences/org.videolan.vlc.plist 2> /dev/null;ok
 
@@ -1278,6 +1280,7 @@ running "Install settings"
 if [ ! -d ~/.config/karabiner ]; then
   mkdir -p ~/.config/karabiner;
 fi;
+
 ln -sf ~/.dotfiles/configs/karabiner/karabiner.json ~/.config/karabiner/karabiner.json 2> /dev/null;ok
 
 ###############################################################################
@@ -1294,6 +1297,7 @@ running "Install settings"
 if [ ! -d ~/Library/Application\ Support/Code/User ]; then
   mkdir -p ~/Library/Application\ Support/Code/User;
 fi;
+
 ln -sf ~/.dotfiles/configs/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json 2> /dev/null;ok
 
 ###############################################################################
@@ -1301,7 +1305,8 @@ bot "Python"
 ###############################################################################
 
 running "Install modules"
-python3 -m pip install --user -r ~/.dotfiles/configs/python/requirements.txt;ok
+python3 -m pip install --user wheel 2> /dev/null;ok
+python3 -m pip install --user -r ~/.dotfiles/configs/python/requirements.txt 2> /dev/null;ok
 
 ###############################################################################
 bot "Arduino IDE"
@@ -1324,6 +1329,17 @@ ln -sf ~/.dotfiles/configs/arduino/dracula_theme/theme /Applications/Arduino.app
 
 # running "Install settings"
 # ./configs/jetbrains/configure.sh --install-settings;ok
+
+###############################################################################
+bot "ColorLS"
+###############################################################################
+
+running "Install dracula colors"
+if [ ! -d ~/.config/colorls ]; then
+  mkdir -p ~/.config/colorls;
+fi;
+
+ln -sf ~/.dotfiles/configs/colorls/dark_colors.yaml ~/.config/colorls/dark_colors.yaml 2> /dev/null;ok
 
 ###############################################################################
 bot "Terminal & iTerm2"

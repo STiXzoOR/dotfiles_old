@@ -17,6 +17,11 @@
   # status = auto
   # branch = auto
 
+[color "status"]
+	added = green
+  changed = yellow
+  untracked = blue
+
 [advice]
   statusHints = false
 
@@ -87,7 +92,7 @@
 [apply]
   whitespace = nowarn
 
-  [rerere]
+[rerere]
   #Enable the recording of resolved conflicts, so that identical hunks can be resolved automatically later on
   enabled = 1
 
@@ -108,11 +113,11 @@
   conflictstyle = diff3
 
 [branch]
-    # Automatically set up pull to be --rebase
-    # autosetuprebase = always
+  # Automatically set up pull to be --rebase
+  # autosetuprebase = always
 
 [credential]
-    # cache creds (git help credential-cache)
+  # cache creds (git help credential-cache)
   helper = cache
 
 [filter "tabspace"]

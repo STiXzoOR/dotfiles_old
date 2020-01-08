@@ -1,0 +1,44 @@
+# Main Colors
+unrecognized_file: salmon
+recognized_file: powderblue
+dir: steelblue
+
+# Link
+dead_link: red
+link: cyan
+
+# Special files
+socket: red
+blockdev: yellow
+chardev: yellow
+
+# Access Modes
+write: red
+read: yellow
+exec: green
+no_access: white
+
+# Age
+day_old: slateblue
+hour_old: blue
+no_modifier: darkslateblue
+
+# File Size
+file_large: limegreen
+file_medium: mediumseagreen
+file_small: seagreen
+
+# Random
+report: white
+user: maroon
+tree: cyan
+empty: yellow
+error: red
+normal: indianred
+
+# Git
+addition: limegreen
+modification: yellow
+deletion: red
+untracked: blue
+unchanged: forestgreen

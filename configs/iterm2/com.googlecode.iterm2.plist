@@ -1006,6 +1006,8 @@
 	<true/>
 	<key>HotkeyModifiers</key>
 	<integer>262401</integer>
+	<key>IRMemory</key>
+	<integer>4</integer>
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>NSQuotedKeystrokeBinding</key>
@@ -1056,7 +1058,7 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>970 509 620 392 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>500 269 1329 618 0 0 1920 1057 </string>
+	<string>598 271 1049 582 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>268 84 665 582 0 0 1920 1057 </string>
 	<key>New Bookmarks</key>
@@ -1629,7 +1631,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>MesloLGMDZ-RegularForPowerline 14</string>
+			<string>MesloLGSNer-Regular 14</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -1701,7 +1703,8 @@
 	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
-		<string>Menlo</string>
+		<string>MesloLGS NF</string>
+		<string>Meslo LG M DZ for Powerline</string>
 	</array>
 	<key>NoSyncConfirmRunOpenFile</key>
 	<true/>
@@ -1712,12 +1715,12 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1920, 1080}}</string>
 		<key>topLeft</key>
-		<string>{857, 908}</string>
+		<string>{959, 848}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
 	<string>BFC1375E-14EF-42BD-9059-8AE645C69661</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>13</integer>
+	<integer>15</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2510,7 +2513,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-11-29T13:39:53Z</date>
+	<date>2020-01-08T09:21:46Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateRelaunchingMarker</key>

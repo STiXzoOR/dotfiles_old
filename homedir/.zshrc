@@ -16,7 +16,7 @@ export DEFAULT_USER=`whoami`
 # Source Powerlevel Settings
 #####################################################################################
 
-source "${HOME}/.zpowerlevel_config"
+[[ ! -f "${HOME}/.p10k.zsh" ]] || source "${HOME}/.p10k.zsh"
 set_preset Dracula
 
 #####################################################################################
@@ -55,9 +55,10 @@ load-nvmrc
 
 source "$(dirname $(gem which colorls))/tab_complete.sh"
 
-alias lc="colorls -lA"
+alias lc="colorls -lA --sd"
+alias lcg="colorls -lA --sd --gs"
+alias lcr="colorls -lA --sd --report"
 alias lct="colorls --tree"
-alias lcr="colorls -lA --report"
 
 #####################################################################################
 # Completion settings
