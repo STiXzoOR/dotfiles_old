@@ -3,6 +3,7 @@
     "editor.fontFamily": "'DejaVu Sans Mono',Menlo, Monaco, 'Courier New', monospace",
     "editor.fontSize": 15,
     "editor.formatOnSave": true,
+    "editor.formatOnSaveTimeout": 3000,
     "editor.quickSuggestionsDelay": 750,
     "editor.showFoldingControls": "always",
     "editor.suggestSelection": "first",
@@ -22,9 +23,16 @@
     "prettier.disableLanguages": [
         "python"
     ],
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Args": [
+        "--max-line-length=1200"
+    ],
+    "python.linting.lintOnSave": true,
     "python.formatting.provider": "black",
+    "python.formatting.blackPath": "/usr/local/bin/black",
     "python.jediEnabled": true,
     "python.linting.enabled": true,
+    "python.linting.pylintEnabled": false,
     "python.linting.pylintPath": "pylint",
     "python.pythonPath": "python3",
     "python.venvPath": "${workspaceFolder}",

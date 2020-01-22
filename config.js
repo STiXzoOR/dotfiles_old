@@ -54,21 +54,22 @@ module.exports = {
     // Install wget with IRI support
     "wget --enable-iri",
     "webtorrent-cli",
-    "youtube-dl",
+    "youtube-dl"
   ],
   cask: [
     "adobe-creative-cloud",
     "altserver",
     "android-file-transfer",
+    "android-platform-tools",
     "android-studio",
     "arduino",
     "autodesk-fusion360",
-    "brave-browser",
+    "barrier",
+    "caprine",
     "clover-configurator",
     "coconutbattery",
     "darwindumper",
     "discord",
-    "dropbox",
     "eclipse-java",
     "firefox",
     "flux",
@@ -80,7 +81,6 @@ module.exports = {
     "intel-power-gadget",
     "iterm2",
     "java",
-    "java8",
     "jdownloader",
     "karabiner-elements",
     "keka",
@@ -90,6 +90,7 @@ module.exports = {
     "mono-mdk",
     "open-in-code",
     "openemu",
+    "sequel-pro",
     "sketchup",
     "spotify",
     "sublime-text",
@@ -102,9 +103,21 @@ module.exports = {
     "virtualbox",
     "virtualbox-extension-pack",
     "visual-studio-code",
-    "vlc",
+    "vlc"
   ],
   gem: ["colorls"],
+  mas: [
+    // Trello
+    "1278508951",
+    // Magnet
+    "441258766",
+    // Spark
+    "1176895641",
+    // Lastpass
+    "926036361",
+    // Xcode
+    "497799835"
+  ],
   npm: [
     "antic",
     "buzzphrase",
@@ -115,7 +128,7 @@ module.exports = {
     "npm-check-updates",
     "prettyjson",
     "trash",
-    "vtop",
+    "vtop"
     // ,'yo'
-  ],
+  ]
 };
