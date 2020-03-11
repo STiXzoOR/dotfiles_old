@@ -1,6 +1,7 @@
 {
     "editor.acceptSuggestionOnCommitCharacter": false,
-    "editor.fontFamily": "'DejaVu Sans Mono',Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontFamily": "'Fira Code','DejaVu Sans Mono',Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": true,
     "editor.fontSize": 15,
     "editor.formatOnSave": true,
     "editor.formatOnSaveTimeout": 3000,
@@ -10,19 +11,28 @@
     "editor.wordWrap": "on",
     "emmet.includeLanguages": {
         "javascript": "javascriptreact",
-        "vue-html": "html"
+        "vue-html": "html",
+        "django-html": "html"
     },
     "emmet.triggerExpansionOnTab": true,
     "git.autofetch": true,
     "git.postCommitCommand": "push",
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[django-html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     "javascript.updateImportsOnFileMove.enabled": "always",
     "javascript.validate.enable": false,
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "open-in-browser.default": "chrome",
     "prettier.disableLanguages": [
         "python"
     ],
+    "prettier.singleQuote": true,
     "python.linting.flake8Enabled": true,
     "python.linting.flake8Args": [
         "--max-line-length=1200"
@@ -48,9 +58,9 @@
     "window.openFilesInNewWindow": "on",
     "window.openFoldersInNewWindow": "on",
     "window.zoomLevel": 0,
-    "workbench.colorTheme": "Dracula",
+    "workbench.colorTheme": "Dracula Pro",
     "workbench.editor.enablePreview": false,
     "workbench.iconTheme": "vscode-icons",
     "workbench.sideBar.location": "left",
-    "workbench.startupEditor": "newUntitledFile"
+    "workbench.startupEditor": "newUntitledFile",
 }

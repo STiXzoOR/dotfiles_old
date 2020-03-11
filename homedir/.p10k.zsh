@@ -37,8 +37,12 @@
   function set_preset() {
 	  if [ "$1" = "Dracula" ]; then
 		  echo -e "\033]1337;SetColors=preset=Dracula\a"
+    elif [ "$1" = "Dracula Pro" ]; then
+		  echo -e "\033]1337;SetColors=preset=Dracula Pro\a"
+    elif [ "$1" = "Dracula Pro (Van)" ]; then
+		  echo -e "\033]1337;SetColors=preset=Dracula Pro (Van Helsing)\a"
  	  elif [ "$1" = "Solarized" ]; then
-		  echo -e "\033]1337;SetColors=preset=Solarized_Dark_Patched\a"
+		  echo -e "\033]1337;SetColors=preset=Solarized Dark\a"
 	  fi
   }
 
