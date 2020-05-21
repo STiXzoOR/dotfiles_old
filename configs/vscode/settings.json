@@ -1,4 +1,7 @@
 {
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     "editor.acceptSuggestionOnCommitCharacter": false,
     "editor.fontFamily": "'Fira Code','DejaVu Sans Mono',Menlo, Monaco, 'Courier New', monospace",
     "editor.fontLigatures": true,
@@ -12,7 +15,8 @@
     "emmet.includeLanguages": {
         "javascript": "javascriptreact",
         "vue-html": "html",
-        "django-html": "html"
+        "django-html": "html",
+        "pug": "jade"
     },
     "emmet.triggerExpansionOnTab": true,
     "git.autofetch": true,
@@ -46,6 +50,7 @@
     "python.linting.pylintPath": "pylint",
     "python.pythonPath": "python3",
     "python.venvPath": "${workspaceFolder}",
+    "puglint.enable": true,
     "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.cursorStyle": "line",
@@ -63,4 +68,13 @@
     "workbench.iconTheme": "vscode-icons",
     "workbench.sideBar.location": "left",
     "workbench.startupEditor": "newUntitledFile",
+    "files.associations": {
+        "*.html": "html"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
 }
