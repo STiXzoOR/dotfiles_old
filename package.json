@@ -34,7 +34,7 @@
     "async.series": "0.5.2",
     "inquirer": "6.5.2",
     "node-emoji": "1.10.0",
-    "snyk": "^1.330.2"
+    "snyk": "^1.349.0"
   },
   "snyk": true
 }
