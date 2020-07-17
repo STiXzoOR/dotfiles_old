@@ -77,4 +77,5 @@
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "python.languageServer": "Jedi",
 }

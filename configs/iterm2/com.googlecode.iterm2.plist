@@ -1066,7 +1066,7 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>650 510 620 392 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>828 303 961 618 0 0 1920 1057 </string>
+	<string>627 149 1329 570 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>985 254 665 634 0 0 1920 1057 </string>
 	<key>New Bookmarks</key>
@@ -1710,6 +1710,7 @@
 	<array>
 		<string>3.3.9</string>
 		<string>3.3.8</string>
+		<string>3.3.11</string>
 		<string>3.3.7</string>
 		<string>3.3.6</string>
 	</array>
@@ -1734,7 +1735,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>BFC1375E-14EF-42BD-9059-8AE645C69661</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>26</integer>
+	<integer>30</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2493,6 +2494,8 @@
 	</dict>
 	<key>NoSyncTipOfTheDayEligibilityBeganTime</key>
 	<real>594584880.76161397</real>
+	<key>PasteTabToStringTabStopSize</key>
+	<integer>4</integer>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -2539,11 +2542,11 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-06-03T19:17:30Z</date>
+	<date>2020-06-24T16:56:02Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>
-	<integer>2123797704</integer>
+	<integer>2404262166</integer>
 	<key>SUUpdateRelaunchingMarker</key>
 	<false/>
 	<key>ShowPaneTitles</key>
@@ -2557,7 +2560,7 @@
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.3.9</string>
+	<string>3.3.11</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
