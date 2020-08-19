@@ -481,6 +481,18 @@ sudo touch /Private/var/vm/sleepimage;ok
 running "…and make sure it can’t be rewritten"
 sudo chflags uchg /Private/var/vm/sleepimage;ok
 
+running "Disable auto power off"
+sudo pmset -a autopoweroff 0;ok
+
+running "Disable standby mode"
+sudo pmset -a standby 0;ok
+
+running "Disable wake from iPhone/Watch (eg. When iPhone or Apple Watch come near)"
+sudo pmset -a proximitywake 0;ok
+
+running "Disable periodically wake of machine for network and updates"
+sudo pmset -a powernap 0;ok
+
 # running "Disable the sudden motion sensor as it’s not useful for SSDs"
 # sudo pmset -a sms 0;ok
 
