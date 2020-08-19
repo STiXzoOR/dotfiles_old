@@ -1297,13 +1297,13 @@ fi;
 
 ln -sf ~/.dotfiles/configs/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json 2> /dev/null;ok
 
-###############################################################################
-bot "Python"
-###############################################################################
+# ###############################################################################
+# bot "Python"
+# ###############################################################################
 
-running "Install modules"
-python3 -m pip install --user wheel 2> /dev/null;ok
-python3 -m pip install --user -r ~/.dotfiles/configs/python/requirements.txt 2> /dev/null;ok
+# running "Install modules"
+# python3 -m pip install --user wheel 2> /dev/null;ok
+# python3 -m pip install --user -r ~/.dotfiles/configs/python/requirements.txt 2> /dev/null;ok
 
 ###############################################################################
 bot "Arduino IDE"
