@@ -582,8 +582,8 @@ sudo pmset -a standbydelay 86400;ok
 #  "/System/Library/CoreServices/Menu Extras/Clock.menu"
 #ok
 
-running "Set highlight color to green"
-defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600";ok
+running "Set highlight color to steel blue"
+defaults write NSGlobalDomain AppleHighlightColor -string "0.172549019607843 0.349019607843137 0,501960784313725";ok
 
 running "Set sidebar icon size to medium"
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2;ok
