@@ -284,37 +284,22 @@ if [[ $response =~ (y|yes|Y) ]]; then
 	require_cask font-awesome-terminal-fonts
 	require_cask font-hack
 	require_cask font-hack-nerd-font
-	require_cask font-inconsolata-dz-for-powerline
-	require_cask font-inconsolata-g-for-powerline
-	require_cask font-inconsolata-for-powerline
-	require_cask font-anonymice-powerline
-  require_cask font-consolas-for-powerline
-  require_cask font-dejavu-sans-mono-for-powerline
-  require_cask font-droid-sans-mono-for-powerline
   require_cask font-fira-code
   require_cask font-fira-mono
+  require_cask font-fira-code-nerd-font
+  require_cask font-fira-mono-nerd-font
   require_cask font-fira-mono-for-powerline
-  require_cask font-firacode-nerd-font
-  require_cask font-firacode-nerd-font-mono
   require_cask font-hasklig
-  require_cask font-hasklig-nerd-font
-  require_cask font-hasklig-nerd-font-mono
-  require_cask font-iosevka
-  require_cask font-liberation-mono-for-powerline
   require_cask font-menlo-for-powerline
+  require_cask font-meslo-lg
+  require_cask font-meslo-lg-nerd-font
   require_cask font-meslo-for-powerline
-  require_cask font-meslo-nerd-font
-  require_cask font-monofur-for-powerline
-  require_cask font-monoid
-  require_cask font-noto-mono-for-powerline
   require_cask font-roboto
   require_cask font-roboto-mono
+  require_cask font-roboto-mono-nerd-font
   require_cask font-roboto-mono-for-powerline
   require_cask font-source-code-pro
   require_cask font-source-code-pro-for-powerline
-  require_cask font-ubuntu-mono-derivative-powerline
-  require_cask font-ubuntumono-nerd-font
-  require_cask font-ubuntumono-nerd-font-mono
   ok
 fi
 
