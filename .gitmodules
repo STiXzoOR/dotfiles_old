@@ -31,3 +31,12 @@
 [submodule "zsh-git-add-remote"]
 	path = zsh-git-add-remote
 	url = https://github.com/caarlos0/git-add-remote.git
+[submodule "configs/iterm2/nord_theme"]
+	path = configs/iterm2/nord_theme
+	url = https://github.com/arcticicestudio/nord-iterm2
+[submodule "configs/terminal/nord_theme"]
+	path = configs/terminal/nord_theme
+	url = https://github.com/arcticicestudio/nord-terminal-app
+[submodule "configs/xcode/nord_theme"]
+	path = configs/xcode/nord_theme
+	url = https://github.com/arcticicestudio/nord-xcode

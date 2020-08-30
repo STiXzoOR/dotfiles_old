@@ -1211,10 +1211,17 @@ defaults write org.m0k.transmission RandomPort -bool true;ok
 bot "Xcode"
 ###############################################################################
 
-running "Change theme to Dracula"
+running "Create xcode custom theme folder"
 CUSTOM_THEME_DIR=~/Library/Developer/Xcode/UserData/FontAndColorThemes
-mkdir -p $CUSTOM_THEME_DIR/;
-ln -s ~/.dotfiles/configs/xcode/dracula_theme/Dracula.xccolortheme $CUSTOM_THEME_DIR/Dracula.xccolortheme
+mkdir -p $CUSTOM_THEME_DIR/;ok
+
+running "Install dracula theme"
+ln -s ~/.dotfiles/configs/xcode/dracula_theme/Dracula.xccolortheme $CUSTOM_THEME_DIR/Dracula.xccolortheme;ok
+
+running "Install nord theme"
+ln -s ~/.dotfiles/configs/xcode/nord_theme/src/Nord.xccolortheme $CUSTOM_THEME_DIR/Nord.xccolortheme;ok
+
+running "Change theme to dracula"
 defaults write com.apple.dt.Xcode XCFontAndColorCurrentTheme -string Dracula.xccolortheme;ok
 
 running "Trim trailing whitespace"
@@ -1356,8 +1363,8 @@ if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
 fi;
 ok
 
-running "Install custom solarized dark theme in Terminal.app"
-open "./configs/terminal/Solarized Dark xterm-256color.terminal";
+running "Install nord theme in Terminal.app"
+open "./configs/terminal/nord_theme/src/xml/Nord.terminal";
 sleep 1; # Wait a bit to make sure the theme is loaded
 ok
 
@@ -1375,8 +1382,8 @@ open "./configs/iterm2/dracula_theme/Dracula.itermcolors";
 sleep 1; # Wait a bit to make sure the theme is loaded
 ok
 
-running "Install patched solarized dark theme for iTerm (opening file)"
-open "./configs/iterm2/Solarized_Dark_Patched.itermcolors";ok
+running "Install nord theme for iTerm (opening file)"
+open "./configs/iterm2/nord_theme/src/xml/Nord.itermcolors";
 sleep 1; # Wait a bit to make sure the theme is loaded
 ok
 

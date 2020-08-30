@@ -2,6 +2,7 @@
 aaron-bond.better-comments
 amandeepmittal.pug
 apollographql.vscode-apollo
+arcticicestudio.nord-visual-studio-code
 bajdzis.vscode-database
 batisteo.vscode-django
 bierner.github-markdown-preview
