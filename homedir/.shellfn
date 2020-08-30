@@ -185,3 +185,8 @@ function set_preset() {
     [[ ! -f "${HOME}/.p10k.zsh" ]] || source "${HOME}/.p10k.zsh"
   fi
 }
+
+# Generate .gitignore file
+function generate_git_ignore() { 
+  curl -sL https://www.toptal.com/developers/gitignore/api/$@
+}
