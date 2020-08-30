@@ -1,81 +1,75 @@
 {
-    "[css]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "editor.acceptSuggestionOnCommitCharacter": false,
-    "editor.fontFamily": "'Fira Code','DejaVu Sans Mono',Menlo, Monaco, 'Courier New', monospace",
-    "editor.fontLigatures": true,
-    "editor.fontSize": 15,
-    "editor.formatOnSave": true,
-    "editor.formatOnSaveTimeout": 3000,
-    "editor.quickSuggestionsDelay": 750,
-    "editor.showFoldingControls": "always",
-    "editor.suggestSelection": "first",
-    "editor.wordWrap": "on",
-    "emmet.includeLanguages": {
-        "javascript": "javascriptreact",
-        "vue-html": "html",
-        "django-html": "html",
-        "pug": "jade"
-    },
-    "emmet.triggerExpansionOnTab": true,
-    "git.autofetch": true,
-    "git.postCommitCommand": "push",
-    "[html]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[django-html]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "javascript.updateImportsOnFileMove.enabled": "always",
-    "javascript.validate.enable": false,
-    "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "open-in-browser.default": "chrome",
-    "prettier.disableLanguages": [
-        "python"
-    ],
-    "prettier.singleQuote": true,
-    "python.linting.flake8Enabled": true,
-    "python.linting.flake8Args": [
-        "--max-line-length=1200"
-    ],
-    "python.linting.lintOnSave": true,
-    "python.formatting.provider": "black",
-    "python.formatting.blackPath": "/usr/local/bin/black",
-    "python.jediEnabled": true,
-    "python.linting.enabled": true,
-    "python.linting.pylintEnabled": false,
-    "python.linting.pylintPath": "pylint",
-    "python.pythonPath": "python3",
-    "python.venvPath": "${workspaceFolder}",
-    "puglint.enable": true,
-    "terminal.external.osxExec": "iTerm.app",
-    "terminal.integrated.cursorBlinking": true,
-    "terminal.integrated.cursorStyle": "line",
-    "terminal.integrated.fontFamily": "Hack Nerd Font",
-    "terminal.integrated.fontSize": 14,
-    "terminal.integrated.rendererType": "dom",
-    "terminal.integrated.shell.osx": "/bin/zsh",
-    "vsicons.dontShowNewVersionMessage": true,
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "window.openFilesInNewWindow": "on",
-    "window.openFoldersInNewWindow": "on",
-    "window.zoomLevel": 0,
-    "workbench.colorTheme": "Dracula Pro",
-    "workbench.editor.enablePreview": false,
-    "workbench.iconTheme": "vscode-icons",
-    "workbench.sideBar.location": "left",
-    "workbench.startupEditor": "newUntitledFile",
-    "files.associations": {
-        "*.html": "html"
-    },
-    "[jsonc]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[json]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "python.languageServer": "Jedi",
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.fontFamily": "'Fira Code','DejaVu Sans Mono',Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 15,
+  "editor.formatOnSave": true,
+  "editor.quickSuggestionsDelay": 750,
+  "editor.showFoldingControls": "always",
+  "editor.suggestSelection": "first",
+  "editor.wordWrap": "on",
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "vue-html": "html",
+    "django-html": "html",
+    "pug": "jade"
+  },
+  "emmet.triggerExpansionOnTab": true,
+  "git.autofetch": true,
+  "git.postCommitCommand": "push",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[django-html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.validate.enable": false,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "open-in-browser.default": "chrome",
+  "prettier.disableLanguages": ["python"],
+  "prettier.singleQuote": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Args": ["--max-line-length=1200"],
+  "python.linting.lintOnSave": true,
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": "/usr/local/bin/black",
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": false,
+  "python.linting.pylintPath": "pylint",
+  "python.pythonPath": "python3",
+  "python.venvPath": "${workspaceFolder}",
+  "puglint.enable": true,
+  "terminal.external.osxExec": "iTerm.app",
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "terminal.integrated.fontSize": 15,
+  "terminal.integrated.rendererType": "dom",
+  "terminal.integrated.shell.osx": "zsh",
+  "vsicons.dontShowNewVersionMessage": true,
+  "window.openFilesInNewWindow": "on",
+  "window.openFoldersInNewWindow": "on",
+  "window.zoomLevel": 0,
+  "workbench.colorTheme": "Nord",
+  "workbench.editor.enablePreview": false,
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.sideBar.location": "left",
+  "workbench.startupEditor": "newUntitledFile",
+  "files.associations": {
+    "*.html": "html"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "python.languageServer": "Jedi"
 }
