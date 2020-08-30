@@ -34,18 +34,6 @@
     local LC_ALL=${${(@M)$(locale -a):#*.(utf|UTF)(-|)8}[1]:-en_US.UTF-8}
   fi
 
-  function set_preset() {
-	  if [ "$1" = "Dracula" ]; then
-		  echo -e "\033]1337;SetColors=preset=Dracula\a"
-    elif [ "$1" = "Dracula Pro" ]; then
-		  echo -e "\033]1337;SetColors=preset=Dracula Pro\a"
-    elif [ "$1" = "Dracula Pro (Van)" ]; then
-		  echo -e "\033]1337;SetColors=preset=Dracula Pro (Van Helsing)\a"
- 	  elif [ "$1" = "Solarized" ]; then
-		  echo -e "\033]1337;SetColors=preset=Solarized Dark\a"
-	  fi
-  }
-
   # PALLETE
   DEFAULT_FOREGROUND=117 #075
   DEFAULT_BACKGROUND=236

@@ -160,3 +160,28 @@ function dedup_pathvar () {
 function yt_download () {
   youtube-dl -o "${HOME}/Desktop/%(title)s.%(ext)s" "$1"
 }
+
+# Change iTerm preset theme
+function set_preset() {
+  local theme_changed=false
+
+  if [[ "$1" == "Dracula" || "$1" == "Dracula Pro" ]]; then
+    git config --global color.status.added 071
+    git config --global color.status.changed 185
+    git config --global color.status.untracked 004
+    theme_changed=true
+  elif [[ "$1" == "Nord" ]]; then
+    git config --global color.status.added 036
+    git config --global color.status.changed 003
+    git config --global color.status.untracked 105
+    theme_changed=true
+  fi
+
+  if [[ "$theme_changed" == "true" ]]; then
+    export SHELL_THEME="$1"
+    export BAT_THEME="$1"
+    git config --global delta.syntax-theme $1
+    echo -e "\033]1337;SetColors=preset=$1\a"
+    [[ ! -f "${HOME}/.p10k.zsh" ]] || source "${HOME}/.p10k.zsh"
+  fi
+}
