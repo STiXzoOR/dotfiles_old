@@ -76,7 +76,6 @@ module.exports = {
     "sequel-pro",
     "sketchup",
     "spotify",
-    "sublime-text",
     "tableplus",
     "teamviewer",
     "telegram",
