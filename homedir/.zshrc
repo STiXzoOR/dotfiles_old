@@ -7,6 +7,13 @@
 #
 
 #####################################################################################
+# Enable Instant Prompt
+#####################################################################################
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
+
+#####################################################################################
 # Hide Username from Prompt
 #####################################################################################
 
@@ -37,17 +44,17 @@ fi
 # Source NVM
 #####################################################################################
 
-source /usr/local/opt/nvm/nvm.sh --no-use
+# source /usr/local/opt/nvm/nvm.sh --no-use
 
-autoload -U add-zsh-hook
-load-nvmrc() {
-  if [[ -f .nvmrc && -r .nvmrc ]]; then
-    nvm use &> /dev/null
-  fi
-}
+# autoload -U add-zsh-hook
+# load-nvmrc() {
+#   if [[ -f .nvmrc && -r .nvmrc ]]; then
+#     nvm use &> /dev/null
+#   fi
+# }
 
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+# add-zsh-hook chpwd load-nvmrc
+# load-nvmrc
 
 #####################################################################################
 # ColorLS settings
@@ -67,7 +74,7 @@ alias lct="colorls --tree"
 zstyle ':completion:*' menu select
 
 # Source fzf completion if installed
-if test -d /usr/local/opt/fzf/shell; then
+if [ "$(command -v fzf)" ]; then
   export FZF_COMPLETION_TRIGGER='**'
   source /usr/local/opt/fzf/shell/completion.zsh
 fi
