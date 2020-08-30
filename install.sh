@@ -1153,19 +1153,6 @@ running "Disable continuous spell checking"
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false;ok
 
 ###############################################################################
-bot "Sublime Text"
-###############################################################################
-
-running "Install dracula theme"
-ln -sf ~/.dotfiles/configs/sublime/dracula_theme ~/Library/Application\ Support/Sublime\ Text*/Packages/Dracula\ Color\ Scheme 2> /dev/null;ok
-
-running "Install settings"
-ln -sf ~/.dotfiles/configs/sublime/Preferences.sublime-settings ~Library/Application\ Support/Sublime\ Text*/Packages/User/Preferences.sublime-settings 2> /dev/null;ok
-
-running "Install addon(s) settings"
-ln -sf ~/.dotfiles/configs/sublime/Rainbowth.sublime-settings ~Library/Application\ Support/Sublime\ Text*/Packages/User/Rainbowth.sublime-settings 2> /dev/null;ok
-
-###############################################################################
 bot "Transmission"
 ###############################################################################
 
@@ -1304,14 +1291,6 @@ fi;
 
 ln -sf ~/.dotfiles/configs/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json 2> /dev/null;ok
 
-# ###############################################################################
-# bot "Python"
-# ###############################################################################
-
-# running "Install modules"
-# python3 -m pip install --user wheel 2> /dev/null;ok
-# python3 -m pip install --user -r ~/.dotfiles/configs/python/requirements.txt 2> /dev/null;ok
-
 ###############################################################################
 bot "Arduino IDE"
 ###############################################################################
@@ -1319,20 +1298,6 @@ bot "Arduino IDE"
 running "Change theme to dracula"
 mv /Applications/Arduino.app/Contents/Java/lib/theme /Applications/Arduino.app/Contents/Java/lib/theme_backup;
 ln -sf ~/.dotfiles/configs/arduino/dracula_theme/theme /Applications/Arduino.app/Contents/Java/lib/theme 2> /dev/null;ok
-
-# ###############################################################################
-# bot "Jetbrains Apps"
-# ###############################################################################
-
-# running "Install dracula theme"
-# ./configs/jetbrains/configure.sh --install-theme;ok
-
-# running "Install plugins"
-# ./configs/jetbrains/configure.sh --download-plugins;
-# ./configs/jetbrains/configure.sh --install-plugins;ok
-
-# running "Install settings"
-# ./configs/jetbrains/configure.sh --install-settings;ok
 
 ###############################################################################
 bot "ColorLS"
