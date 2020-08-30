@@ -16,8 +16,8 @@ export DEFAULT_USER=`whoami`
 # Source Powerlevel Settings
 #####################################################################################
 
-[[ ! -f "${HOME}/.p10k.zsh" ]] || source "${HOME}/.p10k.zsh"
-set_preset "Dracula Pro"
+# [[ ! -f "${HOME}/.p10k.zsh" ]] || source "${HOME}/.p10k.zsh"
+set_preset "Nord"
 
 #####################################################################################
 # Source Prezto
