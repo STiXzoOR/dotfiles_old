@@ -41,6 +41,7 @@
   #safecrlf = true
   editor = vim
   #editor = subl -w
+  pager = delta
 
   [alias]
   # most commonly used
@@ -95,6 +96,15 @@
 [rerere]
   #Enable the recording of resolved conflicts, so that identical hunks can be resolved automatically later on
   enabled = 1
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  side-by-side = true
+  line-numbers-left-format = ""
+  line-numbers-right-format = "│ "
+	syntax-theme = Nord
 
 [difftool]
   prompt = false
