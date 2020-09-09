@@ -2104,7 +2104,7 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>650 510 620 392 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1161 421 650 522 0 0 1920 1057 </string>
+	<string>994 345 890 522 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>985 254 665 634 0 0 1920 1057 </string>
 	<key>New Bookmarks</key>
@@ -2376,7 +2376,7 @@
 			<key>Close Sessions On End</key>
 			<true/>
 			<key>Columns</key>
-			<integer>100</integer>
+			<integer>110</integer>
 			<key>Command</key>
 			<string></string>
 			<key>Cursor Color</key>
@@ -2775,7 +2775,7 @@
 			<key>Right Option Key Sends</key>
 			<integer>0</integer>
 			<key>Rows</key>
-			<integer>50</integer>
+			<integer>30</integer>
 			<key>Screen</key>
 			<integer>-1</integer>
 			<key>Scrollback Lines</key>
@@ -2888,7 +2888,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>BFC1375E-14EF-42BD-9059-8AE645C69661</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>84</integer>
+	<integer>85</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -3695,7 +3695,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-08-28T14:58:24Z</date>
+	<date>2020-09-01T15:01:13Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>
