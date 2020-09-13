@@ -14,15 +14,15 @@ if [[ -z $1 ]]; then
   exit 1
 fi
 
-
 bot "Do you wish to change your shell back to bash?"
 read -r -p "[Y|n] " response
 
-if [[ $response =~ ^(no|n|N) ]];then
-    bot "ok, leaving shell as zsh..."
+if [[ $response =~ ^(no|n|N) ]]; then
+  bot "ok, leaving shell as zsh..."
 else
-    bot "ok, changing shell to bash..."
-    chsh -s $(which bash);ok
+  bot "ok, changing shell to bash..."
+  chsh -s $(which bash)
+  ok
 fi
 
 bot "Restoring dotfiles from backup..."
@@ -36,15 +36,18 @@ for file in .*; do
 
   running "~/$file"
   if [[ -e ~/$file ]]; then
-      unlink $file;
-      echo -en "project dotfile $file unlinked";ok
+    unlink $file
+    echo -en "project dotfile $file unlinked"
+    ok
   fi
 
   if [[ -e ./$file ]]; then
-      mv ./$file ./
-      echo -en "$1 backup restored";ok
+    mv ./$file ./
+    echo -en "$1 backup restored"
+    ok
   fi
-  echo -en '\tdone';ok
+  echo -en '\tdone'
+  ok
 done
 
 popd

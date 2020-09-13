@@ -11,28 +11,28 @@ inquirer
       type: "confirm",
       name: "gitshots",
       message: "Do you want to use gitshots?",
-      default: false
+      default: false,
     },
     {
       type: "confirm",
       name: "packages",
       message: "Do you want to install packages from config.js?",
-      default: false
-    }
+      default: false,
+    },
   ])
-  .then(function(answers) {
+  .then(function (answers) {
     if (answers.gitshots) {
       // additional brew packages needed to support gitshots
       config.brew.push("imagemagick", "imagesnap");
       // ensure ~/.gitshots exists
-      command("mkdir -p ~/.gitshots", __dirname, function(err, out) {
+      command("mkdir -p ~/.gitshots", __dirname, function (err, out) {
         if (err) throw err;
       });
       // add post-commit hook
       command(
         "cp ./.git_template/hooks/gitshot-pc ./.git_template/hooks/post-commit",
         __dirname,
-        function(err, out) {
+        function (err, out) {
           if (err) throw err;
         }
       );
@@ -43,7 +43,7 @@ inquirer
         command(
           "mv ./.git_template/hooks/post-commit ./.git_template/hooks/disabled-pc",
           __dirname,
-          function(err, out) {
+          function (err, out) {
             if (err) throw err;
           }
         );
@@ -56,17 +56,17 @@ inquirer
 
     const tasks = [];
 
-    ["brew", "cask", "npm", "gem", "mas"].forEach(type => {
+    ["brew", "cask", "npm", "gem", "mas"].forEach((type) => {
       if (config[type] && config[type].length) {
-        tasks.push(cb => {
+        tasks.push((cb) => {
           console.info(
             emoji.get("coffee"),
             " installing " + type + " packages"
           );
           cb();
         });
-        config[type].forEach(item => {
-          tasks.push(cb => {
+        config[type].forEach((item) => {
+          tasks.push((cb) => {
             console.info(type + ":", item);
             command(
               ". lib_sh/echos.sh && . lib_sh/requirers.sh && require_" +
@@ -74,7 +74,7 @@ inquirer
                 " " +
                 item,
               __dirname,
-              function(err, stdout, stderr) {
+              function (err, stdout, stderr) {
                 if (err) console.error(emoji.get("fire"), err, stderr);
                 cb();
               }
@@ -82,13 +82,13 @@ inquirer
           });
         });
       } else {
-        tasks.push(cb => {
+        tasks.push((cb) => {
           console.info(emoji.get("coffee"), type + " has no packages");
           cb();
         });
       }
     });
-    series(tasks, function(err, results) {
+    series(tasks, function (err, results) {
       console.log("package install complete");
     });
   });
