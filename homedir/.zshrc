@@ -17,7 +17,7 @@
 # Hide Username from Prompt
 #####################################################################################
 
-export DEFAULT_USER=`whoami`
+export DEFAULT_USER=$(whoami)
 
 #####################################################################################
 # Source Powerlevel Settings

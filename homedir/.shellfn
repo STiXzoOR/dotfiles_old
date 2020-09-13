@@ -2,15 +2,33 @@
 # Utility Functions
 
 # Create a new git repo with one README commit and CD into it
-function gitnr() { mkdir $1; cd $1; git init; touch README.md; git add README.md; git commit -minitial-commit;}
+function gitnr() {
+  mkdir $1
+  cd $1
+  git init
+  touch README.md
+  git add README.md
+  git commit -minitial-commit
+}
 
 # Do a Matrix movie effect of falling characters
 function matrix1() {
-  echo -e "\e[1;40m" ; clear ; while :; do echo $LINES $COLUMNS $(( $RANDOM % $COLUMNS)) $(( $RANDOM % 72 )) ;sleep 0.05; done|gawk '{ letters="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()"; c=$4; letter=substr(letters,c,1);a[$3]=0;for (x in a) {o=a[x];a[x]=a[x]+1; printf "\033[%s;%sH\033[2;32m%s",o,x,letter; printf "\033[%s;%sH\033[1;37m%s\033[0;0H",a[x],x,letter;if (a[x] >= $1) { a[x]=0; } }}'
+  echo -e "\e[1;40m"
+  clear
+  while :; do
+    echo $LINES $COLUMNS $(($RANDOM % $COLUMNS)) $(($RANDOM % 72))
+    sleep 0.05
+  done | gawk '{ letters="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()"; c=$4; letter=substr(letters,c,1);a[$3]=0;for (x in a) {o=a[x];a[x]=a[x]+1; printf "\033[%s;%sH\033[2;32m%s",o,x,letter; printf "\033[%s;%sH\033[1;37m%s\033[0;0H",a[x],x,letter;if (a[x] >= $1) { a[x]=0; } }}'
 }
 
 function matrix2() {
-  echo -e "\e[1;40m" ; clear ; characters=$( jot -c 94 33 | tr -d '\n' ) ; while :; do echo $LINES $COLUMNS $(( $RANDOM % $COLUMNS)) $(( $RANDOM % 72 )) $characters ;sleep 0.05; done|gawk '{ letters=$5; c=$4; letter=substr(letters,c,1);a[$3]=0;for (x in a) {o=a[x];a[x]=a[x]+1; printf "\033[%s;%sH\033[2;32m%s",o,x,letter; printf "\033[%s;%sH\033[1;37m%s\033[0;0H",a[x],x,letter;if (a[x] >= $1) { a[x]=0; } }}'
+  echo -e "\e[1;40m"
+  clear
+  characters=$(jot -c 94 33 | tr -d '\n')
+  while :; do
+    echo $LINES $COLUMNS $(($RANDOM % $COLUMNS)) $(($RANDOM % 72)) $characters
+    sleep 0.05
+  done | gawk '{ letters=$5; c=$4; letter=substr(letters,c,1);a[$3]=0;for (x in a) {o=a[x];a[x]=a[x]+1; printf "\033[%s;%sH\033[2;32m%s",o,x,letter; printf "\033[%s;%sH\033[1;37m%s\033[0;0H",a[x],x,letter;if (a[x] >= $1) { a[x]=0; } }}'
 }
 
 # Use Mac OS Preview to open a man page in a more handsome format
@@ -18,16 +36,16 @@ function manp() {
   man -t $1 | open -f -a /Applications/Preview.app
 }
 
-function screenshot_shadow(){
-	if [[ $1 =~ (on|On|enable|Enable) ]];then
-		defaults write com.apple.screencapture disable-shadow -bool false
-	elif [[ $1 =~ (off|Off|disable|Disable) ]];then
-		defaults write com.apple.screencapture disable-shadow -bool true
-	fi
+function screenshot_shadow() {
+  if [[ $1 =~ (on|On|enable|Enable) ]]; then
+    defaults write com.apple.screencapture disable-shadow -bool false
+  elif [[ $1 =~ (off|Off|disable|Disable) ]]; then
+    defaults write com.apple.screencapture disable-shadow -bool true
+  fi
 }
 
 function check_sh() {
-	bash -n $1
+  bash -n $1
 }
 
 # Show normally hidden system and dotfile types of files
@@ -50,11 +68,10 @@ function hidehiddenfiles() {
 
 ## hammer a service with curl for a given number of times
 ## usage: curlhammer $url
-function curlhammer () {
-  bot "about to hammer $1 with $2 curls ⇒";
+function curlhammer() {
+  bot "about to hammer $1 with $2 curls ⇒"
   echo "curl -k -s -D - $1 -o /dev/null | grep 'HTTP/1.1' | sed 's/HTTP\/1.1 //'"
-  for i in {1..$2}
-  do
+  for i in {1..$2}; do
     curl -k -s -D - $1 -o /dev/null | grep 'HTTP/1.1' | sed 's/HTTP\/1.1 //'
   done
   bot "done"
@@ -75,7 +92,7 @@ function curlheader() {
 
 ## get the timings for a curl to a URL
 ## usage: curltime $url
-function curltime(){
+function curltime() {
   curl -w "   time_namelookup:  %{time_namelookup}\n\
       time_connect:  %{time_connect}\n\
    time_appconnect:  %{time_appconnect}\n\
@@ -86,13 +103,13 @@ time_starttransfer:  %{time_starttransfer}\n\
         time_total:  %{time_total}\n" -o /dev/null -s "$1"
 }
 
-function fixperms(){
-    find . \( -name "*.sh" -or -type d \) -exec chmod 755 {} \; && find . -type f ! -name "*.sh" -exec chmod 644 {} \;
+function fixperms() {
+  find . \( -name "*.sh" -or -type d \) -exec chmod 755 {} \; && find . -type f ! -name "*.sh" -exec chmod 644 {} \;
 }
 
 # Create a new directory and enter it
 function mkd() {
-  mkdir -p "$@" && cd "$_";
+  mkdir -p "$@" && cd "$_"
 }
 
 # Generate Subresource Integrity hashes.
@@ -103,23 +120,23 @@ function mkd() {
 # https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity
 function sri() {
   if [ -z "${1}" ]; then
-    echo "ERROR: No file specified.";
-    return 1;
-  fi;
+    echo "ERROR: No file specified."
+    return 1
+  fi
   local algorithm="${2:-sha512}"
   if ! echo "${algorithm}" | egrep -q "^sha(256|384|512)$"; then
-    echo "ERROR: hash algorithm must be sha256, sha384 or sha512.";
-    return 1;
-  fi;
+    echo "ERROR: hash algorithm must be sha256, sha384 or sha512."
+    return 1
+  fi
   local filehash=$(openssl dgst "-${algorithm}" -binary "$1" | openssl base64 -A)
   if [ -z "${filehash}" ]; then
-    return 1;
-  fi;
-  echo "${algorithm}-${filehash}";
+    return 1
+  fi
+  echo "${algorithm}-${filehash}"
 }
 
 ## output directory/file tree, excluding ignorables
-function tre(){
+function tre() {
   tree -aC -I '.git|node_modules|bower_components|.DS_Store' --dirsfirst "$@"
 }
 
@@ -127,7 +144,7 @@ function weather() {
   curl wttr.in/$1
 }
 
-function ipinfo(){
+function ipinfo() {
   curl ipinfo.io/$1
 }
 
@@ -141,12 +158,12 @@ function fo() {
 }
 
 # Deduplicate path variables
-function dedup_pathvar () {
-  function get_var () {
+function dedup_pathvar() {
+  function get_var() {
     eval 'printf "%s\n" "${'"$1"'}"'
   }
 
-  function set_var () {
+  function set_var() {
     eval "$1=\"\$2\""
   }
 
@@ -157,7 +174,7 @@ function dedup_pathvar () {
 }
 
 # Download youtube videos in a breeze
-function yt_download () {
+function yt_download() {
   youtube-dl -o "${HOME}/Desktop/%(title)s.%(ext)s" "$1"
 }
 
@@ -187,6 +204,6 @@ function set_preset() {
 }
 
 # Generate .gitignore file
-function generate_git_ignore() { 
+function generate_git_ignore() {
   curl -sL https://www.toptal.com/developers/gitignore/api/$@
 }

@@ -9,7 +9,7 @@
 
 function require_cask() {
     running "brew cask $1"
-    brew cask list $1 > /dev/null 2>&1 | true
+    brew cask list $1 >/dev/null 2>&1 | true
     if [[ ${PIPESTATUS[0]} != 0 ]]; then
         action "brew cask install $1 $2"
         brew cask install $1
@@ -23,7 +23,7 @@ function require_cask() {
 
 function require_brew() {
     running "brew $1 $2"
-    brew list $1 > /dev/null 2>&1 | true
+    brew list $1 >/dev/null 2>&1 | true
     if [[ ${PIPESTATUS[0]} != 0 ]]; then
         action "brew install $1 $2"
         brew install $1 $2
@@ -44,7 +44,7 @@ function require_mas() {
     ok
 }
 
-function require_node(){
+function require_node() {
     running "node -v"
     node -v
     if [[ $? != 0 ]]; then
@@ -67,7 +67,7 @@ function require_npm() {
     sourceNVM
     nvm use stable
     running "npm $*"
-    npm list -g --depth 0 | grep $1@ > /dev/null
+    npm list -g --depth 0 | grep $1@ >/dev/null
     if [[ $? != 0 ]]; then
         action "npm install -g $*"
         npm install -g $@
@@ -77,7 +77,7 @@ function require_npm() {
 
 function require_apm() {
     running "checking atom plugin: $1"
-    apm list --installed --bare | grep $1@ > /dev/null
+    apm list --installed --bare | grep $1@ >/dev/null
     if [[ $? != 0 ]]; then
         action "apm install $1"
         apm install $1
@@ -85,11 +85,10 @@ function require_apm() {
     ok
 }
 
-function sourceNVM(){
+function sourceNVM() {
     export NVM_DIR=~/.nvm
     source $(brew --prefix nvm)/nvm.sh
 }
-
 
 function require_nvm() {
     mkdir -p ~/.nvm
