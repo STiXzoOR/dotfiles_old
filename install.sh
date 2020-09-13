@@ -1264,6 +1264,88 @@ cp -f ./configs/vlc/vlcrc ~/Library/Preferences/org.videolan.vlc/ 2> /dev/null;
 cp -f ./configs/vlc/org.videolan.vlc.plist ~/Library/Preferences/org.videolan.vlc.plist 2> /dev/null;ok
 
 ###############################################################################
+bot "Spotify"
+###############################################################################
+
+SPOTIFY_TUI_CONFIG_INITIAL=./configs/spotify/spotify-tui/client.yml
+SPOTIFY_TUI_CONFIG=~/.config/spotify-tui/client.yml
+response='y'
+if [ -e "$SPOTIFY_TUI_CONFIG" ]; then
+    read -r -p "Looks like you have already configured spotify-tui authentication, would you like to configure it again? [y|N] " response
+fi
+
+if [[ $response =~ (yes|y|Y) ]]; then
+  running "Configure spotify-tui authentication"
+
+  if [ ! -d ~/.config/spotify-tui ]; then
+    mkdir -p ~/.config/spotify-tui;
+  else
+	  rm -rf "$SPOTIFY_TUI_CONFIG" > /dev/null 2>&1
+	  cp "$SPOTIFY_TUI_CONFIG_INITIAL" "$SPOTIFY_TUI_CONFIG";
+  fi;
+
+	grep 'client_id: CLIENT_ID' "$SPOTIFY_TUI_CONFIG" > /dev/null 2>&1
+	if [[ $? = 0 ]]; then
+   		read -r -p "Please enter your client id: " tuiclientid
+   		read -r -p "Please enter your client secret: " tuiclientsecret
+
+  		action "replacing items in client.yml with your info"
+
+  		sed -i "s/CLIENT_ID/$tuiclientid/" "$SPOTIFY_TUI_CONFIG" > /dev/null 2>&1 | true
+  		if [[ ${PIPESTATUS[0]} != 0 ]]; then
+   			echo
+   		 	running "looks like you are using MacOS sed rather than gnu-sed, accommodating"
+   		 	sed -i '' "s/CLIENT_ID/$tuiclientid/" "$SPOTIFY_TUI_CONFIG"
+    		sed -i '' "s/CLIENT_SECRET/$tuiclientsecret/" "$SPOTIFY_TUI_CONFIG"
+    		ok
+  		else
+    		echo
+    		bot "looks like you are already using gnu-sed. woot!"
+    		sed -i "s/CLIENT_SECRET/$tuiclientsecret/" "$SPOTIFY_TUI_CONFIG"
+        ok
+  		fi
+	fi
+fi
+
+response='y'
+security find-generic-password -s spotifyd > /dev/null 2>&1
+if [[ $? = 0 ]]; then
+    read -r -p "Looks like you have already configured spotifyd authentication, would you like to configure it again? [y|N] " response
+fi
+
+if [[ $response =~ (yes|y|Y) ]]; then
+  running "Configure spotifyd authentication"
+  
+  read -r -p "Please enter your spotify id: " spotifyid
+  read -r -p "Please enter your spotify password: " spotifypassword
+
+  action "adding login credentials to keychain access"
+
+  security add-generic-password -U -s spotifyd -D rust-keyring -a $spotifyid -w $spotifypassword
+fi
+
+running "Install spotifyd settings"
+if [ ! -d ~/.config/spotifyd ]; then
+  mkdir -p ~/.config/spotifyd;
+fi;
+
+ln -sf ~/.dotfiles/configs/spotify/spotifyd/spotifyd.conf ~/.config/spotifyd/spotifyd.conf 2> /dev/null;ok
+
+running "Install spicetify settings"
+if [ ! -d ~/spicetify_data ]; then
+  mkdir -p ~/spicetify_data;
+fi;
+
+ln -sf ~/.dotfiles/configs/spotify/spicetify/config.ini ~/spicetify_data/config.ini 2> /dev/null;ok
+
+running "Install spicetify themes"
+ln -sf ~/.dotfiles/configs/spotify/spicetify/themes ~/spicetify_data/Themes 2> /dev/null;ok
+
+running "Change theme to nord"
+spicetify config current_theme Nord 2> /dev/null;ok
+spicetify backup apply 2> /dev/null;ok
+
+###############################################################################
 bot "Karabiner Elements"
 ###############################################################################
 

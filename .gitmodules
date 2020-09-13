@@ -40,3 +40,6 @@
 [submodule "configs/xcode/nord_theme"]
 	path = configs/xcode/nord_theme
 	url = https://github.com/arcticicestudio/nord-xcode
+[submodule "configs/spotify/spicetify/themes"]
+	path = configs/spotify/spicetify/themes
+	url = https://github.com/morpheusthewhite/spicetify-themes
