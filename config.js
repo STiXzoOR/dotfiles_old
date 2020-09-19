@@ -109,6 +109,8 @@ module.exports = {
     "926036361",
     // Spark
     "1176895641",
+    // Twitter
+    "1482454543",
   ],
   npm: [
     "antic",
