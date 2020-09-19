@@ -1378,8 +1378,8 @@ running "Install nord theme"
 ln -s ~/.dotfiles/configs/xcode/nord_theme/src/Nord.xccolortheme $CUSTOM_THEME_DIR/Nord.xccolortheme
 ok
 
-running "Change theme to dracula"
-defaults write com.apple.dt.Xcode XCFontAndColorCurrentTheme -string Dracula.xccolortheme
+running "Change theme to nord"
+defaults write com.apple.dt.Xcode XCFontAndColorCurrentTheme -string Nord.xccolortheme
 ok
 
 running "Trim trailing whitespace"
@@ -1633,20 +1633,23 @@ running "Only use UTF-8 in Terminal.app"
 defaults write com.apple.terminal StringEncodings -array 4
 ok
 
-running "Use dracula theme by default in Terminal.app"
-TERM_PROFILE='Dracula'
-CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')"
-if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
-  open "./configs/terminal/dracula_theme/${TERM_PROFILE}.terminal"
-  sleep 1 # Wait a bit to make sure the theme is loaded
-  defaults write com.apple.terminal 'Default Window Settings' -string "${TERM_PROFILE}"
-  defaults write com.apple.terminal 'Startup Window Settings' -string "${TERM_PROFILE}"
-fi
+running "Install dracula theme in Terminal.app"
+open "./configs/terminal/dracula_theme/Dracula.terminal"
+sleep 1 # Wait a bit to make sure the theme is loaded
 ok
 
 running "Install nord theme in Terminal.app"
 open "./configs/terminal/nord_theme/src/xml/Nord.terminal"
 sleep 1 # Wait a bit to make sure the theme is loaded
+ok
+
+running "Use nord theme by default in Terminal.app"
+TERM_PROFILE='Nord'
+CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')"
+if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
+  defaults write com.apple.terminal 'Default Window Settings' -string "${TERM_PROFILE}"
+  defaults write com.apple.terminal 'Startup Window Settings' -string "${TERM_PROFILE}"
+fi
 ok
 
 running "Enable “focus follows mouse” for Terminal.app and all X11 apps"
