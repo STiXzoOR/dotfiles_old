@@ -57,7 +57,7 @@ You don't need to install or configure anything upfront! This works with a brand
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Forget About Manual Configuration!
+## Forget About Manual Configuration!
 
 Don't you hate getting a new laptop or joining a new team and then spending a whole day setting up your system preferences and tools? Me too. That's why we automate; we did it once and we don't want to do have to do it again.
 
@@ -77,27 +77,26 @@ To launch fullscreen, hit `Command + Enter` in iTerm, then use `Command + d` and
 
 \\[._.]/ - I'm so excited I just binaried in my pants!
 
-# Watch me run!
+## Watch me run!
 
 ![Running](http://media.giphy.com/media/5xtDarwenxEoFeIMEM0/giphy.gif)
 
-# Installation
+## Installation
 
 > Note: I recommend forking this repo in case you don't like anything I do and want to set your own preferences (and pull request them!)
-
-> REVIEW WHAT THIS SCRIPT DOES PRIOR TO RUNNING: https://github.com/STiXzoOR/dotfiles/blob/master/install.sh#L360-L1672
+>
+> REVIEW WHAT THIS SCRIPT DOES PRIOR TO RUNNING: [install.sh](https://github.com/STiXzoOR/dotfiles/blob/master/install.sh#L360-L1672)
+>
 > It's always a good idea to review arbitrary code from the internet before running it on your machine with sudo power!
 > You are responsible for everything this script does to your machine (see LICENSE)
 
-````
+```(shell)
 $ git clone --recurse-submodules https://github.com/STiXzoOR/dotfiles ~/.dotfiles
 $ cd ~/.dotfiles;
+
 # run this using terminal (not iTerm, last iTerm settings get discarded on exit)
 $ ./install.sh
-```sh
-
-- When it finishes, open iTerm and press `Command + ,` to open preferences. Under Profiles > Colors, select "Load Presets" and choose the `Dracula` scheme. If it isn't there for some reason, import it from `~/.dotfiles/configs/itemr2` -- you may also need to select the `Meslo LG MD Z for Powerline` font and check the box for non-ascii font and set to `Hack Nerd`
-- I've also found that you need to reboot before fast key repeat will be enabled
+```
 
 > Note: running install.sh is idempotent. You can run it again and again as you add new features or software to the scripts! I'll regularly add new configurations so keep an eye on this repo as it grows and optimizes.
 
@@ -107,18 +106,18 @@ If you have existing dotfiles for configuring git, zsh, vim, etc, these will be 
 
 > The restore script does not currently restore system settings--only your original dotfiles. To restore system settings, you'll need to manually undo what you don't like (so don't forget to fork, review, tweak)
 
-# Additional
+## Additional
 
-## VIM as IDE
+### VIM as IDE
 
 I am using `vim` as my IDE. I use Vundle to manage vim plugins (instead of pathogen). Vundle is better in many ways and is compatible with pathogen plugins. Additionally, vundle will manage and install its own plugins so we don't have to use git submodules for all of them.
 
-# Settings
+## Settings
 
 This project changes a number of settings and configures software on MacOS.
 Here is the current list:
 
-## Prompt Driven Configuration
+### Prompt Driven Configuration
 
 The following will only happen if you agree on the prompt
 
@@ -130,7 +129,7 @@ The following will only happen if you agree on the prompt
 - install fonts
 - change system configuration
 
-## Security
+### Security
 
 - Enable install from Anywhere
 - Disable remote apple events
@@ -139,7 +138,7 @@ The following will only happen if you agree on the prompt
 - Disable wake-on LAN
 - Disable guest account login
 
-## General UI/UX
+### General UI/UX
 
 - Set computer name (as done via System Preferences → Sharing)
 - Disable the sound effects on boot
@@ -165,7 +164,7 @@ The following will only happen if you agree on the prompt
 - Disable smart quotes as they’re annoying when typing code
 - Disable auto-correct
 
-## Trackpad, mouse, keyboard, Bluetooth accessories, and input
+### Trackpad, mouse, keyboard, Bluetooth accessories, and input
 
 - Increase sound quality for Bluetooth headphones/headsets
 - Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
@@ -175,7 +174,7 @@ The following will only happen if you agree on the prompt
 - Show language menu in the top right corner of the boot screen
 - Set timezone to Europe/Athens;
 
-## Energy saving
+### Energy saving
 
 - Disable lid wakeup
 - Disable auto power off
@@ -192,7 +191,7 @@ The following will only happen if you agree on the prompt
 - Create a zero-byte file instead…
 - …and make sure it can’t be rewritten
 
-## Screen
+### Screen
 
 - Require password immediately after sleep or screen saver begins
 - Save screenshots to the desktop
@@ -201,7 +200,7 @@ The following will only happen if you agree on the prompt
 - Enable subpixel font rendering on non-Apple LCDs
 - Enable HiDPI display modes (requires restart)
 
-## Finder
+### Finder
 
 - Allow quitting via ⌘ + Q; doing so will also hide desktop icons
 - Disable window animations and Get Info animations
@@ -232,7 +231,7 @@ The following will only happen if you agree on the prompt
 - Show the /Volumes folder
 - Expand the following File Info panes: “General”, “Open with”, and “Sharing & Permissions”
 
-## Dock & Dashboard
+### Dock & Dashboard
 
 - Set the icon size of Dock items to 36 pixels
 - Change minimize/maximize window effect to scale
@@ -246,13 +245,13 @@ The following will only happen if you agree on the prompt
 - Reset Launchpad, but keep the desktop wallpaper intact
 - Add iOS & Watch Simulator to Launchpad
 
-## Hot corners
+### Hot corners
 
 - Top left screen corner → Mission Control
 - Top right screen corner → Desktop
 - Bottom left screen corner → Start screen saver
 
-## Safari & WebKit
+### Safari & WebKit
 
 - Don’t send search queries to Apple
 - Press Tab to highlight each item on a web page
@@ -278,7 +277,7 @@ The following will only happen if you agree on the prompt
 - Enable Do Not Track
 - Update extensions automatically
 
-## Mail
+### Mail
 
 - Disable send and reply animations in Mail.app
 - Copy email addresses as 'foo@example.com' instead of 'Foo Bar <foo@example.com>' in Mail.app
@@ -287,19 +286,19 @@ The following will only happen if you agree on the prompt
 - Disable inline attachments (just show the icons)
 - Disable automatic spell checking
 
-## Spotlight
+### Spotlight
 
 - Change indexing order and disable some file types from being indexed
 - Load new settings before rebuilding the index
 - Make sure indexing is enabled for the main volume
 - Rebuild the index from scratch
 
-## Time Machine
+### Time Machine
 
 - Prevent Time Machine from prompting to use new hard drives as backup volume
 - Disable local Time Machine backups
 
-## Activity Monitor
+### Activity Monitor
 
 - Show the main window when launching Activity Monitor
 - Visualize CPU usage in the Activity Monitor Dock icon
@@ -312,7 +311,7 @@ The following will only happen if you agree on the prompt
 - Show Data in the Network graph (instead of packets)
 - Change Dock Icon
 
-## Address Book, Dashboard, iCal, TextEdit, and Disk Utility
+### Address Book, Dashboard, iCal, TextEdit, and Disk Utility
 
 - Enable the debug menu in Address Book
 - Enable Dashboard dev mode (allows keeping widgets on the desktop)
@@ -321,7 +320,7 @@ The following will only happen if you agree on the prompt
 - Enable the debug menu in Disk Utility
 - Auto-play videos when opened with QuickTime Player
 
-## Mac App Store
+### Mac App Store
 
 - Enable the WebKit Developer Tools in the Mac App Store
 - Enable Debug Menu in the Mac App Store
@@ -330,11 +329,11 @@ The following will only happen if you agree on the prompt
 - Automatically download apps purchased on other Macs
 - Turn on app auto-update
 
-## Photos
+### Photos
 
 - Prevent Photos from opening automatically when devices are plugged in
 
-## Messages
+### Messages
 
 - Disable automatic emoji substitution (i.e. use plain text smileys)
 - Disable smart quotes as it’s annoying for messages that contain code
@@ -344,7 +343,7 @@ The following will only happen if you agree on the prompt
 - Use the system-native print preview dialog
 - Expand the print dialog by default
 
-## Transmission
+### Transmission
 
 - Use ~/Documents/Torrents to store incomplete downloads
 - Use ~/Downloads to store completed downloads
@@ -358,7 +357,7 @@ The following will only happen if you agree on the prompt
 - Setting IP block list
 - Randomize port on launch
 
-## Xcode
+### Xcode
 
 - Create xcode custom theme folder
 - Install dracula theme
@@ -376,7 +375,7 @@ The following will only happen if you agree on the prompt
 - Improve performance by leveraging multi-core CPU
 - Delete these settings
 
-## Twitter
+### Twitter
 
 - Disable smart quotes as it’s annoying for code tweets
 - Show the app window when clicking the menu bar icon
@@ -386,39 +385,39 @@ The following will only happen if you agree on the prompt
 - Show full names rather than Twitter handles
 - Hide the app in the background if it’s not the front-most window
 
-## Tweetbot
+### Tweetbot
 
 - Bypass the annoyingly slow t.co URL shortener
 
-## VLC
+### VLC
 
 - Install settings
 
-## Spotify
+### Spotify
 
 - Install spotifyd settings
 - Install spicetify settings
 - Install spicetify themes
 - Change theme to nord
 
-## Karabiner Elements
+### Karabiner Elements
 
 - Install settings
 
-## Visual Studio Code
+### Visual Studio Code
 
 - Install extensions
 - Install settings
 
-## Arduino IDE
+### Arduino IDE
 
 - Change theme to dracula
 
-## ColorLS
+### ColorLS
 
 - Install dracula colors
 
-## Terminal & iTerm2
+### Terminal & iTerm2
 
 - Only use UTF-8 in Terminal.app
 - Use dracula theme by default in Terminal.app
@@ -429,13 +428,13 @@ The following will only happen if you agree on the prompt
 - Install dracula theme for iTerm (opening file)
 - Install nord theme for iTerm (opening file)
 
-# Software Installation
+## Software Installation
 
 homebrew, fontconfig, git, ruby (latest), nvm (node + npm), and zsh (latest) are all installed inside the `install.sh` as foundational software for running this project.
 Additional software is configured in `config.js` and can be customized in your own fork/branch (you can change everything in your own fork/brance).
 The following is the software that I have set as default:
 
-## Utilities
+### Utilities
 
 - Ack
 - Ag
@@ -482,7 +481,7 @@ The following is the software that I have set as default:
 - Wget
 - Youtube Dl
 
-## Apps
+### Apps
 
 - Adobe Creative Cloud
 - Aerial
@@ -533,11 +532,11 @@ The following is the software that I have set as default:
 - Visual Studio Code
 - Vlc
 
-## Ruby Gems
+### Ruby Gems
 
 - Colorls
 
-## App Store
+### App Store
 
 - Microsoft Remote Desktop
 - Paste
@@ -547,7 +546,7 @@ The following is the software that I have set as default:
 - Spark
 - Twitter
 
-## Node Packages
+### Node Packages
 
 - Antic
 - Buzzphrase
@@ -561,25 +560,24 @@ The following is the software that I have set as default:
 - Vtop
 - Webtorrent Cli
 
-# License
+## License
 
 This project is licensed under ISC. Please fork, contribute and share.
 
-# Contributions
+## Contributions
 
 Contributions are always welcome in the form of pull requests with explanatory comments.
 
 Please refer to the [Contributor Covenant](https://github.com/STiXzoOR/dotfiles/blob/master/CODE_OF_CONDUCT.md)
 
-# Loathing, Mehs and Praise
+## Loathing, Mehs and Praise
 
 1. Loathing should be directed into pull requests that make it better. woot.
 2. Bugs with the setup should be put as GitHub issues.
 3. Mehs should be > /dev/null
 4. Praise should be directed to ![@antic](https://img.shields.io/twitter/follow/antic.svg?style=social&label=@antic)
 
-# ¯\\_(ツ)_/¯ Warning / Liability
+## ¯\\_(ツ)_/¯ Warning / Liability
 
 > Warning:
 > The creator of this repo is not responsible if your machine ends up in a state you are not happy with. If you are concerned, look at the code to review everything this will do to your machine :)
-````
