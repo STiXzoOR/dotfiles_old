@@ -2028,6 +2028,8 @@
 	</dict>
 	<key>Default Bookmark Guid</key>
 	<string>D62DCFF9-F139-4F14-8FF9-20B8E86AA9B5</string>
+	<key>DimInactiveSplitPanes</key>
+	<false/>
 	<key>FocusFollowsMouse</key>
 	<integer>1</integer>
 	<key>HapticFeedbackForEsc</key>
@@ -2104,7 +2106,7 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>650 510 620 392 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>994 345 890 522 0 0 1920 1057 </string>
+	<string>0 47 1920 1010 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>985 254 665 634 0 0 1920 1057 </string>
 	<key>New Bookmarks</key>
@@ -2888,7 +2890,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>BFC1375E-14EF-42BD-9059-8AE645C69661</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>85</integer>
+	<integer>94</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -3695,7 +3697,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-09-01T15:01:13Z</date>
+	<date>2020-09-18T21:11:40Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>
