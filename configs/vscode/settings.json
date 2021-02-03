@@ -2,6 +2,21 @@
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[django-html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "editor.acceptSuggestionOnCommitCharacter": false,
   "editor.fontFamily": "'Fira Code','DejaVu Sans Mono',Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": true,
@@ -12,38 +27,33 @@
   "editor.suggestSelection": "first",
   "editor.wordWrap": "on",
   "emmet.includeLanguages": {
-    "javascript": "javascriptreact",
-    "vue-html": "html",
     "django-html": "html",
-    "pug": "jade"
+    "javascript": "javascriptreact",
+    "pug": "jade",
+    "vue-html": "html"
   },
   "emmet.triggerExpansionOnTab": true,
+  "files.associations": {
+    "*.html": "html"
+  },
   "git.autofetch": true,
   "git.postCommitCommand": "push",
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[django-html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "javascript.updateImportsOnFileMove.enabled": "always",
   "javascript.validate.enable": false,
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "open-in-browser.default": "chrome",
   "prettier.disableLanguages": ["python"],
   "prettier.singleQuote": true,
-  "python.linting.flake8Enabled": true,
-  "python.linting.flake8Args": ["--max-line-length=1200"],
-  "python.linting.lintOnSave": true,
+  "puglint.enable": true,
   "python.formatting.provider": "black",
+  "python.languageServer": "Pylance",
   "python.linting.enabled": true,
+  "python.linting.flake8Args": ["--max-line-length=1200"],
+  "python.linting.flake8Enabled": true,
+  "python.linting.lintOnSave": true,
   "python.linting.pylintEnabled": false,
   "python.linting.pylintPath": "pylint",
   "python.pythonPath": "python3",
   "python.venvPath": "${workspaceFolder}",
-  "puglint.enable": true,
   "terminal.external.osxExec": "iTerm.app",
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.cursorBlinking": true,
@@ -60,15 +70,5 @@
   "workbench.editor.enablePreview": false,
   "workbench.iconTheme": "vscode-icons",
   "workbench.sideBar.location": "left",
-  "workbench.startupEditor": "newUntitledFile",
-  "files.associations": {
-    "*.html": "html"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "python.languageServer": "Jedi"
+  "workbench.startupEditor": "newUntitledFile"
 }
