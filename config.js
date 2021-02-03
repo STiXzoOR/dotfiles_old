@@ -95,7 +95,7 @@ module.exports = {
     "visual-studio-code",
     "vlc",
   ],
-  gem: ["colorls"],
+  gem: [],
   mas: [
     // Microsoft Remote Desktop
     "1295203466",
@@ -111,6 +111,8 @@ module.exports = {
     "1176895641",
     // Twitter
     "1482454543",
+    // Messenger
+    "1480068668",
   ],
   npm: [
     "antic",

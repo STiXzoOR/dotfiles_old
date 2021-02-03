@@ -60,12 +60,12 @@ fi
 # ColorLS settings
 #####################################################################################
 
-source "$(dirname $(gem which colorls))/tab_complete.sh"
+# source "$(dirname $(gem which colorls))/tab_complete.sh"
 
-alias lc="colorls -lA --sd"
-alias lcg="colorls -lA --sd --gs"
-alias lcr="colorls -lA --sd --report"
-alias lct="colorls --tree"
+# alias lc="colorls -lA --sd"
+# alias lcg="colorls -lA --sd --gs"
+# alias lcr="colorls -lA --sd --report"
+# alias lct="colorls --tree"
 
 #####################################################################################
 # Completion settings
