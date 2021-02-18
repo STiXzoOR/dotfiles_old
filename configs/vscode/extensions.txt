@@ -27,13 +27,18 @@ dsznajder.es7-react-js-snippets
 ecmel.vscode-html-css
 eg2.vscode-npm-script
 esbenp.prettier-vscode
+formulahendry.auto-close-tag
+formulahendry.auto-rename-tag
+foxundermoon.shell-format
 funkyremi.vscode-google-translate
 Gimly81.matlab
 ginie.pug2html
+GraphQL.vscode-graphql
 gurayyarar.expressjs-4-snippets
 jpoissonnier.vscode-styled-components
 kumar-harsh.graphql-for-vscode
 magicstack.MagicPython
+marlinfirmware.auto-build
 mechatroner.rainbow-csv
 mgmcdermott.vscode-language-babel
 mikestead.dotenv
@@ -51,6 +56,8 @@ ms-azuretools.vscode-cosmosdb
 ms-azuretools.vscode-docker
 ms-dotnettools.vscode-dotnet-runtime
 ms-python.python
+ms-python.vscode-pylance
+ms-toolsai.jupyter
 ms-vscode-remote.remote-containers
 ms-vscode-remote.remote-ssh
 ms-vscode-remote.remote-ssh-edit
@@ -59,6 +66,7 @@ ms-vscode-remote.vscode-remote-extensionpack
 ms-vscode.azure-account
 ms-vscode.azurecli
 ms-vscode.cpptools
+ms-vscode.powershell
 ms-vscode.vscode-node-azure-pack
 ms-vscode.vscode-typescript-tslint-plugin
 msazurermtools.azurerm-vscode-tools
@@ -72,7 +80,6 @@ pkosta2005.heroku-command
 platformio.platformio-ide
 pnp.polacode
 pranaygp.vscode-css-peek
-Prisma.vscode-graphql
 quicktype.quicktype
 rebornix.ruby
 redhat.java
@@ -87,7 +94,6 @@ tht13.html-preview-vscode
 Tyriar.sort-lines
 vincaslt.highlight-matching-tag
 VisualStudioExptTeam.vscodeintellicode
-vsciot-vscode.vscode-arduino
 vscode-icons-team.vscode-icons
 WASTeamAccount.WebTemplateStudio-dev-nightly
 wholroyd.jinja
