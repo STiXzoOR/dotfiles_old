@@ -25,8 +25,10 @@ dracula-theme-pro.theme-dracula-pro
 dracula-theme.theme-dracula
 dsznajder.es7-react-js-snippets
 ecmel.vscode-html-css
+EditorConfig.EditorConfig
 eg2.vscode-npm-script
 esbenp.prettier-vscode
+firsttris.vscode-jest-runner
 formulahendry.auto-close-tag
 formulahendry.auto-rename-tag
 foxundermoon.shell-format
@@ -52,6 +54,7 @@ ms-azuretools.vscode-azurefunctions
 ms-azuretools.vscode-azureresourcegroups
 ms-azuretools.vscode-azurestorage
 ms-azuretools.vscode-azurevirtualmachines
+ms-azuretools.vscode-bicep
 ms-azuretools.vscode-cosmosdb
 ms-azuretools.vscode-docker
 ms-dotnettools.vscode-dotnet-runtime
