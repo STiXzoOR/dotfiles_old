@@ -149,3 +149,6 @@
 
 [pull]
 	ff = true
+
+[init]
+	defaultBranch = master
