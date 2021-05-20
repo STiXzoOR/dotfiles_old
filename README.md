@@ -57,7 +57,7 @@ You don't need to install or configure anything upfront! This works with a brand
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Forget About Manual Configuration!
+## Forget About Manual Configuration
 
 Don't you hate getting a new laptop or joining a new team and then spending a whole day setting up your system preferences and tools? Me too. That's why we automate; we did it once and we don't want to do have to do it again.
 
@@ -77,7 +77,7 @@ To launch fullscreen, hit `Command + Enter` in iTerm, then use `Command + d` and
 
 \\[._.]/ - I'm so excited I just binaried in my pants!
 
-## Watch me run!
+## Watch me run
 
 ![Running](http://media.giphy.com/media/5xtDarwenxEoFeIMEM0/giphy.gif)
 
@@ -146,6 +146,7 @@ The following will only happen if you agree on the prompt
 - Set sidebar icon size to medium
 - Always show scrollbars
 - Disable the over-the-top focus ring animation
+- Adjust toolbar title rollover delay
 - Increase window resize speed for Cocoa applications
 - Expand save panel by default
 - Expand print panel by default
@@ -362,7 +363,7 @@ The following will only happen if you agree on the prompt
 - Create xcode custom theme folder
 - Install dracula theme
 - Install nord theme
-- Change theme to dracula
+- Change theme to nord
 - Trim trailing whitespace
 - Trim whitespace only lines
 - Show line numbers
@@ -381,7 +382,7 @@ The following will only happen if you agree on the prompt
 - Show the app window when clicking the menu bar icon
 - Enable the hidden ‘Develop’ menu
 - Open links in the background
-- Allow closing the ‘new tweet’ window by pressing \$(Esc)
+- Allow closing the ‘new tweet’ window by pressing $(Esc)
 - Show full names rather than Twitter handles
 - Hide the app in the background if it’s not the front-most window
 
@@ -420,8 +421,9 @@ The following will only happen if you agree on the prompt
 ### Terminal & iTerm2
 
 - Only use UTF-8 in Terminal.app
-- Use dracula theme by default in Terminal.app
+- Install dracula theme in Terminal.app
 - Install nord theme in Terminal.app
+- Use nord theme by default in Terminal.app
 - Enable “focus follows mouse” for Terminal.app and all X11 apps
 - Tell iTerm2 to use the custom preferences in the directory
 - Specify the preferences directory
@@ -448,7 +450,6 @@ The following is the software that I have set as default:
 - Fortune
 - Fselect
 - Fzf
-- Readline
 - Gawk
 - Gifsicle
 - Gnupg
@@ -461,16 +462,21 @@ The following is the software that I have set as default:
 - Mongodb Community
 - Moreutils
 - Mysql
+- Ncurses
 - Neofetch
 - Nmap
+- Node
 - Openconnect
 - Python
+- Python Tk
+- Readline
 - Reattach To User Namespace
 - Srkomodo/Tap/Shadowfox Updater
 - Homebrew/Dupes/Screen
 - Spicetify Cli
 - Spotify Tui
 - Spotifyd
+- Svn
 - Tldr
 - Tmux
 - Todo Txt
@@ -493,11 +499,14 @@ The following is the software that I have set as default:
 - Autodesk Fusion360
 - Balenaetcher
 - Barrier
+- Brave Browser
 - Caprine
 - Checkra1N
 - Coconutbattery
 - Darwindumper
 - Discord
+- Electorrent
+- Figma
 - Firefox
 - Flux
 - Fritzing
@@ -532,10 +541,6 @@ The following is the software that I have set as default:
 - Visual Studio Code
 - Vlc
 
-### Ruby Gems
-
-- Colorls
-
 ### App Store
 
 - Microsoft Remote Desktop
@@ -545,6 +550,8 @@ The following is the software that I have set as default:
 - LastPass
 - Spark
 - Twitter
+- Messenger
+- Emby
 
 ### Node Packages
 
