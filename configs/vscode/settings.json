@@ -1,23 +1,33 @@
 {
-  "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "[django-html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "[dotenv]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[hosts]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "numso.prettier-standard-vscode"
   },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "numso.prettier-standard-vscode"
   },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "numso.prettier-standard-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "numso.prettier-standard-vscode"
   },
   "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.fontFamily": "'Fira Code','DejaVu Sans Mono',Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": true,
   "editor.fontSize": 15,
@@ -30,6 +40,7 @@
     "django-html": "html",
     "javascript": "javascriptreact",
     "pug": "jade",
+    "typescript": "typescriptreact",
     "vue-html": "html"
   },
   "emmet.triggerExpansionOnTab": true,
@@ -38,46 +49,45 @@
   },
   "git.autofetch": true,
   "git.postCommitCommand": "push",
+  "indentRainbow.excludedLanguages": ["plaintext"],
+  "indentRainbow.updateDelay": 100,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "javascript.validate.enable": false,
-  "open-in-browser.default": "chrome",
-  "prettier.disableLanguages": ["python"],
+  "open-in-browser.default": "brave",
   "prettier.singleQuote": true,
   "puglint.enable": true,
   "python.formatting.provider": "black",
   "python.languageServer": "Pylance",
   "python.linting.enabled": true,
-  "python.linting.flake8Args": ["--max-line-length=1200"],
+  "python.linting.flake8Args": ["--max-line-length=120"],
   "python.linting.flake8Enabled": true,
   "python.linting.lintOnSave": true,
   "python.linting.pylintEnabled": false,
   "python.linting.pylintPath": "pylint",
   "python.pythonPath": "python3",
   "python.venvPath": "${workspaceFolder}",
+  "saveBackup.conf.backupDir": "${.vscode}/saveBackup",
+  "shellformat.path": "/usr/local/bin/shfmt",
+  "shellformat.useEditorConfig": true,
+  "sync.autoUpload": true,
+  "sync.gist": "49f014d3f199af74ce96b4651b9e925d",
+  "sync.quietSync": true,
   "terminal.external.osxExec": "iTerm.app",
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.fontFamily": "MesloLGS NF",
   "terminal.integrated.fontSize": 15,
-  "terminal.integrated.rendererType": "dom",
-  "terminal.integrated.shell.osx": "zsh",
   "vsicons.dontShowNewVersionMessage": true,
   "window.openFilesInNewWindow": "on",
   "window.openFoldersInNewWindow": "on",
   "window.zoomLevel": 0,
   "workbench.colorTheme": "Nord",
   "workbench.editor.enablePreview": false,
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
   "workbench.iconTheme": "vscode-icons",
   "workbench.sideBar.location": "left",
-  "workbench.startupEditor": "newUntitledFile",
-  "workbench.editorAssociations": [
-    {
-      "viewType": "jupyter.notebook.ipynb",
-      "filenamePattern": "*.ipynb"
-    }
-  ],
-  "[markdown]": {
-    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
-  }
+  "workbench.startupEditor": "newUntitledFile"
 }
