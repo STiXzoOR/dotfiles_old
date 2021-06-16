@@ -24,7 +24,7 @@ export DEFAULT_USER=$(whoami)
 #####################################################################################
 
 # [[ ! -f "${HOME}/.p10k.zsh" ]] || source "${HOME}/.p10k.zsh"
-set_preset "Nord"
+set-preset "Nord"
 
 #####################################################################################
 # Source Prezto
@@ -35,37 +35,19 @@ if [[ -s "${ZDOTDIR:-$HOME}/.dotfiles/prezto/init.zsh" ]]; then
 fi
 
 #####################################################################################
-# iTerm2 Shell Integration
-#####################################################################################
-
-#test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-#####################################################################################
 # Source NVM
 #####################################################################################
 
-# source /usr/local/opt/nvm/nvm.sh --no-use
+source $(brew --prefix nvm)/nvm.sh --no-use
 
-# autoload -U add-zsh-hook
-# load-nvmrc() {
-#   if [[ -f .nvmrc && -r .nvmrc ]]; then
-#     nvm use &> /dev/null
-#   fi
-# }
-
-# add-zsh-hook chpwd load-nvmrc
-# load-nvmrc
-
-#####################################################################################
-# ColorLS settings
-#####################################################################################
-
-# source "$(dirname $(gem which colorls))/tab_complete.sh"
-
-# alias lc="colorls -lA --sd"
-# alias lcg="colorls -lA --sd --gs"
-# alias lcr="colorls -lA --sd --report"
-# alias lct="colorls --tree"
+autoload -U add-zsh-hook
+load-nvmrc() {
+  if [[ -f .nvmrc && -r .nvmrc ]]; then
+    nvm use &>/dev/null
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
 
 #####################################################################################
 # Completion settings
@@ -80,7 +62,7 @@ if [ "$(command -v fzf)" ]; then
 fi
 
 #####################################################################################
-# why would you type 'cd dir' if you could just type 'dir'?
+# Why would you type 'cd dir' if you could just type 'dir'?
 #####################################################################################
 
 setopt AUTO_CD
@@ -98,9 +80,9 @@ setopt AUTO_NAME_DIRS
 setopt PUSHD_SILENT
 
 #####################################################################################
-# Run fortune on new terminal :)
+# Recursive globbing with "**"
 #####################################################################################
 
-#fortune
+setopt GLOB_STAR_SHORT
 
 # zprof # Enable for debugging

@@ -1,28 +1,31 @@
-#My Scripts
-export PATH=$PATH:~/.dotfiles/zsh-git-sync
-export PATH=$PATH:~/.dotfiles/zsh-git-add-remote
-export PATH=$PATH:~/bin
-export PATH=$PATH:.
+# Start with system path
+# Retrieve it from getconf, otherwise it's just current $PATH
 
-#Brew
-export PATH=/usr/local/sbin:$PATH
-#export PATH=/usr/local/bin:$PATH
+is-executable getconf && PATH=$($(command -v getconf) PATH)
 
-#Ruby
-export PATH=/usr/local/opt/ruby/bin:$PATH
+# Prepend new items to path (if directory exists)
 
-#GNU Coreutils
-export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
-export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
+prepend-path "/bin"
+prepend-path "/usr/bin"
+prepend-path "/usr/local/bin"
+prepend-path "/usr/local/opt/coreutils/libexec/gnubin"
+prepend-path "/usr/local/opt/gnu-sed/libexec/gnubin"
+prepend-path "/usr/local/opt/grep/libexec/gnubin"
+prepend-path "/usr/local/opt/python/libexec/bin"
+prepend-path "/usr/local/opt/go/libexec/bin"
+prepend-path "/usr/local/opt/ruby/bin"
+prepend-path "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+prepend-path "$DOTFILES/bin"
+prepend-path "$HOME/bin"
+prepend-path "/sbin"
+prepend-path "/usr/sbin"
+prepend-path "/usr/local/sbin"
 
-# VSCode
-export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$PATH
+# Remove duplicates (preserving prepended items)
+# Source: http://unix.stackexchange.com/a/40755
 
-# GO
-#export PATH=$PATH:/usr/local/opt/go/libexec/bin
+PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
 
-# The next line updates PATH for the Google Cloud SDK.
-#source "/Users/$(whoami)/Downloads/google-cloud-sdk/path.zsh.inc"
+# Wrap up
 
-# The next line enables shell command completion for gcloud.
-#source "/Users/$(whoami)/Downloads/google-cloud-sdk/completion.zsh.inc"
+export PATH
