@@ -1,4 +1,10 @@
-# \\[._.]/ - Hi, I'm the MacOS bot
+# ⚠️ This repo has been archived ⚠️
+
+**See https://github.com/STiXzoOR/dotfiles instead.**
+
+-----
+
+## \\[._.]/ - Hi, I'm the MacOS bot
 
 I will update your MacOS machine with Better™ system defaults, preferences, software configuration and even auto-install some handy development tools and apps that my developer friends find helpful.
 
